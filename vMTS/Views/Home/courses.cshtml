@@ -1,0 +1,72 @@
+﻿
+@model IEnumerable < vMTS.Models.CourseDescriptions >
+
+    <h2> @ViewBag.Message </h2>
+
+@if (Model.ToList().Count > 0)
+{
+    foreach (var i in Model)
+    {
+        <div class="panel panel-info">
+            <div class="panel-heading"><h3 class="panel-title">@i.CourseName</h3></div>
+            <div class="panel-body">
+                @if (i.Description.Count >= 1)
+                {
+                    foreach (var d in i.Description)
+                    {
+                        <p class="lead">@d</p>
+                    }
+                }
+                <p class="lead">Requires a minumum of @i.MinRiders riders for class to be held.</p>
+            </div>
+
+            @if(i.Requirements.Count >= 1)
+            {
+
+            <div class="list-group">
+                <div class="list-group-item active">Course Requirements</div>
+                @foreach (var r in i.Requirements)
+                {
+                    <div class="list-group-item">@r</div>
+                }
+                </div>
+            }
+                <div class="panel-footer">
+                    <p>@i.Evaluation</p>
+                    <p><a class="btn btn-danger" href="/Registration/Index">Register Now &raquo;</a></p>
+                </div>
+
+            </div>
+
+    }
+}
+else
+{
+    <div class="panel panel-info">
+        <div class="panel-heading"><h3 class="panel-title">vMST Courses</h3></div>
+        <div class="panel-body">
+            <p class="lead">We offer the following courses:</p>
+            <div class="list-group">
+                <div class="list-group-item">Basic RiderCourse I</div>
+                <div class="list-group-item">Basic RiderCourse II</div>
+                <div class="list-group-item">Advanced RiderCourse</div>
+                <div class="list-group-item">Three-Wheel Basic RiderCourse</div>
+                <div class="list-group-item">Skills Practice and Improvement</div>
+           </div>
+
+            <p>Contact us for more information</p>
+            </div>
+    </div>
+
+}
+
+<div class="panel panel-info">
+    <div class="panel-heading"><h3 class="panel-title">Helpful Hint</h3></div>
+    <div class="panel-body">
+        Since the courses are physically demanding, we suggest that you do not plan late evening events and get ample rest prior to each days activities. If you have a small cooler, bring snacks, lunch, soft drinks, and water to class. Be sure your boots are comfortable, broken in, and have adequate traction. Be alert to each day’s weather conditions and dress in layers as appropriate for comfort.
+        <p>Check out your knowledge by clicking on this link: <a href="http://msf-usa.org/CourseReview/Questionframe.htm?pagename=RiderCourse%20Info" target="_blank">BRC Review</a>.</p>
+    </div>
+</div>
+
+@{Html.RenderPartial("_media");}
+

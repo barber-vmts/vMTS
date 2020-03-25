@@ -1,0 +1,58 @@
+﻿@model vMTS.Models.ClassAdministration
+
+@{Layout = "";}
+@*@Scripts.Render("~/bundles/admin_Class")*@
+
+<div class="well">
+    <h1>Add New Class</h1>
+    @using (Html.BeginForm("", "", FormMethod.Post, new { id = "form_NewClass", @class = "form-horizontal" }))
+    {
+        @Html.Hidden("CLASS_ID", 0)
+        <div class="form-group">
+            <label class="sr-only">Class Type</label>
+            @Html.DropDownList("CLASS_TYPE", Model.ClassType, "Class Type", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Start Date</label>
+            @Html.TextBox("CLASS_START_DATE", DateTime.Today, "{0:d}", new { @readonly = true, @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Start Time</label>
+            @Html.DropDownList("CLASS_START_TIME", Model.StartClassTimes, "Start Time", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label class="sr-only">End Date</label>
+            @Html.TextBox("CLASS_END_DATE", DateTime.Today, "{0:d}", new { @readonly = true, @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label class="sr-only">End Time</label>
+            @Html.DropDownList("CLASS_END_TIME", Model.EndClassTimes, "End Time", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Class Location</label>
+            @Html.DropDownList("LOCATION", Model.CourseLocation, "Location", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Course Number</label>
+            @Html.DropDownList("COURSE_NUMBER", Model.CourseNumber, "Course Number", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Open Seats</label>
+            @Html.TextBox("OPEN_SEATS", "11", new { @type = "number", @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Class Fee</label>
+            <div class="input-group">
+                <span class="input-group-addon">$</span>
+                @Html.TextBox("CLASS_FEE", "195.00", "{0:0.00}", new { maxlength = "6", @class = "form-control" })
+            </div>
+        </div>
+        @*<div class="form-group">
+            <label class="sr-only">Class Description</label>
+            @Html.TextArea("CLASS_DESCRIPTION", "The Basic RiderCourse is designed to teach the novice motorcyclist the skills necessary to ride safely on the street. The course takes the beginning rider through the basics of motorcycle operation: straight line riding, turning, shifting, stopping and safe riding strategies. A minimum of 4 riders required to hold class.", new { @rows = "5", @cols = "10", @class = "form-control", @placeholder="Class Description" })
+        </div>*@
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-sm">Save</button>
+        </div>
+    }
+</div>

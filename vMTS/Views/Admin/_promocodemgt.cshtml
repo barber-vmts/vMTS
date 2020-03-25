@@ -1,0 +1,63 @@
+﻿@model vMTS.Models.PromoCodes
+
+@{Layout = null;}
+
+@Scripts.Render("~/bundles/admin_PromoCodes")
+
+@{var itemList = @Model.AllCodes.ToList();}
+
+@*<input type="text" id="codeVal" />*@
+<div class="form-horizontal">
+    <h2>Promo Code Management</h2>
+    <hr />
+    @using (Html.BeginForm("", "", FormMethod.Post, new { id = "form_NewPromoCode", @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+                <div class="col-md-10">
+                    <label class="col-md-2 sr-only control-label">Promo Code</label>
+                    <div class="col-md-10">
+                        <input type="text" id="PromoCode" name="PromoCode" placeholder="Promo Code" />
+                        <div id="CodeAlert" class="alert alert-danger hidden" role="alert">Enter a promo code</div>
+                    </div>
+                </div>
+            </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <label class="col-md-2 sr-only control-label">Start Date</label>
+            <div class="col-md-10">
+                <input type="date" id="StartDate" name="StartDate" />
+                <div id="SDAlert" class="alert alert-danger hidden" role="alert">Select a Start Date</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <label class="col-md-2 sr-only control-label">End Date</label>
+            <div class="col-md-10">
+                <input type="date" id="EndDate" name="EndDate" />
+                <div id="EDAlert" class="alert alert-danger hidden" role="alert">Select an End Date</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <label class="col-md-2 sr-only control-label">Value</label>
+            <div class="col-md-10">
+                <input type="number" id="Amount" name="Amount" placeholder="Amount" value="25" />
+                <div id="AmtAlert" class="alert alert-danger hidden" role="alert">Enter an Amount</div>
+            </div>
+        </div>
+    </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    <input type="submit" value="Save" class="btn btn-danger btn-xs" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

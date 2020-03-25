@@ -1,0 +1,42 @@
+﻿@model vMTS.Models.UsersModel
+
+@Scripts.Render("~/bundles/admin_Users")
+
+
+<div class="well well-sm">
+    <div class="form-horizontal">
+        <h2>Add User</h2>
+        <hr />
+        @using (Html.BeginForm("", "", FormMethod.Post, new { id = "form_NewUser", @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 sr-only control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @type = "email", @placeholder = "Email Address" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.LabelFor(m => m.RoleName, new { @class = "col-md-2 sr-only control-label" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("RoleName", new SelectList((System.Collections.IEnumerable)ViewData["RoleList"], "Value", "Text"), "Select Role", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.RoleName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <div class="col-md-10">
+                        <input type="submit" value="Save" class="btn btn-danger btn-xs" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,11 @@
+﻿@model vMTS.Models.RegistrationAdministration
+
+@{var itemList = @Model.StudentRegistration.ToList();}
+
+@Styles.Render("~/boot-min/css")
+
+@{Layout = "~/Views/Shared/_LayoutPrint.cshtml";}
+
+
+@Html.Partial("_studentclass", Model)
+

@@ -1,0 +1,79 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges 
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+*/
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Media Styles */
+/* PHONE SIZED SCREENS */
+@media only screen and (max-width:480px){
+    .navbar-brand {
+        height:90px;
+    }
+    .navbar-brand img{
+        width:250px;
+        height:75px;
+        margin-left:5px;
+        margin-top:-12px;
+    }
+}
+/* TRIGGERS WHEN BOOTSTRAP BAR IS SHOWN ON TABLETS */
+@media only screen and (min-width:479px) and (max-width:768px){
+    .navbar-brand {
+        height:105px;
+    }
+    .navbar-brand img{
+        width:350px;
+        height:100px;
+       margin-top:-12px;
+
+    }
+}
+
+/* TRIGGERS WHEN ON A NORMAL SCREEN AND THE BOOTSTRAP BAR HAS NOT SHOWN */
+@media only screen and  (min-width:769px) and (max-width:999px){
+    .navbar-brand {
+        height:100px;
+    }
+    .navbar-brand img{
+        width:400px;
+        height:100px;
+       margin-top:-12px;
+       margin-left:-25px;
+
+    }
+}
+
+@media only screen and (min-width:1000px) {
+    .navbar-brand {
+        height: 130px;
+    }
+
+        .navbar-brand img {
+            width: 400px;
+            height: 120px;
+            margin-top: -5px;
+            margin-left: 0px;
+        }
+}
+

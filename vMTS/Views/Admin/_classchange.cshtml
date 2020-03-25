@@ -1,0 +1,33 @@
+﻿@model vMTS.Models.RegistrationAdministration
+
+@{Layout = null;}
+
+@Scripts.Render("~/bundles/admin_Index")
+
+@{var itemList = @Model.StudentRegistration.ToList();}
+@if (itemList.Count() >= 1)
+{
+    using (Html.BeginForm("", "", FormMethod.Post, new { id = "form_ClassChange", @class = "form-horizontal", role = "form" }))
+    {
+
+        foreach (var i in itemList)
+        {
+            @Html.Hidden("r", i.RECEIPT)
+
+            @Html.Hidden("o", i.CLASS_ID)
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Class Registration Change for @i.FIRSTNAME @i.LASTNAME</div>
+
+            <!-- Table -->
+            <table class="table">
+                <tr><th>Current Class</th><th>New Class</th></tr>
+
+                    <tr><td>@i.CLASS_DAY</td><td>@Html.DropDownList("n", Model.ScheduleDates, "New Class", new { @class = "form-control" })</td></tr>
+            </table>
+
+            <div class="panel-footer"><input type="submit" value="Confirm" class="btn btn-info" /></div>
+        </div>
+                }
+    }
+}

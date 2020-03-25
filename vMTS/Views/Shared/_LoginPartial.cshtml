@@ -1,0 +1,19 @@
+﻿
+@if (@ViewBag.User != null)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+    <p><br />
+    @if (User.IsInRole("admin")) { 
+        @Html.ActionLink("Site Administration", "Index", "Admin", routeValues: null, htmlAttributes: new { title = "Administration", @class = "btn btn-danger btn-xs", target="_blank" })
+    }
+
+        <a class="btn btn-danger btn-xs" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+    </p>
+    }
+}
+else
+{
+    @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-default btn-xs", target = "_blank" })
+}

@@ -1,0 +1,41 @@
+﻿@model vMTS.Models.RiderCoaches
+
+@{
+    ViewBag.Title = "instructors";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>RiderCoaches</h2>
+
+@{var itemList = @Model.CurrentInstructors.ToList();}
+
+<div class="container-fluid">
+
+    <div class="row">
+        @if (itemList.Count() >= 1)
+        {
+            foreach (var i in itemList)
+            {
+                <div class="col-xs-3 col-md-3">
+                    <div class="thumbnail">
+                        <img src="~/images/Instructors/@i.PHOTO.Trim()" alt="@i.NAME.Trim()">
+                        <div class="caption">
+                            <input type="button" value="Delete" id="@i.Id" name="delete" class="btn btn-primary btn-xs" />
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-xs-3 col-md-3">No images were found</div>
+        }
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            @*@Html.Partial("_addsponsor")*@
+        </div>
+    </div>
+</div>
+

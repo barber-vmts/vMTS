@@ -1,0 +1,8 @@
+Instructor Bio Directions
+
+Create each bio in a text file (i.e. Name.txt)
+Add <p> tags to each paragraph
+Close each paragraph with </p> tags
+Upload the file to the server via the web admin form (Content/InstructorBios)
+
+To make words bold wrap the text in this tag <strong></strong>

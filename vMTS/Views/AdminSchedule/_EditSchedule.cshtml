@@ -1,0 +1,74 @@
+﻿@model vMTS.Models.ClassAdministration
+
+@{var detail = Model.EditSchedule.ToList();}
+
+@{Layout = "";}
+@Scripts.Render("~/bundles/admin_Class")
+
+<div class="well">
+    @if (detail.Count <= 0)
+    {
+        <p class="lead">Oops...we couldn't find any details about this class!</p>
+    }
+    else
+    {
+        using (Html.BeginForm("", "", FormMethod.Post, new { id = "form_EditClass", @class = "form-horizontal" }))
+        {
+            foreach (var i in detail)
+            {
+                @Html.Hidden("CLASS_ID", i.CLASS_ID)
+                <div class="form-group">
+                    <label>Class Day</label>
+                    @Html.DisplayFor(v => i.ClassDay, new { maxlength = "30", @class = "form-control", value = @i.ClassDay })
+                </div>
+                <div class="form-group">
+                    <label>Class Type</label>
+                    @Html.DropDownList("CLASS_TYPE", Model.ClassType, "Select", new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Start Date</label>
+                    @Html.TextBox("CLASS_START_DATE",i.CLASS_START_DATE, "{0:d}", new { @readonly = true, @class = "form-control"  })
+                </div>
+                <div class="form-group">
+                    <label>Start Time</label>
+                    @Html.DropDownList("CLASS_START_TIME", Model.StartClassTimes, "Select", new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>End Date</label>
+                    @Html.TextBox("CLASS_END_DATE",i.CLASS_END_DATE, "{0:d}", new { @readonly = true, @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>End Time</label>
+                    @Html.DropDownList("CLASS_END_TIME", Model.EndClassTimes, "Select", new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Open Seats</label>
+                    @Html.TextBox("OPEN_SEATS",i.OPEN_SEATS, new { @type = "number", @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Class Location</label>
+                    @Html.DropDownList("LOCATION", Model.CourseLocation, "Select", new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Course Number</label>
+                    @Html.DropDownList("COURSE_NUMBER", Model.CourseNumber, "Select", new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Class Fee</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        @Html.TextBox("CLASS_FEE",i.CLASS_FEE, "{0:0.00}", new { maxlength = "6", @class = "form-control" })
+                    </div>
+                </div>
+                @*<div class="form-group">
+                    <label>Class Description</label>
+                    @Html.TextArea("CLASS_DESCRIPTION", i.CLASS_DESCRIPTION, new { @class = "form-control", @rows = "10", @cols = "100" })
+                </div>*@
+
+            }
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
+            </div>
+        }
+    }
+</div>

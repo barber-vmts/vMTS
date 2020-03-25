@@ -1,0 +1,55 @@
+﻿{
+    "Carousel": [
+        {
+            "Name": "BikesStaged.jpg",
+            "Caption": "",
+            "Sequence": "1"
+        },
+		{
+            "Name": "VMTS 2015  Program of the Year.jpg",
+            "Caption": "",
+            "Sequence": "2"		
+		},
+		{
+            "Name": "CycleGear.jpg",
+            "Caption": "",
+            "Sequence": "3"		
+		},
+		{
+            "Name": "carousel_2.jpg",
+            "Caption": "",
+            "Sequence": "4"		
+		},
+		{
+            "Name": "carousel_3.jpg",
+            "Caption": "",
+            "Sequence": "5"		
+		},
+		{
+            "Name": "DG.jpg",
+            "Caption": "",
+            "Sequence": "6"		
+		},
+		{
+            "Name": "ATR logo_carousel.jpg",
+            "Caption": "",
+            "Sequence": "7"		
+		},
+		{
+            "Name": "ARC.jpg",
+            "Caption": "",
+            "Sequence": "8"		
+		},
+		{
+            "Name": "Parts of the Bike.jpg",
+            "Caption": "",
+            "Sequence": "9"		
+		},
+		{
+            "Name": "MSF Rider.jpg",
+            "Caption": "",
+            "Sequence": "10"		
+		}
+ 
+    ]
+}

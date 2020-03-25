@@ -1,0 +1,63 @@
+﻿@model vMTS.Models.ClassAdministration
+
+@{var detail = Model.EditSchedule.ToList();}
+
+@{Layout = "";}
+@Scripts.Render("~/bundles/admin_Class")
+
+<div class="well">
+    @if (detail.Count <= 0)
+    {
+        <p class="lead">Oops...we couldn't find any details about this class!</p>
+    }
+    else
+    {
+        foreach (var i in detail)
+        {
+            <div class="form-group">
+                <label>Class Day</label>
+                @Html.DisplayFor(v => i.ClassDay, new { maxlength = "30", @class = "form-control", value = @i.ClassDay })
+            </div>
+            <div class="form-group">
+                <label>Class Type</label>
+                @Html.DropDownList("CLASS_TYPE", Model.ClassType, "Select", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Start Date</label>
+                @Html.TextBoxFor(v => i.CLASS_START_DATE, "{0:d}", new { @readonly = true, @class = "form-control", value = @i.CLASS_START_DATE })
+            </div>
+            <div class="form-group">
+                <label>End Date</label>
+                @Html.TextBoxFor(v => i.CLASS_END_DATE, "{0:d}", new { @readonly = true, @class = "form-control", value = @i.CLASS_END_DATE })
+            </div>
+            <div class="form-group">
+                <label>Open Seats</label>
+                @Html.TextBoxFor(v => i.OPEN_SEATS, new { @type = "number", @class = "form-control", value = @i.OPEN_SEATS })
+            </div>
+            <div class="form-group">
+                <label>Class Location</label>
+                @Html.DropDownList("LOCATION", Model.CourseLocation, "Select", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Course Number</label>
+                @Html.DropDownList("COURSE_NUMBER", Model.CourseNumber, "Select", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Class Fee</label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    @Html.TextBoxFor(v => i.CLASS_FEE, "{0:0.00}", new { maxlength = "6", @class = "form-control", value = @i.CLASS_FEE })
+                </div>
+            </div>
+            using (Html.BeginForm("", "", FormMethod.Post, new { id = "form_DeleteClass", @class = "form-horizontal" }))
+            {
+                @Html.Hidden("CLASS_ID", i.CLASS_ID)
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
+                </div>
+            }
+        }
+    }
+</div>
+

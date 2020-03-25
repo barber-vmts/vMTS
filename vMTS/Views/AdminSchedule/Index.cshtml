@@ -1,0 +1,14 @@
+﻿@model vMTS.Models.ClassAdministration
+
+@{
+    ViewBag.Title = "Schedule Administration";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h3>@ViewBag.Title</h3>
+<div class="container-fluid">
+    <div class="row">
+        <div id="current_schedule" class="col-xs-12 col-sm-10 col-md-6">@Html.Partial("_schedule", Model)</div>
+        <!-- Add New Class Widget -->
+        <div class="col-xs-12 col-sm-10 col-md-6">@Html.Partial("_addschedule", Model)</div>
+    </div>
+</div>

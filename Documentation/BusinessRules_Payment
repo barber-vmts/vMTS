@@ -1,0 +1,27 @@
+Payment History
+Purpose: Some parts of the payment history will be removed after the class date has passed or when the payment has been processed
+When a payment has been processed
+	These items will be removed
+		Credit card name (name on the card)
+		Credit card number
+		Credit card expiration
+		Credit card verification value (CVV)
+	These items will be left in the table
+		Payment id associated with the registration
+		Payment type associated with the registration
+		Promotion code if any exists
+	These items will be updated
+		Processed will be set to true (by default it is false)
+User Actions:
+	To flag a payment as processed
+		Go to the administration portal
+		Click on the registrations link
+		Click the number of registrations in the class list to get the class roster
+		Under the payment heading
+			If there is a $ (dollar sign) then the payment has been processed
+			If there is an "alert" icon, click it to process the payment
+			
+Process Notes:
+	It is important to complete this step for security. You want to clear any data that can be compromised and you can potentially be liable for.
+	
+	Credit card data should not be necessary once payment has been processed and/or received.

@@ -1,0 +1,50 @@
+﻿@model vMTS.Models.PromoCodes
+
+@{Layout = null;}
+
+@Scripts.Render("~/bundles/admin_PromoCodes")
+
+@{var itemList = @Model.AllCodes.ToList();}
+
+<div class="form-horizontal">
+    <hr />
+    @using (Html.BeginForm("", "", FormMethod.Post, new { id = "form_PcMgt", @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 sr-only control-label">Promo Code</label>
+                <div class="col-md-10"><input type="text" id="promoCode" name="promoCode" placeholder="Promo Code" value="@itemList[0].PROMO_CODE1" readonly /></div>
+            </div>
+        </div>
+       <input type="hidden" id="promoCode" name="promoCode"/>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 sr-only control-label">Start Date</label>
+                <div class="col-md-10"><input type="date" id="start_date" name="start_date" placeholder="Start Date" value="@string.Format("{0:yyyy-MM-dd}", itemList[0].START_DATE)" /><div id="SDAlert" class="alert alert-danger hidden" role="alert">Select a Valid Start Date</div></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 sr-only control-label">End Date</label>
+                <div class="col-md-10"><input type="date" id="end_date" name="end_date" placeholder="End Date" value="@string.Format("{0:yyyy-MM-dd}", itemList[0].END_DATE)" /><div id="EDAlert" class="alert alert-danger hidden" role="alert">Select a Valid End Date</div></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 sr-only control-label">Code Value</label>
+                <div class="col-md-10"><input type="number" id="value" name="value" placeholder="Code Value" value="@string.Format("{0:N2}",itemList[0].VALUE)" /><div id="ValAlert" class="alert alert-danger hidden" role="alert">Enter a value greate than 0</div></div>
+            </div>
+        </div>
+          <div class="form-group">
+                <div class="col-md-10">
+                    <div class="col-md-10">
+                        <input type="submit" value="Save" class="btn btn-danger btn-xs" />
+                    </div>
+                </div>
+            </div>
+    }
+</div>
+
+
+

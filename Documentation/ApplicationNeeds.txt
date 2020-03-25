@@ -1,0 +1,15 @@
+Application needs
+	To capture Licensing Instructor Number for the state database
+	Instructor Assignments
+		Instructors should be assigned to classes when that is known
+		The instructor number should be stored in the instructors table
+		A new field would be added to the class_schedule table to hold the instructor assigned to the class
+		
+	If more than one instructor is assigned to a class
+		A new table (bridge table) would be created to accommodate the requirements
+			This table would hold the class id and instructor number for each class
+			The result would be the ability to have a 1 to many relationship between instructors and class_schedule
+			
+			Assumptions
+			The same instructor(s) cannot be assigned to more than one class on the same weekend
+			

@@ -1,0 +1,124 @@
+﻿@model vMTS.Models.RegistrationModel
+
+@{var itemList = Model.Confirmation;}
+
+@{var paymentList = Model.RegistrationPayment;}
+
+
+<h2>Registration Confirmation</h2>
+
+<div>
+    <h4>@ViewBag.Title</h4>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+    <p class="lead">Please check to make sure all data are correct.</p>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading"><h3 class="panel-title">Course Information</h3></div>
+    <div class="panel-body">
+        @foreach (var r in itemList)
+        {
+            <address class="lead text-info">@r.CLASS_TYPE<br />@r.CLASS_DAY &nbsp;</address>
+            if ((bool)r.WAIVER)
+            {
+                <div class="alert alert-danger">
+                    <h3>Please Note</h3>
+                    <p class="lead">A parent or legal guardian will need to be present @string.Format("", r.CLASS_START_DATE) to sign a waiver.</p>
+
+                    @if (r.AGE == 14)
+                    {
+                        <p class="lead">The participant is @r.AGE years old, therefore he/she will not be able to use the certificate until turning 15 years of age.</p>
+                    }
+                    else if (r.AGE <= 13)
+                    {
+                        <p class="lead">The participant will not be issued a certificate because he/she is only @r.AGE years of age.</p>
+                    }
+
+                </div>
+            }
+            @*<p class="lead text-success">
+                    Add to Calendar&nbsp;<span class="addtocalendar atc-style-icon atc-style-menu-wb" id="atc_icon_red3">
+                        <a class="atcb-link">
+                            <img src="/images/cal-red-03.png" width="32">
+                        </a>
+
+                        <var class="atc_event">
+                            <var class="atc_privacy">private</var>
+                            <var class="atc_date_start">@r.CLASS_START_DATE @r.CLASS_START_TIME</var>
+                            <var class="atc_date_end">@r.CLASS_END_DATE @r.CLASS_END_TIME</var>
+                            <var class="atc_timezone">America/Chicago</var>
+                            <var class="atc_title">@r.CLASS_DAY</var>
+                            <var class="atc_description">Motorcycle Riding Training</var>
+                            <var class="atc_location">Aladdin Temp-Rite - Hendersonville, TN</var>
+                            <var class="atc_organizer">vMTS</var>
+                            <var class="atc_organizer_email">melanie.barber124@gmail.com</var>
+                        </var>
+                    </span>
+                </p>*@
+        }
+    </div>
+
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading"><h3 class="panel-title">Registration Information</h3></div>
+    <div class="panel-body">
+        @foreach (var r in itemList)
+        {
+            <p class="lead text-info">Registration <br /><blockquote>Registration #: @r.RECEIPT <br />Registration Date: @r.REG_DATE</blockquote></p>
+            <p class="lead text-info">Registrant Information<blockquote>@r.NAME @r.SUFFIX<br />Birth date: @string.Format("{0:d}", r.DOB)</blockquote></p>
+            <p class="lead text-info">Contact Information <br /><blockquote>@r.ADDRESS<br />@r.CITY&nbsp;@r.STATE, @r.ZIP<br /><br />@r.EMAIL</blockquote></p>
+        }
+    </div>
+    <div class="panel-footer">
+        @if ((bool)Model.Confirmation.FirstOrDefault().WAIVER)
+        {
+            <div class="alert alert-danger">
+                <h3>Participation Notice</h3>
+                <p class="lead">Because the participant is under 18, a parent or legal guardian will need to be present to sign a waiver.</p>
+
+                @if (Model.Confirmation.FirstOrDefault().AGE == 14)
+                {
+                    <p class="lead">The participant will not be able to use the certificate until turning 15 years of age.</p>
+                }
+                else if (Model.Confirmation.FirstOrDefault().AGE <= 13)
+                {
+                    <p class="lead">The participant will not be issued a certificate because he/she is only @Model.Confirmation.FirstOrDefault().AGE years of age.</p>
+
+                }
+            </div>
+        }
+    </div>
+</div>
+
+
+@Html.Partial("_RegistrationPayment")
+
+@if (!(bool)Model.Confirmation.FirstOrDefault().CONFIRMED)
+{
+
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Confirm Registration</h3></div>
+        <div class="panel-body">
+            <h3>@Model.Confirmation.FirstOrDefault().CLASS_DAY</h3>
+            <p class="lead">Make sure all registration information above is correct before confirming registration.</p>
+            @using (Html.BeginForm("", "", FormMethod.Post, new { id = "ConfirmReg", @class = "form-vertical", @role = "form" }))
+            {
+
+                @Html.Hidden("RECEIPT", (object)ViewBag.RegNum)
+
+                <input type="submit" class="btn btn-danger" value="Confirm Now" />
+            }
+        </div>
+        <div id="confirm_progress" class="hidden"><img src="~/images/ajax-loader.gif" /><br />Confirming, please wait...</div>
+        <div id="confirmAlert" class="alert alert-success hidden" role="alert"></div>
+    </div>
+}
+<div class="panel panel-default">
+    <div class="panel-body">
+        @Html.ActionLink("Print Receipt", "PrintRegistration", "Registration", new { @id = (object)ViewBag.RegNum }, new { @target = "_blank" }) |
+        @Html.ActionLink("Back to Course Descriptions", "Courses", "Home")
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/registration")

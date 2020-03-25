@@ -1,0 +1,28 @@
+﻿@model IEnumerable<vMTS.Models.Sponsor>
+
+
+<h1>@ViewBag.title</h1>
+
+<div>
+    <hr />
+@if (Model.ToList().Count > 0)
+        {
+            foreach (var i in Model)
+            {
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayFor(model => i.Name)</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p><a href="@Html.DisplayFor(model => i.WebSite)" target="_blank"><img class="img-responsive" src="~/images/SponsorLogo/@i.Logo" /></a></p>
+                        @*<p><a href="@Html.DisplayFor(model => i.Web_Url)" target="_blank"><img class="img-responsive" src="@Html.DisplayFor(model => i.Logo)" /></a></p>*@
+                        <p class="lead">Visit them online at <a href="@Html.DisplayFor(model => i.WebSite)" target="_blank">@Html.DisplayFor(model => i.WebSite)</a></p>
+                    </div>
+                </div>
+            }
+        }
+else
+{
+    <p class="lead">Check back later for sponsor information.</p>
+}
+</div>

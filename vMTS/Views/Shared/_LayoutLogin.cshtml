@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/boot-min/css")
+    @Styles.Render("~/date-min/css")
+    @Styles.Render("~/custom/css")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/respond")
+    @Scripts.Render("~/bundles/datepicker")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="Volunteer Motorcycle Training Services" data-original-title="" title="vMTS Administration">
+                    <img class="img-responsive img-thumbnail" id="logo" src="~/images/logo.jpg" alt="vMTS" />
+                </div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Registration", "index", "registration")</li>
+                    <li>@Html.ActionLink("Schedule", "contact", "home")</li>
+                    <li>@Html.ActionLink("Courses", "courses", "home")</li>
+                    <li>@Html.ActionLink("Fees", "fees", "home")</li>
+                    <li>@Html.ActionLink("Instructors", "instructors", "home")</li>
+                    <li>@Html.ActionLink("Sponsors", "sponsors", "home")</li>*@
+                </ul>
+                @*@Html.Partial("_LoginPartial")*@
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+         @RenderBody()
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

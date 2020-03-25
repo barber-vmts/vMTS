@@ -1,0 +1,9 @@
+﻿@model vMTS.Models.NotRegisteredViewModel
+
+    @{Layout = "../Shared/_LayoutLogin.cshtml";}
+
+    <div class="jumbotron"> 
+        <h2>The email address @Model.Email is not a registered user.</h2>
+        <p class="lead">Contact the administrator for more information.</p>
+        @Html.ActionLink("Go Back",@Model.ReturnUrl)
+    </div>

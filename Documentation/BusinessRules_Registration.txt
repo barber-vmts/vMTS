@@ -1,0 +1,100 @@
+Registration
+Assumptions
+	A class must have a minimum of 4 for the class to proceed
+	A separate instructor(s) is/are assigned to each class
+
+Rule Description
+	Multiple Classes on the same day at the same site (i.e. 2 classes on the same day at Aladdin Temp-Rite; course 1 and course 2)
+
+Rules
+	Both classes will have to be scheduled
+	The second class will be hidden until the first class is full
+	Course 1 will have capacity for 12 students
+	Course 2 will have capacity for 11 students
+	When the first class is full
+		Display the second class to the public
+		Show the first class as being full
+	
+Questions
+	What happens when someone cancels from the first class that was previously full
+		and there are less than 4 for the second class?
+	How does the waiting list work (classes with less than 4 registered)?
+	
+DOB
+If the entered birthdate (which then triggers an age calculation based on the date of the class selected):
+If the person is turning 15 in less than a year
+	Inform the user:
+		1. A parent or guardian will need to sign a waiver form the morning of the class
+		2. Parent must be onsite to sign
+		3. The certificate cannot be used until the minor turns 15.
+
+If the age is less than 15 and will not be 15 within a year
+ 		1. A parent or guardian will need to sign a waiver form the morning of the class
+		2. Parent must be onsite to sign
+		3. The certificate cannot be used until the minor turns 15.
+		4. Need to speak to the parents before accepting the registration and collecting payment.
+ 		5. Report we receive should flag it.
+
+If the age is less than 18 but greater than 15
+	1. A parent or guardian will need to sign a waiver form the morning of the class
+	2. Parent must be onsite to sign
+
+Registration Report
+	Organized the same as the state's database
+	Attached is the form we have to enter.
+
+	Add the age of the student next to the date of birth
+		if less than 18 --> bold or highlight or something.
+
+	Race Codes
+		The race codes used are from the federal government.
+		Probably should use race codes from the MREP database.
+
+Registration Confirmation
+	The participant will have the opportunity to confirm their registration details on the registration confirmation screen
+	This will not affect whether the person is registered for the class or whether they can take the class
+	It is intended to be another form of data validation for the stakeholders and the participant
+	
+	A simple icon click will confirm the participants information as being correct
+	If the participant does not confirm their information
+		The class registrar should be able to communicate with the participant to validate the information	
+			The registrar will be able to confirm the information from the class roster
+				If the status is a thumbs down symbol, then information can be confirmed
+					Click on the icon to confirm
+				If the status is a thumbs up symbol, the information has been confirmed
+				
+Registration Export
+	Purpose:
+		To export participant data to a CSV file and import it into the state of TN database.
+		A button click is required to execute the export process.
+	
+	Procedure:
+		From the admin section - on the registrations screen.
+			Click on the number of registrations for the class to retreive the class roster
+			There are 3 buttons (View, Print, Export) - click the export button
+				A csv file will be saved with the registration number as the filename - 1234567.csv
+	State Data Elements Not Captured
+		Nickname
+		Contact Type (this may always be student - as the example file provided)
+		T Shirt Size
+		Licensing Instructor Number
+		Social Security Number
+		MSF Number
+		Owner
+	State Data Elements Being Captured
+		First Name
+		Middle Name
+		Last Name
+		Suffix
+		Phone
+		Gender
+		Date of Birth
+		Race
+		Email
+		Street 1
+		Street 2
+		City
+		State
+		ZIP
+		Driver License State
+		Driver License Number		

@@ -1,0 +1,50 @@
+﻿@model vMTS.Models.Sponsors
+
+@{Layout = "~/Views/Shared/_LayoutAdmin.cshtml";}
+
+@Scripts.Render("~/bundles/admin_Sponsors")
+
+@{var itemList = @Model.CurrentSponsors.ToList();}
+<div class="container-fluid">
+    <table class="table table-condensed">
+<tr><th>Name</th><th>Logo</th><th>Web URL</th></tr>
+        @if (itemList.Count() >= 1)
+        {
+            foreach (var i in itemList)
+            {
+                <tr>
+                    <td>@i.Name</td>
+                    <td class="thumbnail">
+                        <img class="img-responsive" src="~/images/SponsorLogo/@i.Logo" alt="@i.Name">
+                        @*<div class="caption">
+                                <input type="button" value="Delete" id="@i.Id" name="delete" class="btn btn-primary btn-xs" />
+                            </div>*@
+                    </td>
+                    <td><a href="@i.WebSite" target="_blank">@i.WebSite</a></td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td class="col-xs-6 col-md-3">No data was found</td>
+            </tr>
+        }
+    </table>
+
+    <div class="well well-small">
+        <h3>Instructions for updating sponsors</h3>
+        <ul class="list-group">
+            <li class="list-group-item">Download file from FTP server</li>
+            <li class="list-group-item">Make needed changes to the file</li>
+            <li class="list-group-item">Upload (save) file to FTP server</li>
+            <li class="list-group-item">Upload (save) image logo file to images --> SponsorLogo</li>
+        </ul>
+
+        <p class="lead">The data file can be found here: <a href="ftp://learntor:vmts2015@ftp.learntoridetn.com/Views/Admin/Settings/" target="_blank">ftp://ftp.learntoridetn.com/Views/Admin/Settings/Sponsors.json</a></p>
+
+        <p class="initialism">You may have to enter user credentials to access the information.</p>
+    </div>
+
+</div>
+

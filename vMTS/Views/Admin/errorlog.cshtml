@@ -1,0 +1,54 @@
+﻿@model IEnumerable<vMTS.Models.errorLogging>
+
+@{Layout = "~/Views/Shared/_LayoutAdmin.cshtml";}
+
+<div class="container-fluid">
+
+    @if (Model.ToList().Count() >= 1)
+    {
+        foreach (var i in Model)
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Log Date</h3>
+                </div>
+                <div class="col-md-4">
+                    <h3>Method</h3>
+                </div>
+                <div class="col-md-4">
+                    <h3>Message</h3>
+                </div>
+            </div>
+           <div class="row">
+                <div class="col-md-4">
+                    @i.logDate
+                </div>
+                <div class="col-md-4">
+                    @i.logMethod
+                </div>
+                <div class="col-md-4">
+                    @i.logMessage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h5>Message Details</h5>
+                </div>
+            </div>
+           <div class="row">
+                <div class="col-md-12">
+                    @i.logStackTrace
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-8">
+                <h3>No recent errors have been reported.</h3>
+            </div>
+        </div>
+
+    }
+</div>

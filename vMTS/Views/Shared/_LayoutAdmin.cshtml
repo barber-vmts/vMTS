@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@ViewBag.Message" />
+
+    <title>vMTS Administration</title>
+    @Styles.Render("~/boot-min/css")
+    @Styles.Render("~/date-min/css")
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/respond")
+    @Scripts.Render("~/bundles/datepicker")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/admin_Index")
+</head>
+<body>
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="~/admin/index">vMTS Administration Portal</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Registrations", "registrations", "admin")</li>
+                    <li>@Html.ActionLink("Schedule", "index", "adminschedule")</li>
+                    @*<li>@Html.ActionLink("Carousel", "carousel", "admin")</li>
+            <li>@Html.ActionLink("Fees", "fees", "home")</li>*@
+                    <li>@Html.ActionLink("Sponsors", "sponsors", "admin")</li>
+                    <li>@Html.ActionLink("Promo Codes", "promocodes", "admin")</li>
+                    <li>@Html.ActionLink("Error Log", "errorlog", "admin")</li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div class="navbar-right">&copy; @DateTime.Now.Year - <abbr title="volunteer motorcycle training services" class="initialism">vMTS</abbr> @Html.Partial("_LoginPartial")</div>
+        </footer>
+    </div>
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

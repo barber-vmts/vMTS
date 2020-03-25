@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_62333_vmts" Class="vmts_dataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=tcp:s11.winhost.com;Initial Catalog=DB_62333_vmts;Integrated Security=False;User ID=DB_62333_vmts_user" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="vMTS_Prod" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.RegistrationCount" Member="RegistrationCounts">
+    <Type Name="RegistrationCount">
+      <Column Name="CLASS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClassDay" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="REGISTRATIONS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OPEN_SEATS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CLASS_START_DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NAME_SUFFIX" Member="NAME_SUFFIXes">
+    <Type Name="NAME_SUFFIX">
+      <Column Name="SUFFIX_ABBR" Type="System.String" DbType="VarChar(7) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SUFFIX" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Registrations" Member="Registrations">
+    <Type Name="Registration">
+      <Column Name="RECEIPT" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="REG_DATE" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="CLASS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CLASS_TYPE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CLASS_DAY" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="CLASS_START_DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CLASS_END_DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(177)" CanBeNull="true" />
+      <Column Name="SUFFIX" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ADDRESS" Type="System.String" DbType="VarChar(301)" CanBeNull="true" />
+      <Column Name="CITY" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="STATE" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="ZIP" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="GENDER" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="RACE" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="DOB" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="AGE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DL_NUM" Type="System.Data.Linq.Binary" DbType="VarBinary(8000)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="DL_ST" Type="System.Data.Linq.Binary" DbType="VarBinary(8000)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PMT_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WAIVER" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="NVarChar(75)" CanBeNull="true" />
+      <Column Name="PHONE" Type="System.String" DbType="NVarChar(14)" CanBeNull="true" />
+      <Column Name="CLASS_START_TIME" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="CLASS_END_TIME" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="CLASS_LOCATION" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="COURSE_NUMBER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VERBAL_FLAG" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="STUDENT" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CONFIRMED" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CONFIRMED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PROCESSED" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RACE_LKP" Member="RACE_LKPs">
+    <Type Name="RACE_LKP">
+      <Column Name="R_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RACE_CODE" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="RACE_DESC" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="sequence" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Class_Schedule_view" Member="Class_Schedule_views">
+    <Type Name="Class_Schedule_view">
+      <Column Name="CLASS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CLASS_TYPE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CLASS_START_DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CLASS_END_DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ClassDay" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="CLASS_START_TIME" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="CLASS_END_TIME" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="OPEN_SEATS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CLASS_FEE" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CLASS_LOCATION" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="COURSE_NUMBER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ST_SELECTED" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="ET_SELECTED" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="C1" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="C2" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.errorLogging" Member="errorLoggings">
+    <Type Name="errorLogging">
+      <Column Name="logID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="logMethod" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="logMessage" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="logStackTrace" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="logDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.CancelClass" Method="CancelClass">
+    <Parameter Name="C_ID" Parameter="c_ID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ClearSchedule" Method="ClearSchedule">
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DeleteCarouselImage" Method="DeleteCarouselImage">
+    <Parameter Name="IMG_id" Parameter="iMG_id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ConfirmRegistration" Method="ConfirmRegistration">
+    <Parameter Name="RECEIPT" Parameter="rECEIPT" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProcessPayment" Method="ProcessPayment">
+    <Parameter Name="RECEIPT" Parameter="rECEIPT" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetPayment" Method="GetPayment" IsComposable="true">
+    <Parameter Name="RECEIPT_ID" Parameter="rECEIPT_ID" Type="System.Int64" DbType="BigInt" />
+    <ElementType Name="GetPaymentResult">
+      <Column Name="RECEIPT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PMT_TYPE" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CARDNAME" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CARDNUMBER" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CARD_EXP" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CARD_EXP_YR" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CVV" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="PROCESSED" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="STUFF_CARDNUMBER" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="STUFF_CARD_EXP" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="STUFF_CARD_EXP_YR" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="STUFF_CVV" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="PROMOCODE" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CLASS_FEE" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="PROMO_VALUE" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TOTAL" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.CancelRegistration" Method="CancelRegistration">
+    <Parameter Name="RECEIPT" Parameter="rECEIPT" Type="System.Int64" DbType="BigInt" />
+    <ElementType Name="CancelRegistrationResult">
+      <Column Name="ErrorNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ErrorSeverity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ErrorState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ErrorProcedure" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="ErrorLine" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ErrorMessage" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SwitchClass" Method="SwitchClass">
+    <Parameter Name="RECEIPT" Parameter="rECEIPT" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="OLD_CLASS" Parameter="oLD_CLASS" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NEW_CLASS" Parameter="nEW_CLASS" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SwitchClassResult">
+      <Column Name="ErrorNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ErrorSeverity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ErrorState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ErrorProcedure" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="ErrorLine" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ErrorMessage" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Class_Schedule_Changes" Method="Class_Schedule_Changes">
+    <Parameter Name="C_ID" Parameter="c_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="C_TYPE" Parameter="c_TYPE" Type="System.String" DbType="NVarChar(150)" />
+    <Parameter Name="START" Parameter="sTART" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="START_TIME" Parameter="sTART_TIME" Type="System.String" DbType="NVarChar(15)" />
+    <Parameter Name="END" Parameter="eND" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="END_TIME" Parameter="eND_TIME" Type="System.String" DbType="NVarChar(15)" />
+    <Parameter Name="LOCATION" Parameter="lOCATION" Type="System.String" DbType="NVarChar(150)" />
+    <Parameter Name="COURSE_NUMBER" Parameter="cOURSE_NUMBER" Type="System.Int32" DbType="Int" />
+    <Parameter Name="OPEN_SEATS" Parameter="oPEN_SEATS" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FEE" Parameter="fEE" Type="System.Decimal" DbType="Money" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.NewRegistration" Method="NewRegistration">
+    <Parameter Name="COURSE_ID" Parameter="cOURSE_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FIRSTNAME" Parameter="fIRSTNAME" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="MIDDLENAME" Parameter="mIDDLENAME" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LASTNAME" Parameter="lASTNAME" Type="System.String" DbType="VarChar(75)" />
+    <Parameter Name="SUFFIX" Parameter="sUFFIX" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="ADDRESS1" Parameter="aDDRESS1" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="ADDRESS2" Parameter="aDDRESS2" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="CITY" Parameter="cITY" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="STATE" Parameter="sTATE" Type="System.String" DbType="VarChar(2)" />
+    <Parameter Name="ZIP" Parameter="zIP" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="GDR" Parameter="gDR" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="RACE" Parameter="rACE" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PHONE" Parameter="pHONE" Type="System.String" DbType="VarChar(11)" />
+    <Parameter Name="EMAIL" Parameter="eMAIL" Type="System.String" DbType="VarChar(75)" />
+    <Parameter Name="DOB" Parameter="dOB" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="AGE" Parameter="aGE" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EVAL" Parameter="eVAL" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="MOTOR_YR" Parameter="mOTOR_YR" Type="System.String" DbType="VarChar(4)" />
+    <Parameter Name="MOTOR_MK" Parameter="mOTOR_MK" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="MOTOR_MD" Parameter="mOTOR_MD" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="DL_NUM" Parameter="dL_NUM" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="DL_STATE" Parameter="dL_STATE" Type="System.String" DbType="VarChar(2)" />
+    <Parameter Name="PMT_TYPE" Parameter="pMT_TYPE" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="CARD_NAME" Parameter="cARD_NAME" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="CARD_NUM" Parameter="cARD_NUM" Type="System.String" DbType="VarChar(22)" />
+    <Parameter Name="EXP_MN" Parameter="eXP_MN" Type="System.String" DbType="VarChar(2)" />
+    <Parameter Name="EXP_YR" Parameter="eXP_YR" Type="System.String" DbType="VarChar(4)" />
+    <Parameter Name="CVV" Parameter="cVV" Type="System.String" DbType="VarChar(3)" />
+    <Parameter Name="PROMO" Parameter="pROMO" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="PROMO_VALUE" Parameter="pROMO_VALUE" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="RECEIPT" Parameter="rECEIPT" Type="System.Int64" DbType="BigInt" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetRegistration" Method="GetRegistration" IsComposable="true">
+    <Parameter Name="RECEIPT" Parameter="rECEIPT" Type="System.Int64" DbType="BigInt" />
+    <ElementType Name="GetRegistrationResult">
+      <Column Name="CLASS_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STUDENT_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CLASS_DAY" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="CLASS_TYPE" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="FIRSTNAME" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="MIDDLENAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LASTNAME" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="SUFFIX" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="PHONE" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="GENDER" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DOB" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="RACE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="ADDRESS1" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ADDRESS2" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="CITY" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="STATE" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="[STATE NAME]" Member="STATE_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZIP" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="DL_ST" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="DL_NUM" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="EVAL" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="MOTOR_YR" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="MOTOR_MK" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="MOTOR_MD" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="RECEIPT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="REG_DATE" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
+      <Column Name="CONFIRMED" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CONFIRMED_DATE" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

@@ -1,0 +1,82 @@
+﻿@model vMTS.Models.RegistrationModel
+
+@{var itemList = Model.Confirmation;}
+
+@{var paymentList = Model.RegistrationPayment;}
+
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width , initial-scale=1.0" />
+
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/boot-min/css")
+</head>
+<body>
+    <div class="container body-content">
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4>@ViewBag.Title</h4>
+                <hr />
+                <dl class="dl-horizontal"></dl>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h3 class="panel-title">Course Information</h3></div>
+            <div class="panel-body">
+                @foreach (var r in itemList)
+                {
+                    <address class="lead text-info">@r.CLASS_TYPE<br />@r.CLASS_DAY &nbsp;</address>
+                }
+            </div>
+
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h3 class="panel-title">Registration Information</h3></div>
+            <div class="panel-body">
+                @foreach (var r in itemList)
+                {
+                    <p class="lead text-info">Registration <br /><blockquote>Registration #: @r.RECEIPT <br />Registration Date: @r.REG_DATE</blockquote></p>
+                    <p class="lead text-info">Registrant Information<blockquote>@r.NAME @r.SUFFIX<br />Birth date: @string.Format("{0:d}", r.DOB)</blockquote></p>
+                    <p class="lead text-info">Contact Information <br /><blockquote>@r.ADDRESS<br />@r.CITY&nbsp;@r.STATE, @r.ZIP<br /><br />@r.EMAIL</blockquote></p>
+                }
+            </div>
+            <div class="pannel-footer">
+                @if (Model.Confirmation.FirstOrDefault().WAIVER == true)
+                {
+                    <div class="alert alert-danger">
+                        <h3>Participation Notice</h3>
+                        <p class="lead">Because the participant is under 18, a parent or legal guardian will need to be present to sign a waiver.</p>
+
+                        @if (Model.Confirmation.FirstOrDefault().AGE == 14)
+                        {
+                            <p class="lead">The participant will not be able to use the certificate until turning 15 years of age.</p>
+                        }
+                        else if (Model.Confirmation.FirstOrDefault().AGE <= 13)
+                        {
+                            <p class="lead">The participant will not be issued a certificate because he/she is only @Model.Confirmation.FirstOrDefault().AGE years of age.</p>
+
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+
+        @Html.Partial("_RegistrationPayment")
+
+
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/respond")
+    @Scripts.Render("~/bundles/print")
+</body>
+</html>

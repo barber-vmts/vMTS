@@ -1,0 +1,23 @@
+Security
+Requirements
+	Access to an email address
+	Cookies must be enabled on your browser
+	Make sure your email filter is not filtering support@vmts.org
+	
+Process Review
+	A user must be registered by a site administrator
+	The user must have access to the email address used to register
+	No password is required
+	
+	When a user logs in to the site
+		If he/she hasn't logged in within 6 months
+			A temporary code will be sent to the email address on file
+			Once a valid code is retrieved and entered, access to the site is granted
+		If the last time visted has been within 6 months no code is necessary unless the browser cache and cookies have been cleared
+
+There is a static activity setting that will require you to log in after a period of inactivity.
+		
+There is a role setting that will prevent certain roles from performing certain activities in the application
+	The current roles are:
+		administrator
+		user

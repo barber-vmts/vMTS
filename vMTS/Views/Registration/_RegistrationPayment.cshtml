@@ -1,0 +1,60 @@
+﻿@model vMTS.Models.RegistrationModel
+
+
+@{var paymentList = Model.RegistrationPayment;}
+
+
+@{
+    Layout = null;
+}
+<div class="panel panel-primary">
+    <div class="panel-heading"><h3 class="panel-title">Payment Information</h3></div>
+    <div class="panel-body">
+@foreach (var p in paymentList)
+{
+    if (p.PMT_TYPE == "Pre-Paid")
+    {
+        <p class="lead">
+            Class Fee: @string.Format("{0:c}", paymentList.FirstOrDefault().CLASS_FEE)<br />
+            Pre-Paid Amount: @string.Format("{0:c}", paymentList.FirstOrDefault().CLASS_FEE)<br />
+            Total: @string.Format("{0:c}", 0)
+        </p>
+
+    }
+    @*else if (p.PMT_TYPE == "Gift")
+    {
+        <p class="lead">
+            Class Fee: @string.Format("{0:c}", paymentList.FirstOrDefault().CLASS_FEE)<br />
+            Gift Certificate Amount: @string.Format("{0:c}", paymentList.FirstOrDefault().CLASS_FEE)<br />
+            Total: @string.Format("{0:c}", 0)
+        </p>
+
+    }*@
+
+    else
+    {
+            <p class="lead">
+                Class Fee: @string.Format("{0:c}", paymentList.FirstOrDefault().CLASS_FEE)<br />
+                Promotional Discount: @string.Format("{0:c}", paymentList.FirstOrDefault().PROMO_VALUE)<br />
+                Total: @string.Format("{0:c}", paymentList.FirstOrDefault().TOTAL)
+            </p>
+
+
+
+        string pmt_text = "";
+        if (p.PMT_TYPE == "Check") { pmt_text = "A check in the amount of " + string.Format("{0:c}", p.TOTAL) + " will be due before your registration is final."; }
+        else if (p.PMT_TYPE == "Gift") { pmt_text = string.Format("{0:c}", p.CLASS_FEE) + " will be deducted from the gift certificate."; }
+        else { pmt_text = string.Format("{0:c}", p.CLASS_FEE) + " will be charged to the following credit card."; }
+
+            <p class="lead text-success">@pmt_text</p>
+            if (p.PMT_TYPE == "Credit Card")
+            {
+                <p class="lead text-warning">@p.PMT_TYPE<br />@p.CARDNAME<br />@p.CARDNUMBER<br />@p.CARD_EXP / @p.CARD_EXP_YR<br />@p.CVV<br />@p.PROMOCODE</p>
+            }
+    }
+
+
+        }
+    </div>
+</div>
+

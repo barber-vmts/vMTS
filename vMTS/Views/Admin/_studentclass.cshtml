@@ -1,0 +1,85 @@
+﻿@model vMTS.Models.RegistrationAdministration
+
+@{var itemList = @Model.StudentRegistration.ToList();}
+
+@if (itemList.Count() >= 1)
+{
+    <div class="table-responsive">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Registration for @itemList[0].FIRSTNAME&nbsp;@itemList[0].LASTNAME</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <th>Registration #</th>
+                        <th>Class Date</th>
+                        <th>Class Type</th>
+                        <th>Registration Date</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <td>@itemList[0].RECEIPT</td>
+                        <td>@itemList[0].CLASS_DAY</td>
+                        <td>@itemList[0].CLASS_TYPE</td>
+                        <td>@itemList[0].REG_DATE</td>
+                        @if ((bool?)itemList[0].CONFIRMED == true)
+                        {
+                            <td><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Confirmed on @itemList[0].CONFIRMED_DATE" data-original-title="" title="Status: Confirmed"></span></td>
+                        }
+                        else
+                        {
+                            <td>
+                                @using (Html.BeginForm("", "", FormMethod.Post, new { id = "ConfirmReg", @class = "form-vertical", @role = "form" }))
+                                {
+                                    @Html.Hidden("RECEIPT", itemList[0].RECEIPT)
+
+                                    <input type="submit" class="btn-xs btn-danger" value="Confirm Now" />
+                                }
+                        </td>
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr><th colspan="2">General</th></tr>
+            </thead>
+            @foreach (var i in itemList)
+            {
+                <tr><td>@i.FIRSTNAME</td><td>@i.PHONE</td></tr>
+                <tr><td>@i.MIDDLENAME</td><td>@i.GENDER</td></tr>
+                <tr><td>@i.LASTNAME</td><td>@i.RACE</td></tr>
+                <tr><td>@i.SUFFIX</td><td>@i.EMAIL</td></tr>
+                <tr><td>@i.DOB</td><td>@i.RACE</td></tr>
+
+                <tr><th colspan="2">Address</th></tr>
+                <tr><td>@i.ADDRESS1</td><td>@i.STATE_NAME</td></tr>
+                <tr><td>@i.ADDRESS2</td><td>@i.ZIP</td></tr>
+                <tr><td>@i.CITY</td><td>&nbsp;</td></tr>
+                <tr><th colspan="2">Drivers License Details</th></tr>
+                <tr><td>@i.DL_ST</td><td>&nbsp;</td></tr>
+                <tr><td>@i.DL_NUM</td><td>&nbsp;</td></tr>
+                <tr><th colspan="2">Motorcycle Details</th></tr>
+                if (@i.EVAL == "Y")
+                {
+                    <tr><td>License Needed</td><td>&nbsp;</td></tr>
+                }
+                else
+                {
+                    <tr><td>License NOT Needed</td><td>&nbsp;</td></tr>
+                }
+                <tr><td>@i.MOTOR_YR</td><td>&nbsp;</td></tr>
+                <tr><td>@i.MOTOR_MK</td><td>&nbsp;</td></tr>
+                <tr><td>@i.MOTOR_MD</td><td>&nbsp;</td></tr>
+            }
+        </table>
+
+        @Html.Partial("regpayment", Model)
+    </div>
+}
+else
+{
+    <h2>The registration details could not be found.</h2>
+}

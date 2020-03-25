@@ -1,0 +1,14 @@
+﻿@model vMTS.Models.RegistrationAdministration
+
+@{var itemList = @Model.StudentRegistration.ToList();}
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@if (itemList.Count() >= 1)
+{
+    @Html.Partial("_studentclass", Model)
+
+<div>@Html.ActionLink("Print", "_print_studentreg", "admin", new { id = @itemList[0].RECEIPT }, new { @class = "btn-xs btn-warning", @target="_blank" })</div>
+}

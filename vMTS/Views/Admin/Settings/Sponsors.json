@@ -1,0 +1,50 @@
+﻿{
+    "Sponsors": [
+        {
+            "Name": "Aladdin Temp-Rite",
+            "WebSite": "http://aladdintemprite.com/",
+            "Logo": "Aladdin_Logo.jpg"
+        },
+		       {
+            "Name": "Castle Power Sports",
+            "WebSite": "http://www.castlepowersports.com/",
+            "Logo": "CastlePower_Logo.gif"
+        },
+		       {
+            "Name": "Faith Riders",
+            "WebSite": "http://faithriders.com/",
+            "Logo": "FaithRiders_Logo.jpg"
+        },
+		       {
+            "Name": "Nashville Riders",
+            "WebSite": "http://www.nashvilleriders.com/",
+            "Logo": "NashvilleRiders_Logo.jpg"
+        },
+		       {
+            "Name": "Highway 12 Motorsports",
+            "WebSite": "http://www.hwy12motorsports.com/",
+            "Logo": "H12_Logo.jpg"
+        },
+		       {
+            "Name": "Drinking and Driving",
+            "WebSite": "http://www.dwiminneapolislawyer.com/resources/12-facts-about-driving-while-intoxicated/",
+            "Logo": "12 Facts.jpg"
+        },
+		       {
+            "Name": "Bus Safety",
+            "WebSite": "http://www.knowledgeinitiative.org/bus-safety",
+            "Logo": "Busted.jpg"
+        },
+		       {
+            "Name": "Cycle Gear",
+            "WebSite": "http://www.cyclegear.com",
+            "Logo": "CycleGear.jpg"
+        },
+		       {
+            "Name": "Diamond Gussett",
+            "WebSite": "http://www.gusset.com/",
+            "Logo": "diamond gussett.jpg"
+        }
+ 
+    ]
+}

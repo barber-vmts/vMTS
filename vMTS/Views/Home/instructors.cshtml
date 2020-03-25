@@ -1,0 +1,64 @@
+﻿@model IEnumerable<vMTS.Models.Instructors>
+
+@Scripts.Render("~/bundles/instructors")
+
+
+<h1>@ViewBag.title</h1>
+
+<div class="well well-lg">
+    <p class="lead">Rider Coaches for the program are all experienced motorcyclists. Each is certified nationally by MSF, and then by TNMREP.</p>
+</div>
+
+@if (Model.ToList().Count > 0)
+{
+    foreach (var i in Model)
+    {
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">@i.Name @i.Title</h3>
+            </div>
+            <div class="panel-body">
+                <!-- Bio image will go here -->
+                <div class="panel panel-default pull-left">
+                    <div class="panel-body">
+                        @if (i.Photo != "")
+                        {
+                            <img src="~/images/Instructors/@i.Photo" alt="@i.Name" class="img-responsive img-thumbnail" width="199" height="175" />
+
+                        }
+                        else
+                        {
+                            <img src="~/images/Instructors/pictures-icon.png" alt="Photo" class="img-responsive img-thumbnail" width="199" height="175" />
+                        }
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        @if (i.Bio.Count >= 1)
+                        {
+                            foreach (var d in i.Bio)
+                            {
+                                <p class="lead">@d</p>
+                            }
+                        }
+                        else
+                        {
+                            <p class="lead">Check back for more information on @i.Name</p>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                @if (i.Email != "")
+                {
+                    <abbr title="Email @i.Name">E:</abbr> <a href="mailto:@i.Email?Subject=vMTS%20RiderCoach" target="_top">@i.Email</a>
+                }
+            </div>
+        </div>
+}
+}
+else
+{
+    <p class="lead">Check back later for instructor information.</p>
+}

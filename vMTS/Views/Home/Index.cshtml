@@ -1,0 +1,96 @@
+﻿@model vMTS.Models.GeneralModel
+
+@{var itemList = @Model.GetCarouselImages.ToList();}
+<p class="lead navbar-center">Welcome To vMTS...Learn to Ride at Aladdin Temp-Rite, Hendersonville, Tennessee</p>
+@if (itemList.Count() >= 1)
+{
+    var n = 0;
+    var active = "active";
+
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            @foreach (var i in itemList)
+            {
+                if (n == 0) { active = "active"; } else { active = ""; }
+                <li data-target="#carousel-example-generic" data-slide-to="@n" class="@active"></li>
+                n = n + 1;
+            }
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            @* SET n BACK TO ZERO *@
+            @{n = 0;}
+            @foreach (var i in itemList)
+            {
+                if (n == 0) { active = "item active"; } else { active = "item"; }
+
+                <div class="@active">
+                    <img class="img-responsive center-block" src="~/images/carousel/@i.ImgName" height="150" alt="@i.ImgCaption">
+                    <div class="carousel-caption">
+                        <h5>@i.ImgCaption</h5>
+                    </div>
+                </div>
+                
+                n = n + 1;
+            }
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+}
+<hr />
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">Successful Completion Includes</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="list-unstyled lead">
+            <li>Completion of all exercises</li>
+            <li>Completion of the written exam (may be given orally)</li>
+            <li>Completion of the skills riding evaluation</li>
+        </ul>
+        <p class="lead text-warning">Registration and attendance will not automatically guarantee successful completion</p>
+        <p class="text-left">
+            @Html.ActionLink("Register Now", "index", "registration", null, new { @class = "btn btn-info" })
+        </p>
+    </div>
+</div>
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">Licensing</h3>
+    </div>
+    <div class="panel-body">
+        <p class="lead">Successful completion of the Basic RiderCourse or the Experienced RiderCourse may waive the written and riding portions of the Tennessee Department of MotorVehicles licensing test.</p>
+        <p class="lead">Most insurance companies offer a 10% discount on motorcycle insurance for successful completion of this course.</p>
+        @*<p><a class="btn btn-info" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>*@
+    </div>
+</div>
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">Motorcycle Education</h3>
+    </div>
+    <div class="panel-body">
+        <p class="lead">Through different levels of motorcycle training and education programs offered by Volunteer Motorcycle Training Services, participants can experience motorcycling or improve their riding skills.</p>
+        <p>The courses are presented in cooperation with the Tennessee Motorcycle Rider Education Program (TNMREP) and the Motorcycle Safety Foundation (MSF).</p>
+        <p><a class="btn btn-info" href="http://www.msf-usa.org/" target="_blank">Learn more &raquo;</a></p>
+    </div>
+</div>
+@*<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>*@
