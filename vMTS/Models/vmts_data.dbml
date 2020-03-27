@@ -164,40 +164,6 @@
     <Parameter Name="FEE" Parameter="fEE" Type="System.Decimal" DbType="Money" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.NewRegistration" Method="NewRegistration">
-    <Parameter Name="COURSE_ID" Parameter="cOURSE_ID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="FIRSTNAME" Parameter="fIRSTNAME" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="MIDDLENAME" Parameter="mIDDLENAME" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="LASTNAME" Parameter="lASTNAME" Type="System.String" DbType="VarChar(75)" />
-    <Parameter Name="SUFFIX" Parameter="sUFFIX" Type="System.String" DbType="NVarChar(10)" />
-    <Parameter Name="ADDRESS1" Parameter="aDDRESS1" Type="System.String" DbType="VarChar(150)" />
-    <Parameter Name="ADDRESS2" Parameter="aDDRESS2" Type="System.String" DbType="VarChar(150)" />
-    <Parameter Name="CITY" Parameter="cITY" Type="System.String" DbType="VarChar(100)" />
-    <Parameter Name="STATE" Parameter="sTATE" Type="System.String" DbType="VarChar(2)" />
-    <Parameter Name="ZIP" Parameter="zIP" Type="System.String" DbType="VarChar(5)" />
-    <Parameter Name="GDR" Parameter="gDR" Type="System.String" DbType="VarChar(1)" />
-    <Parameter Name="RACE" Parameter="rACE" Type="System.Int32" DbType="Int" />
-    <Parameter Name="PHONE" Parameter="pHONE" Type="System.String" DbType="VarChar(11)" />
-    <Parameter Name="EMAIL" Parameter="eMAIL" Type="System.String" DbType="VarChar(75)" />
-    <Parameter Name="DOB" Parameter="dOB" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="AGE" Parameter="aGE" Type="System.Int32" DbType="Int" />
-    <Parameter Name="EVAL" Parameter="eVAL" Type="System.String" DbType="VarChar(1)" />
-    <Parameter Name="MOTOR_YR" Parameter="mOTOR_YR" Type="System.String" DbType="VarChar(4)" />
-    <Parameter Name="MOTOR_MK" Parameter="mOTOR_MK" Type="System.String" DbType="VarChar(20)" />
-    <Parameter Name="MOTOR_MD" Parameter="mOTOR_MD" Type="System.String" DbType="VarChar(20)" />
-    <Parameter Name="DL_NUM" Parameter="dL_NUM" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="DL_STATE" Parameter="dL_STATE" Type="System.String" DbType="VarChar(2)" />
-    <Parameter Name="PMT_TYPE" Parameter="pMT_TYPE" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="CARD_NAME" Parameter="cARD_NAME" Type="System.String" DbType="VarChar(150)" />
-    <Parameter Name="CARD_NUM" Parameter="cARD_NUM" Type="System.String" DbType="VarChar(22)" />
-    <Parameter Name="EXP_MN" Parameter="eXP_MN" Type="System.String" DbType="VarChar(2)" />
-    <Parameter Name="EXP_YR" Parameter="eXP_YR" Type="System.String" DbType="VarChar(4)" />
-    <Parameter Name="CVV" Parameter="cVV" Type="System.String" DbType="VarChar(3)" />
-    <Parameter Name="PROMO" Parameter="pROMO" Type="System.String" DbType="VarChar(10)" />
-    <Parameter Name="PROMO_VALUE" Parameter="pROMO_VALUE" Type="System.Decimal" DbType="Money" />
-    <Parameter Name="RECEIPT" Parameter="rECEIPT" Type="System.Int64" DbType="BigInt" Direction="InOut" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.GetRegistration" Method="GetRegistration" IsComposable="true">
     <Parameter Name="RECEIPT" Parameter="rECEIPT" Type="System.Int64" DbType="BigInt" />
     <ElementType Name="GetRegistrationResult">
@@ -231,5 +197,39 @@
       <Column Name="CONFIRMED" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="CONFIRMED_DATE" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.NewRegistration" Method="NewRegistration">
+    <Parameter Name="COURSE_ID" Parameter="cOURSE_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FIRSTNAME" Parameter="fIRSTNAME" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="MIDDLENAME" Parameter="mIDDLENAME" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LASTNAME" Parameter="lASTNAME" Type="System.String" DbType="VarChar(75)" />
+    <Parameter Name="SUFFIX" Parameter="sUFFIX" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="ADDRESS1" Parameter="aDDRESS1" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="ADDRESS2" Parameter="aDDRESS2" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="CITY" Parameter="cITY" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="STATE" Parameter="sTATE" Type="System.String" DbType="VarChar(2)" />
+    <Parameter Name="ZIP" Parameter="zIP" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="GDR" Parameter="gDR" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="RACE" Parameter="rACE" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PHONE" Parameter="pHONE" Type="System.String" DbType="VarChar(11)" />
+    <Parameter Name="EMAIL" Parameter="eMAIL" Type="System.String" DbType="VarChar(75)" />
+    <Parameter Name="DOB" Parameter="dOB" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="AGE" Parameter="aGE" Type="System.Int32" DbType="Int" />
+    <Parameter Name="EVAL" Parameter="eVAL" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="MOTOR_YR" Parameter="mOTOR_YR" Type="System.String" DbType="VarChar(4)" />
+    <Parameter Name="MOTOR_MK" Parameter="mOTOR_MK" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="MOTOR_MD" Parameter="mOTOR_MD" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="DL_NUM" Parameter="dL_NUM" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="DL_STATE" Parameter="dL_STATE" Type="System.String" DbType="VarChar(2)" />
+    <Parameter Name="PMT_TYPE" Parameter="pMT_TYPE" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="CARD_NAME" Parameter="cARD_NAME" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="CARD_NUM" Parameter="cARD_NUM" Type="System.String" DbType="VarChar(22)" />
+    <Parameter Name="EXP_MN" Parameter="eXP_MN" Type="System.String" DbType="VarChar(2)" />
+    <Parameter Name="EXP_YR" Parameter="eXP_YR" Type="System.String" DbType="VarChar(4)" />
+    <Parameter Name="CVV" Parameter="cVV" Type="System.String" DbType="VarChar(3)" />
+    <Parameter Name="PROMO" Parameter="pROMO" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="PROMO_VALUE" Parameter="pROMO_VALUE" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="RECEIPT" Parameter="rECEIPT" Type="System.Int64" DbType="BigInt" Direction="InOut" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

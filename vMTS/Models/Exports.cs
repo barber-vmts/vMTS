@@ -33,7 +33,7 @@ namespace vMTS.Models
             public string Race{get; set;}
             public string Email{get; set;}
             public string TShirtSize{get; set;}
-            public string LicensingInstructorNumber{get; set;}
+            //public string LicensingInstructorNumber{get; set;}
             public string Street1{get; set;}
             public string Street2{get; set;}
             public string City{get; set;}
@@ -41,9 +41,9 @@ namespace vMTS.Models
             public string ZIP{get; set;}
             public string DriverLicenseState{get; set;}
             public string DriverLicenseNumber{get; set;}
-            public string SocialSecurityNumber{get; set;}
-            public string MSFnumber{get; set;}
-            public string Owner{get; set;}
+            //public string SocialSecurityNumber{get; set;}
+            //public string MSFnumber{get; set;}
+            //public string Owner{get; set;}
         }
 
         [RoleName]
@@ -72,7 +72,7 @@ namespace vMTS.Models
                     Street1 = l.ADDRESS1,
                     Street2 = l.ADDRESS2,
                     City = l.CITY,
-                    State = l.STATE_NAME,
+                    State = l.STATE,
                     ZIP = l.ZIP,
                     DriverLicenseState = l.DL_ST,
                     DriverLicenseNumber = l.DL_NUM,
@@ -94,7 +94,7 @@ namespace vMTS.Models
             string columns;
 
             if (list.Count > 0) {
-                columns = @"First Name,Middle Name,Last Name,Suffix,Nickname,Contact Type,Phone,Gender,Date of Birth,Race,E-mail,T-Shirt Size,Address1,Address2,City,State,ZIP,Driver License State,Driver License Number";
+                columns = @"First Name,Middle Name,Last Name,Suffix,Nickname,Contact Type,Phone,Gender,Date of Birth,Race,Email,T-Shirt Size,Address1,Address2,City,State,ZIP,Driver License State,Driver License Number";
                 csv.Append(columns);
                 csv.Append(Environment.NewLine);
 
@@ -166,17 +166,17 @@ namespace vMTS.Models
                         Race = l.RACE,
                         Email = l.EMAIL,
                         TShirtSize = "",
-                        LicensingInstructorNumber = "",
+                        //LicensingInstructorNumber = "",
                         Street1 = l.ADDRESS1,
                         Street2 = l.ADDRESS2,
                         City = l.CITY,
                         State = l.STATE_NAME,
                         ZIP = l.ZIP,
                         DriverLicenseState = l.DL_ST,
-                        DriverLicenseNumber = l.DL_NUM,
-                        SocialSecurityNumber = "",
-                        MSFnumber = "",
-                        Owner = ""
+                        DriverLicenseNumber = l.DL_NUM
+                        //,SocialSecurityNumber = "",
+                        //MSFnumber = "",
+                        //Owner = ""
                     });
                 }
             }

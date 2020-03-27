@@ -181,6 +181,12 @@ namespace vMTS.Models
 			return ((int)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetRegistration", IsComposable=true)]
+		public IQueryable<GetRegistrationResult> GetRegistration([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPT", DbType="BigInt")] System.Nullable<long> rECEIPT)
+		{
+			return this.CreateMethodCallQuery<GetRegistrationResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rECEIPT);
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.NewRegistration")]
 		public int NewRegistration(
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="COURSE_ID", DbType="Int")] System.Nullable<int> cOURSE_ID, 
@@ -218,12 +224,6 @@ namespace vMTS.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cOURSE_ID, fIRSTNAME, mIDDLENAME, lASTNAME, sUFFIX, aDDRESS1, aDDRESS2, cITY, sTATE, zIP, gDR, rACE, pHONE, eMAIL, dOB, aGE, eVAL, mOTOR_YR, mOTOR_MK, mOTOR_MD, dL_NUM, dL_STATE, pMT_TYPE, cARD_NAME, cARD_NUM, eXP_MN, eXP_YR, cVV, pROMO, pROMO_VALUE, rECEIPT);
 			rECEIPT = ((System.Nullable<long>)(result.GetParameterValue(30)));
 			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetRegistration", IsComposable=true)]
-		public IQueryable<GetRegistrationResult> GetRegistration([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPT", DbType="BigInt")] System.Nullable<long> rECEIPT)
-		{
-			return this.CreateMethodCallQuery<GetRegistrationResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rECEIPT);
 		}
 	}
 	
