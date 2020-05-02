@@ -9,7 +9,7 @@ using vMTS.Models;
 
 namespace vMTS.Controllers
 {
-    [RequireHttps]
+    //[RequireHttps]
     public class RegistrationController : Controller
     {
                RegistrationModel c = new RegistrationModel();
