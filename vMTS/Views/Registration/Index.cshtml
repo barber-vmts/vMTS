@@ -18,7 +18,14 @@
         {
             <thead>
                 <tr class="info">
-                <th colspan="3" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="@Model.Item2.Where(x => x.CourseName == i.Key).FirstOrDefault().Description[0] Requires a minimum of @Model.Item2.Where(x => x.CourseName == i.Key).FirstOrDefault().MinRiders riders for class to be held." data-original-title="" title="@i.Key">@i.Key - Class Minimum: @Model.Item2.Where(x => x.CourseName == i.Key).FirstOrDefault().MinRiders</th>
+                    @if (i.Key != "")
+                    {
+                        <th colspan="3" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="@Model.Item2.Where(x => x.CourseName == i.Key).FirstOrDefault().Description[0] Requires a minimum of @Model.Item2.Where(x => x.CourseName == i.Key).FirstOrDefault().MinRiders riders for class to be held." data-original-title="" title="@i.Key">@i.Key - Class Minimum: @Model.Item2.Where(x => x.CourseName == i.Key).FirstOrDefault().MinRiders</th>
+                    }
+                    else
+                    {
+                        <th colspan="3"></th>
+                    }
                 </tr>
                 <tr>
                     <th>Course Date(s)</th>
@@ -37,18 +44,18 @@
                             <div data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="Tentative schedule: @cl.CLASS_START_TIME - @cl.CLASS_END_TIME. Arrive 15 minutes prior to class start time to complete paperwork.  The class end time will depend on several factors, but generally it will end by 6:00PM." data-original-title="" title="Class Scheduled Times">@cl.ClassDay</div>
                         </td>
                         @*<td>
-                            @if (Model.Item3.Count >= 1)
-                            {
-                                    @Model.Item3.Where(x => x.ClassDates == cl.ClassDay).FirstOrDefault().PrimaryInstructor.ToString()
+            @if (Model.Item3.Count >= 1)
+            {
+                    @Model.Item3.Where(x => x.ClassDates == cl.ClassDay).FirstOrDefault().PrimaryInstructor.ToString()
 
-                            }
-                        </td>
-                        <td>
-                            @if (Model.Item3.Count >= 1)
-                            {
-                                @Model.Item3.Where(x => x.ClassDates == cl.ClassDay).FirstOrDefault().SecondaryInstructor.ToString()
-                            }
-                        </td>*@
+            }
+        </td>
+        <td>
+            @if (Model.Item3.Count >= 1)
+            {
+                @Model.Item3.Where(x => x.ClassDates == cl.ClassDay).FirstOrDefault().SecondaryInstructor.ToString()
+            }
+        </td>*@
                         <td>
                             @if (cl.OPEN_SEATS <= 0)
                             {
@@ -59,10 +66,13 @@
                                 <a href="/Registration/Register/@cl.CLASS_ID" class="btn-sm btn-info" data-trigger="hover" data-toggle="popover" data-placement="right" title="" data-original-title="@cl.ClassDay" data-content="Register now for @cl.CLASS_TYPE. There are only @cl.OPEN_SEATS spots left."><span class="badge">@cl.OPEN_SEATS</span></a>
                             }
                         </td>
+                        @if (i.Key != "")
+                        {
+                            <td data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="@Model.Item2.Where(x => x.CourseName == i.Key).FirstOrDefault().FeeStructure" data-original-title="" title="Class Fee Structure">
+                                @string.Format("{0:c}", cl.CLASS_FEE)
+                            </td>
 
-                        <td data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="@Model.Item2.Where(x => x.CourseName == i.Key).FirstOrDefault().FeeStructure" data-original-title="" title="Class Fee Structure">
-                            @string.Format("{0:c}", cl.CLASS_FEE)
-                        </td>
+                        }
 
                     </tr>
                 </tbody>
