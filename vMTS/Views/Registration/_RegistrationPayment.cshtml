@@ -43,8 +43,8 @@
 
         string pmt_text = "";
         if (p.PMT_TYPE == "Check") { pmt_text = "A check in the amount of " + string.Format("{0:c}", p.TOTAL) + " will be due before your registration is final."; }
-        else if (p.PMT_TYPE == "Gift") { pmt_text = string.Format("{0:c}", p.CLASS_FEE) + " will be deducted from the gift certificate."; }
-        else { pmt_text = string.Format("{0:c}", p.CLASS_FEE) + " will be charged to the following credit card."; }
+        else if (p.PMT_TYPE == "Gift") { pmt_text = string.Format("{0:c}", p.TOTAL) + " will be deducted from the gift certificate."; }
+        else { pmt_text = string.Format("{0:c}", p.TOTAL) + " will be charged to the following credit card."; }
 
             <p class="lead text-success">@pmt_text</p>
             if (p.PMT_TYPE == "Credit Card")
