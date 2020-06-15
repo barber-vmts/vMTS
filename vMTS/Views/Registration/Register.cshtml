@@ -28,115 +28,120 @@ var google_remarketing_only = false;
     @Html.Hidden("CLASS_TYPE_REG", (object)ViewBag.ClassRegistration)
 
 
-    <fieldset id="RegistrantForm">
-        <legend>Course Registration</legend>
-        <div id="form_FN" class="form-group">
-            <label for="inputFirstName" class="sr-only">First Name</label>
-            <input type="text" name="FirstName" class="form-control" id="inputFirstName" placeholder="First Name" aria-describedby="fn_addon" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="As appears on driver's license or birth certificate" data-original-title="" title="First Name">
+<fieldset id="RegistrantForm">
+    <legend>Course Registration</legend>
+    <div id="form_FN" class="form-group">
+        <label for="inputFirstName" class="sr-only">First Name</label>
+        <input type="text" name="FirstName" class="form-control" id="inputFirstName" placeholder="First Name" aria-describedby="fn_addon" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="As appears on driver's license or birth certificate" data-original-title="" title="First Name">
+    </div>
+    <div id="form_MN" class="form-group">
+        <label for="inputMiddleName" class="sr-only">Middle Name</label>
+        <input type="text" name="MiddleName" class="form-control" id="inputMiddleName" placeholder="Middle Name/Initial" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="As appears on driver's license or birth certificate" data-original-title="" title="Middle Name or Initial">
+    </div>
+    <div id="form_LN" class="form-group">
+        <label for="inputLastName" class="sr-only">Last Name</label>
+        <input type="text" name="LastName" class="form-control" id="inputLastName" placeholder="Last Name" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="As appears on driver's license or birth certificate" data-original-title="" title="Last Name">
+    </div>
+    <div id="form_Suffix" class="form-group">
+        <label for="inputSsuffix" class="sr-only">Suffix</label>
+        @Html.DropDownList("inputSuffix", Model.NameSuffix, "Suffix", new { @class = "form-control" })
+    </div>
+    <div id="form_ADDR" class="form-group">
+        <div class="input-group">
+            <label for="inputAddressLine1" class="sr-only">Address</label>
+            <input type="text" name="Address1" class="form-control" id="inputAddressLine1" placeholder="Street Number and Name">
+            <input type="text" name="Address2" class="form-control" id="inputAddressLine2" placeholder="Apt #, Suite #">
         </div>
-        <div id="form_MN" class="form-group">
-            <label for="inputMiddleName" class="sr-only">Middle Name</label>
-            <input type="text" name="MiddleName" class="form-control" id="inputMiddleName" placeholder="Middle Name/Initial" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="As appears on driver's license or birth certificate" data-original-title="" title="Middle Name or Initial">
-        </div>
-        <div id="form_LN" class="form-group">
-            <label for="inputLastName" class="sr-only">Last Name</label>
-            <input type="text" name="LastName" class="form-control" id="inputLastName" placeholder="Last Name" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="As appears on driver's license or birth certificate" data-original-title="" title="Last Name">
-        </div>
-        <div id="form_Suffix" class="form-group">
-            <label for="inputSsuffix" class="sr-only">Suffix</label>
-            @Html.DropDownList("inputSuffix", Model.NameSuffix, "Suffix", new { @class = "form-control" })
-        </div>
-        <div id="form_ADDR" class="form-group">
-            <div class="input-group">
-                <label for="inputAddressLine1" class="sr-only">Address</label>
-                <input type="text" name="Address1" class="form-control" id="inputAddressLine1" placeholder="Street Number and Name">
-                <input type="text" name="Address2" class="form-control" id="inputAddressLine2" placeholder="Apt #, Suite #">
-            </div>
-        </div>
-        <div id="form_CITY" class="form-group">
-            <label for="inputCity" class="sr-only">City</label>
-            <input type="text" name="City" class="form-control" id="inputCity" placeholder="City">
-        </div>
-        <div id="form_ADDR_ST" class="form-group">
-            <label for="inputState" class="sr-only">State</label>
-            @Html.DropDownList("inputState", Model.States, "State", new { @class = "form-control" })
-        </div>
-        <div id="form_ZIP" class="form-group">
-            <label for="inputZip" class="sr-only">Zip</label>
-            <input type="text" class="form-control" name="Zip" id="inputZip" placeholder="Zip Code">
-        </div>
-        <div id="form_GN" class="form-group">
-            <label for="inputGender" class="control-label">Gender</label>
-            <label class="radio-inline">
-                <input type="radio" name="Gender" id="inputMale" value="M">
-                M
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="Gender" id="inputFemale" value="F">
-                F
-            </label>
-        </div>
+    </div>
+    <div id="form_CITY" class="form-group">
+        <label for="inputCity" class="sr-only">City</label>
+        <input type="text" name="City" class="form-control" id="inputCity" placeholder="City">
+    </div>
+    <div id="form_ADDR_ST" class="form-group">
+        <label for="inputState" class="sr-only">State</label>
+        @Html.DropDownList("inputState", Model.States, "State", new { @class = "form-control" })
+    </div>
+    <div id="form_ZIP" class="form-group">
+        <label for="inputZip" class="sr-only">Zip</label>
+        <input type="text" class="form-control" name="Zip" id="inputZip" placeholder="Zip Code">
+    </div>
+    <div id="form_GN" class="form-group">
+        <label for="inputGender" class="control-label">Gender</label>
+        <label class="radio-inline">
+            <input type="radio" name="Gender" id="inputMale" value="M">
+            M
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="Gender" id="inputFemale" value="F">
+            F
+        </label>
+    </div>
 
-        <div class="form-group">
-            <label for="inputRace" class="sr-only">
-                Race
-            </label>
-            @Html.DropDownList("inputRace", Model.RaceCodes, "Race", new { @class = "form-control" })
-        </div>
-        <div id="form_PN" class="form-group">
-            <label for="inputPhone" class="sr-only">Phone Number</label>
-            <input type="tel" name="Phone" class="form-control" id="inputPhone" placeholder="Phone Number" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Numbers only, please. i.e.6151234567" data-original-title="" title="Phone Number">
-        </div>
-        <div id="form_EM" class="form-group">
-            <label for="inputEmail" class="sr-only">E-Mail</label>
-            <input type="email" name="Email" class="form-control" id="inputEmail" placeholder="Email Address" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Enter a valid email address. i.e.someone@something.com" data-original-title="" title="Email Address">
-        </div>
-        <div id="form_EM2" class="form-group">
-            <label for="inputEmail2" class="sr-only">Re-enter E-Mail</label>
-            <input type="email" name="inputEmail2" class="form-control" id="inputEmail2" placeholder="Re-enter Email Address" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Re-enter email address. Must match the email address above." data-original-title="" title="Email Address Validation">
-            <div id="mail_alert" class="alert alert-danger hidden">Validaiton Error: Email addresses must match</div>
-        </div>
-        <div id="form_DOB" class="form-group">
-            <label for="inputDOB" class="sr-only">Date of Birth</label>
-            <input type="text" name="DOB" class="form-control" id="inputDOB" placeholder="Birth Date (YYYY-MM-DD)" data-mask="9999-99-99" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Your birth date must be entered in the following format: 4 digit year-2 digit month-2 digit day (YYYY-MM-DD). Example: 2000-01-01 (January 1 2000)" data-original-title="" title="Date of Birth">@*readonly="readonly"*@
-            <input type="hidden" name="AGE" id="AGE" />
-            <div id="waiver_alert" class="alert alert-danger hidden"></div>
-        </div>
-        <div id="form_EV" class="form-group">
-            <label for="inputEval" class="control-label">Do you need a motorcycle license?</label>
-            <label class="radio-inline">
-                <input type="radio" name="Eval" id="inputEvalYes" value="Y">
-                Yes
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="Eval" id="inputEvalNo" value="N">
-                No
-            </label>
-        </div>
-        <!-- OPTIONAL FOR BRC2 AND ARC AND TRIKE -->
+    <div class="form-group">
+        <label for="inputRace" class="sr-only">
+            Race
+        </label>
+        @Html.DropDownList("inputRace", Model.RaceCodes, "Race", new { @class = "form-control" })
+    </div>
+    <div id="form_PN" class="form-group">
+        <label for="inputPhone" class="sr-only">Phone Number</label>
+        <input type="tel" name="Phone" class="form-control" id="inputPhone" placeholder="Phone Number" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Numbers only, please. i.e.6151234567" data-original-title="" title="Phone Number">
+    </div>
+    <div id="form_EM" class="form-group">
+        <label for="inputEmail" class="sr-only">E-Mail</label>
+        <input type="email" name="Email" class="form-control" id="inputEmail" placeholder="Email Address" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Enter a valid email address. i.e.someone@something.com" data-original-title="" title="Email Address">
+    </div>
+    <div id="form_EM2" class="form-group">
+        <label for="inputEmail2" class="sr-only">Re-enter E-Mail</label>
+        <input type="email" name="inputEmail2" class="form-control" id="inputEmail2" placeholder="Re-enter Email Address" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Re-enter email address. Must match the email address above." data-original-title="" title="Email Address Validation">
+        <div id="mail_alert" class="alert alert-danger hidden">Validaiton Error: Email addresses must match</div>
+    </div>
+    <div id="form_DOB" class="form-group">
+        <label for="inputDOB" class="sr-only">Date of Birth</label>
+        <input type="text" name="DOB" class="form-control" id="inputDOB" placeholder="Birth Date (YYYY-MM-DD)" data-mask="9999-99-99" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Your birth date must be entered in the following format: 4 digit year-2 digit month-2 digit day (YYYY-MM-DD). Example: 2000-01-01 (January 1 2000)" data-original-title="" title="Date of Birth">@*readonly="readonly"*@
+        <input type="hidden" name="AGE" id="AGE" />
+        <div id="waiver_alert" class="alert alert-danger hidden"></div>
+    </div>
+    <div id="form_EV" class="form-group">
+        <label for="inputEval" class="control-label">Do you need a motorcycle license?</label>
+        <label class="radio-inline">
+            <input type="radio" name="Eval" id="inputEvalYes" value="Y">
+            Yes
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="Eval" id="inputEvalNo" value="N">
+            No
+        </label>
+    </div>
+    <!-- OPTIONAL FOR BRC2 AND ARC AND TRIKE -->
+    @if (ViewBag.ClassRegistration != "Basic RiderCourse I")
+    {
         <div id="form_MC_TYPE" class="form-group">
             <label for="inputMotorYR" class="control-label">What Motorcycle do you have?</label>
             <input type="text" name="MOTOR_YR" class="form-control" id="inputMotorYR" placeholder="Year" maxlength="4">
             <input type="text" name="MOTOR_MK" class="form-control" id="inputMotorMK" placeholder="Make" maxlength="20">
             <input type="text" name="MOTOR_MD" class="form-control" id="inputMotorMD" placeholder="Model" maxlength="20">
+            <label for="inputHelmet" class="form-group">Do you have a motorcycle helmet?</label>
+            <input type="checkbox" name="HELMET" value="true" /> Yes
         </div>
+    }
 
-        <div id="form_DL_NUM" class="form-group">
-            <label for="inputDLNumber" class="sr-only">Drivers License Number</label>
-            <input type="text" name="DL_NUM" class="form-control" id="inputDLNumber" placeholder="Drivers License Number">
-        </div>
-        <div id="form_DL_ST" class="form-group">
-            <label for="inputDLState" class="sr-only">
-                State of Drivers License Issued
-            </label>
-            @Html.DropDownList("inputDLState", Model.States, "State", new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            <button type="reset" class="btn btn-default">Cancel</button>
-            <button id="btn_Checkout" type="button" class="btn btn-primary">Checkout</button>
-        </div>
+    <div id="form_DL_NUM" class="form-group">
+        <label for="inputDLNumber" class="sr-only">Drivers License Number</label>
+        <input type="text" name="DL_NUM" class="form-control" id="inputDLNumber" placeholder="Drivers License Number">
+    </div>
+    <div id="form_DL_ST" class="form-group">
+        <label for="inputDLState" class="sr-only">
+            State of Drivers License Issued
+        </label>
+        @Html.DropDownList("inputDLState", Model.States, "State", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <button type="reset" class="btn btn-default">Cancel</button>
+        <button id="btn_Checkout" type="button" class="btn btn-primary">Checkout</button>
+    </div>
 
-    </fieldset>
+</fieldset>
 
     <fieldset id="CheckoutForm">
         <legend>Checkout</legend>
