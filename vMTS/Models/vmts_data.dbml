@@ -1,14 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_62333_vmts" Class="vmts_dataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=tcp:s11.winhost.com;Initial Catalog=DB_62333_vmts;Integrated Security=False;User ID=DB_62333_vmts_user" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="vMTS_Prod" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.RegistrationCount" Member="RegistrationCounts">
-    <Type Name="RegistrationCount">
-      <Column Name="CLASS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ClassDay" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="REGISTRATIONS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="OPEN_SEATS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CLASS_START_DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.NAME_SUFFIX" Member="NAME_SUFFIXes">
     <Type Name="NAME_SUFFIX">
       <Column Name="SUFFIX_ABBR" Type="System.String" DbType="VarChar(7) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -85,6 +76,16 @@
       <Column Name="logMessage" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
       <Column Name="logStackTrace" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="logDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RegistrationCount" Member="RegistrationCounts">
+    <Type Name="RegistrationCount">
+      <Column Name="CLASS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClassDay" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="REGISTRATIONS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OPEN_SEATS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CLASS_START_DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CLASS_TYPE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.CancelClass" Method="CancelClass">

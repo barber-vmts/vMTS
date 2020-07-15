@@ -19,18 +19,20 @@
             <table class="table table-condensed">
                 <tr>
                     <th>Start Date</th>
+                    <th>Class</th>
                     <th># of Registrations</th>
                     <th># Available (As of @string.Format("{0:d}", DateTime.Today))</th>
                     <th>&nbsp;</th>
                 </tr>
                 @foreach (var i in itemList)
                 {
-                    <tr id="curreg">
-                        <td>@string.Format("{0:d}", i.CLASS_START_DATE)</td>
-                        <td><a href="_students/@i.CLASS_ID" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="@i.REGISTRATIONS registration(s) for this class.  Click to view." data-original-title="" title="Current Registrations"><span class="badge">@i.REGISTRATIONS</span></a></td>
-                        <td>@i.OPEN_SEATS</td>
-                        <td><span id="ClassExp_@i.CLASS_ID" name="@i.CLASS_ID" class="glyphicon glyphicon-export" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Class Date: @i.ClassDay. Export the entire class roster." data-original-title="" title="Export: Export Class Roster"></span></td>
-                    </tr>
+            <tr id="curreg">
+                <td>@string.Format("{0:d}", i.CLASS_START_DATE)</td>
+                <td>@i.CLASS_TYPE</td>
+                <td><a href="_students/@i.CLASS_ID" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="@i.REGISTRATIONS registration(s) for this class.  Click to view." data-original-title="" title="Current Registrations"><span class="badge">@i.REGISTRATIONS</span></a></td>
+                <td>@i.OPEN_SEATS</td>
+                <td><span id="ClassExp_@i.CLASS_ID" name="@i.CLASS_ID" class="glyphicon glyphicon-export" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Class Date: @i.ClassDay. Export the entire class roster." data-original-title="" title="Export: Export Class Roster"></span></td>
+            </tr>
                 }
             </table>
         </div>
