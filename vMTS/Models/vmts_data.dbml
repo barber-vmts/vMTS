@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_62333_vmts" Class="vmts_dataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=tcp:s11.winhost.com;Initial Catalog=DB_62333_vmts;Integrated Security=False;User ID=DB_62333_vmts_user" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="vMTS_Prod" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_62333_qa" Class="vmts_dataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=tcp:s23.winhost.com;Initial Catalog=DB_62333_qa;Integrated Security=False;User ID=DB_62333_qa_user" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="vMTS_DEV" Provider="System.Data.SqlClient" />
   <Table Name="dbo.NAME_SUFFIX" Member="NAME_SUFFIXes">
     <Type Name="NAME_SUFFIX">
       <Column Name="SUFFIX_ABBR" Type="System.String" DbType="VarChar(7) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -50,25 +50,6 @@
       <Column Name="sequence" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Class_Schedule_view" Member="Class_Schedule_views">
-    <Type Name="Class_Schedule_view">
-      <Column Name="CLASS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CLASS_TYPE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CLASS_START_DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="CLASS_END_DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="ClassDay" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="CLASS_START_TIME" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="CLASS_END_TIME" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="OPEN_SEATS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CLASS_FEE" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="CLASS_LOCATION" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="COURSE_NUMBER" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ST_SELECTED" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
-      <Column Name="ET_SELECTED" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
-      <Column Name="C1" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="C2" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.errorLogging" Member="errorLoggings">
     <Type Name="errorLogging">
       <Column Name="logID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -86,6 +67,25 @@
       <Column Name="OPEN_SEATS" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CLASS_START_DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="CLASS_TYPE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Class_Schedule_view" Member="Class_Schedule_views">
+    <Type Name="Class_Schedule_view">
+      <Column Name="CLASS_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CLASS_TYPE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CLASS_START_DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CLASS_END_DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ClassDay" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="CLASS_START_TIME" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="CLASS_END_TIME" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="OPEN_SEATS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CLASS_FEE" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CLASS_LOCATION" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="COURSE_NUMBER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ST_SELECTED" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="ET_SELECTED" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="C1" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="C2" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.CancelClass" Method="CancelClass">
@@ -211,7 +211,6 @@
     <Parameter Name="STATE" Parameter="sTATE" Type="System.String" DbType="VarChar(2)" />
     <Parameter Name="ZIP" Parameter="zIP" Type="System.String" DbType="VarChar(5)" />
     <Parameter Name="GDR" Parameter="gDR" Type="System.String" DbType="VarChar(1)" />
-    <Parameter Name="RACE" Parameter="rACE" Type="System.Int32" DbType="Int" />
     <Parameter Name="PHONE" Parameter="pHONE" Type="System.String" DbType="VarChar(11)" />
     <Parameter Name="EMAIL" Parameter="eMAIL" Type="System.String" DbType="VarChar(75)" />
     <Parameter Name="DOB" Parameter="dOB" Type="System.DateTime" DbType="Date" />

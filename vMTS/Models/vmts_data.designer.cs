@@ -22,7 +22,7 @@ namespace vMTS.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DB_62333_vmts")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DB_62333_qa")]
 	public partial class vmts_dataDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -42,7 +42,7 @@ namespace vMTS.Models
     #endregion
 		
 		public vmts_dataDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["vMTS_Prod"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["vMTS_DEV"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -95,14 +95,6 @@ namespace vMTS.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Class_Schedule_view> Class_Schedule_views
-		{
-			get
-			{
-				return this.GetTable<Class_Schedule_view>();
-			}
-		}
-		
 		public System.Data.Linq.Table<errorLogging> errorLoggings
 		{
 			get
@@ -116,6 +108,14 @@ namespace vMTS.Models
 			get
 			{
 				return this.GetTable<RegistrationCount>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Class_Schedule_view> Class_Schedule_views
+		{
+			get
+			{
+				return this.GetTable<Class_Schedule_view>();
 			}
 		}
 		
@@ -200,7 +200,6 @@ namespace vMTS.Models
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="STATE", DbType="VarChar(2)")] string sTATE, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ZIP", DbType="VarChar(5)")] string zIP, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="GDR", DbType="VarChar(1)")] string gDR, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="RACE", DbType="Int")] System.Nullable<int> rACE, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PHONE", DbType="VarChar(11)")] string pHONE, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EMAIL", DbType="VarChar(75)")] string eMAIL, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DOB", DbType="Date")] System.Nullable<System.DateTime> dOB, 
@@ -221,8 +220,8 @@ namespace vMTS.Models
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROMO_VALUE", DbType="Money")] System.Nullable<decimal> pROMO_VALUE, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPT", DbType="BigInt")] ref System.Nullable<long> rECEIPT)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cOURSE_ID, fIRSTNAME, mIDDLENAME, lASTNAME, sUFFIX, aDDRESS1, aDDRESS2, cITY, sTATE, zIP, gDR, rACE, pHONE, eMAIL, dOB, aGE, eVAL, mOTOR_YR, mOTOR_MK, mOTOR_MD, dL_NUM, dL_STATE, pMT_TYPE, cARD_NAME, cARD_NUM, eXP_MN, eXP_YR, cVV, pROMO, pROMO_VALUE, rECEIPT);
-			rECEIPT = ((System.Nullable<long>)(result.GetParameterValue(30)));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cOURSE_ID, fIRSTNAME, mIDDLENAME, lASTNAME, sUFFIX, aDDRESS1, aDDRESS2, cITY, sTATE, zIP, gDR, pHONE, eMAIL, dOB, aGE, eVAL, mOTOR_YR, mOTOR_MK, mOTOR_MD, dL_NUM, dL_STATE, pMT_TYPE, cARD_NAME, cARD_NUM, eXP_MN, eXP_YR, cVV, pROMO, pROMO_VALUE, rECEIPT);
+			rECEIPT = ((System.Nullable<long>)(result.GetParameterValue(29)));
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -1032,6 +1031,281 @@ namespace vMTS.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.errorLogging")]
+	public partial class errorLogging : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _logID;
+		
+		private string _logMethod;
+		
+		private string _logMessage;
+		
+		private string _logStackTrace;
+		
+		private System.Nullable<System.DateTime> _logDate;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnlogIDChanging(int value);
+    partial void OnlogIDChanged();
+    partial void OnlogMethodChanging(string value);
+    partial void OnlogMethodChanged();
+    partial void OnlogMessageChanging(string value);
+    partial void OnlogMessageChanged();
+    partial void OnlogStackTraceChanging(string value);
+    partial void OnlogStackTraceChanged();
+    partial void OnlogDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnlogDateChanged();
+    #endregion
+		
+		public errorLogging()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_logID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int logID
+		{
+			get
+			{
+				return this._logID;
+			}
+			set
+			{
+				if ((this._logID != value))
+				{
+					this.OnlogIDChanging(value);
+					this.SendPropertyChanging();
+					this._logID = value;
+					this.SendPropertyChanged("logID");
+					this.OnlogIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_logMethod", DbType="NVarChar(50)")]
+		public string logMethod
+		{
+			get
+			{
+				return this._logMethod;
+			}
+			set
+			{
+				if ((this._logMethod != value))
+				{
+					this.OnlogMethodChanging(value);
+					this.SendPropertyChanging();
+					this._logMethod = value;
+					this.SendPropertyChanged("logMethod");
+					this.OnlogMethodChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_logMessage", DbType="NVarChar(150)")]
+		public string logMessage
+		{
+			get
+			{
+				return this._logMessage;
+			}
+			set
+			{
+				if ((this._logMessage != value))
+				{
+					this.OnlogMessageChanging(value);
+					this.SendPropertyChanging();
+					this._logMessage = value;
+					this.SendPropertyChanged("logMessage");
+					this.OnlogMessageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_logStackTrace", DbType="NVarChar(500)")]
+		public string logStackTrace
+		{
+			get
+			{
+				return this._logStackTrace;
+			}
+			set
+			{
+				if ((this._logStackTrace != value))
+				{
+					this.OnlogStackTraceChanging(value);
+					this.SendPropertyChanging();
+					this._logStackTrace = value;
+					this.SendPropertyChanged("logStackTrace");
+					this.OnlogStackTraceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_logDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> logDate
+		{
+			get
+			{
+				return this._logDate;
+			}
+			set
+			{
+				if ((this._logDate != value))
+				{
+					this.OnlogDateChanging(value);
+					this.SendPropertyChanging();
+					this._logDate = value;
+					this.SendPropertyChanged("logDate");
+					this.OnlogDateChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RegistrationCount")]
+	public partial class RegistrationCount
+	{
+		
+		private int _CLASS_ID;
+		
+		private string _ClassDay;
+		
+		private System.Nullable<int> _REGISTRATIONS;
+		
+		private System.Nullable<int> _OPEN_SEATS;
+		
+		private System.Nullable<System.DateTime> _CLASS_START_DATE;
+		
+		private string _CLASS_TYPE;
+		
+		public RegistrationCount()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_ID", DbType="Int NOT NULL")]
+		public int CLASS_ID
+		{
+			get
+			{
+				return this._CLASS_ID;
+			}
+			set
+			{
+				if ((this._CLASS_ID != value))
+				{
+					this._CLASS_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClassDay", DbType="NVarChar(30)")]
+		public string ClassDay
+		{
+			get
+			{
+				return this._ClassDay;
+			}
+			set
+			{
+				if ((this._ClassDay != value))
+				{
+					this._ClassDay = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REGISTRATIONS", DbType="Int")]
+		public System.Nullable<int> REGISTRATIONS
+		{
+			get
+			{
+				return this._REGISTRATIONS;
+			}
+			set
+			{
+				if ((this._REGISTRATIONS != value))
+				{
+					this._REGISTRATIONS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OPEN_SEATS", DbType="Int")]
+		public System.Nullable<int> OPEN_SEATS
+		{
+			get
+			{
+				return this._OPEN_SEATS;
+			}
+			set
+			{
+				if ((this._OPEN_SEATS != value))
+				{
+					this._OPEN_SEATS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_START_DATE", DbType="Date")]
+		public System.Nullable<System.DateTime> CLASS_START_DATE
+		{
+			get
+			{
+				return this._CLASS_START_DATE;
+			}
+			set
+			{
+				if ((this._CLASS_START_DATE != value))
+				{
+					this._CLASS_START_DATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_TYPE", DbType="NVarChar(50)")]
+		public string CLASS_TYPE
+		{
+			get
+			{
+				return this._CLASS_TYPE;
+			}
+			set
+			{
+				if ((this._CLASS_TYPE != value))
+				{
+					this._CLASS_TYPE = value;
+				}
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Class_Schedule_view")]
 	public partial class Class_Schedule_view
 	{
@@ -1306,281 +1580,6 @@ namespace vMTS.Models
 				if ((this._C2 != value))
 				{
 					this._C2 = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.errorLogging")]
-	public partial class errorLogging : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _logID;
-		
-		private string _logMethod;
-		
-		private string _logMessage;
-		
-		private string _logStackTrace;
-		
-		private System.Nullable<System.DateTime> _logDate;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnlogIDChanging(int value);
-    partial void OnlogIDChanged();
-    partial void OnlogMethodChanging(string value);
-    partial void OnlogMethodChanged();
-    partial void OnlogMessageChanging(string value);
-    partial void OnlogMessageChanged();
-    partial void OnlogStackTraceChanging(string value);
-    partial void OnlogStackTraceChanged();
-    partial void OnlogDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnlogDateChanged();
-    #endregion
-		
-		public errorLogging()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_logID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int logID
-		{
-			get
-			{
-				return this._logID;
-			}
-			set
-			{
-				if ((this._logID != value))
-				{
-					this.OnlogIDChanging(value);
-					this.SendPropertyChanging();
-					this._logID = value;
-					this.SendPropertyChanged("logID");
-					this.OnlogIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_logMethod", DbType="NVarChar(50)")]
-		public string logMethod
-		{
-			get
-			{
-				return this._logMethod;
-			}
-			set
-			{
-				if ((this._logMethod != value))
-				{
-					this.OnlogMethodChanging(value);
-					this.SendPropertyChanging();
-					this._logMethod = value;
-					this.SendPropertyChanged("logMethod");
-					this.OnlogMethodChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_logMessage", DbType="NVarChar(150)")]
-		public string logMessage
-		{
-			get
-			{
-				return this._logMessage;
-			}
-			set
-			{
-				if ((this._logMessage != value))
-				{
-					this.OnlogMessageChanging(value);
-					this.SendPropertyChanging();
-					this._logMessage = value;
-					this.SendPropertyChanged("logMessage");
-					this.OnlogMessageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_logStackTrace", DbType="NVarChar(500)")]
-		public string logStackTrace
-		{
-			get
-			{
-				return this._logStackTrace;
-			}
-			set
-			{
-				if ((this._logStackTrace != value))
-				{
-					this.OnlogStackTraceChanging(value);
-					this.SendPropertyChanging();
-					this._logStackTrace = value;
-					this.SendPropertyChanged("logStackTrace");
-					this.OnlogStackTraceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_logDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> logDate
-		{
-			get
-			{
-				return this._logDate;
-			}
-			set
-			{
-				if ((this._logDate != value))
-				{
-					this.OnlogDateChanging(value);
-					this.SendPropertyChanging();
-					this._logDate = value;
-					this.SendPropertyChanged("logDate");
-					this.OnlogDateChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RegistrationCount")]
-	public partial class RegistrationCount
-	{
-		
-		private int _CLASS_ID;
-		
-		private string _ClassDay;
-		
-		private System.Nullable<int> _REGISTRATIONS;
-		
-		private System.Nullable<int> _OPEN_SEATS;
-		
-		private System.Nullable<System.DateTime> _CLASS_START_DATE;
-		
-		private string _CLASS_TYPE;
-		
-		public RegistrationCount()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_ID", DbType="Int NOT NULL")]
-		public int CLASS_ID
-		{
-			get
-			{
-				return this._CLASS_ID;
-			}
-			set
-			{
-				if ((this._CLASS_ID != value))
-				{
-					this._CLASS_ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClassDay", DbType="NVarChar(30)")]
-		public string ClassDay
-		{
-			get
-			{
-				return this._ClassDay;
-			}
-			set
-			{
-				if ((this._ClassDay != value))
-				{
-					this._ClassDay = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REGISTRATIONS", DbType="Int")]
-		public System.Nullable<int> REGISTRATIONS
-		{
-			get
-			{
-				return this._REGISTRATIONS;
-			}
-			set
-			{
-				if ((this._REGISTRATIONS != value))
-				{
-					this._REGISTRATIONS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OPEN_SEATS", DbType="Int")]
-		public System.Nullable<int> OPEN_SEATS
-		{
-			get
-			{
-				return this._OPEN_SEATS;
-			}
-			set
-			{
-				if ((this._OPEN_SEATS != value))
-				{
-					this._OPEN_SEATS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_START_DATE", DbType="Date")]
-		public System.Nullable<System.DateTime> CLASS_START_DATE
-		{
-			get
-			{
-				return this._CLASS_START_DATE;
-			}
-			set
-			{
-				if ((this._CLASS_START_DATE != value))
-				{
-					this._CLASS_START_DATE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_TYPE", DbType="NVarChar(50)")]
-		public string CLASS_TYPE
-		{
-			get
-			{
-				return this._CLASS_TYPE;
-			}
-			set
-			{
-				if ((this._CLASS_TYPE != value))
-				{
-					this._CLASS_TYPE = value;
 				}
 			}
 		}

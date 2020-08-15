@@ -34,6 +34,9 @@ namespace vMTS.Models
                 body += "<tr><td>Class Date:</td><td>" + regList.FirstOrDefault().CLASS_DAY + "</td></tr>";
                 body += "<tr><td>Participant Name:</td><td>" + regList.FirstOrDefault().NAME + "</td></tr>";
                 body += "<tr><td>Participant Phone:</td><td>" + regList.FirstOrDefault().PHONE + "</td></tr></table>";
+  
+                body += "<table><tr><td><h2>Important Payment Policy</h2></td></tr>";
+                body += "<tr><td>Credit Card payments are processed 3 to 4 days prior to the class start date.</td></tr>";
 
                 if (regList.FirstOrDefault().AGE <= 17)
                 {
@@ -104,7 +107,7 @@ namespace vMTS.Models
 
                 body += "<table>";
                 body += "<tr><td>If links in the email do not work, copy and paste them into your browser</td></tr>";
-                body += "<tr><td>Do not reply to this email.  If you need assistance, please <a href='https://www.learntoridetn.com/home/contact' target='_blank'>learntoridetn.com/home/contact</a></td></tr></table>";
+                body += "<tr><td>Do not reply to this email.  If you need assistance, please reference our contact page here: <a href='https://www.learntoridetn.com/home/contact' target='_blank'>learntoridetn.com/home/contact</a></td></tr></table>";
 
                 MailMessage m = new MailMessage();
                 m.From = new MailAddress("registration@learntoridetn.com");
