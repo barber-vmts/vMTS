@@ -1,7 +1,9 @@
 ﻿@using vMTS.Models
 @*@model List<Group<string, Class_Schedule_view>>  i.Values.Select(v => v.CLASS_DESCRIPTION).FirstOrDefault()*@
 
-@model Tuple <List<Group<string, Class_Schedule_view>>, List<CourseDescriptions>, List<InstructorClasses>>
+@*@model Tuple<List<Group<string, Class_Schedule_view>>, List<CourseDescriptions>, List<InstructorClasses>>*@
+
+@model Tuple<List<Group<string, Class_Schedule_view>>, List<CourseDescriptions>>
 
 @{
     ViewBag.Title = "Class Registration";
@@ -11,7 +13,7 @@
 
 
 <h1>@ViewBag.Title</h1>
-@if (Model.Item1.Count >=1)
+@if (Model.Item1.Count >= 1)
 {
     <table class="table table-striped table-hover ">
         @foreach (var i in Model.Item1)
@@ -30,7 +32,7 @@
                 <tr>
                     <th>Course Date(s)</th>
                     @*<th>Primary Instructor</th>
-                    <th>Secondary Instructor</th>*@
+                        <th>Secondary Instructor</th>*@
                     <th>Register Now</th>
                     <th>Class Fee</th>
                 </tr>
@@ -44,18 +46,18 @@
                             <div data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="Tentative schedule: @cl.CLASS_START_TIME - @cl.CLASS_END_TIME. Arrive 15 minutes prior to class start time to complete paperwork.  The class end time will depend on several factors, but generally it will end by 6:00PM." data-original-title="" title="Class Scheduled Times">@cl.ClassDay</div>
                         </td>
                         @*<td>
-            @if (Model.Item3.Count >= 1)
-            {
-                    @Model.Item3.Where(x => x.ClassDates == cl.ClassDay).FirstOrDefault().PrimaryInstructor.ToString()
+                                @if (Model.Item3.Count >= 1)
+                                {
+                                        @Model.Item3.Where(x => x.ClassDates == cl.ClassDay).FirstOrDefault().PrimaryInstructor.ToString()
 
-            }
-        </td>
-        <td>
-            @if (Model.Item3.Count >= 1)
-            {
-                @Model.Item3.Where(x => x.ClassDates == cl.ClassDay).FirstOrDefault().SecondaryInstructor.ToString()
-            }
-        </td>*@
+                                }
+                            </td>
+                            <td>
+                                @if (Model.Item3.Count >= 1)
+                                {
+                                    @Model.Item3.Where(x => x.ClassDates == cl.ClassDay).FirstOrDefault().SecondaryInstructor.ToString()
+                                }
+                            </td>*@
                         <td>
                             @if (cl.OPEN_SEATS <= 0)
                             {

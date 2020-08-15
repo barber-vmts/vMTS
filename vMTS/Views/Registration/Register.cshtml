@@ -77,12 +77,12 @@ var google_remarketing_only = false;
         </label>
     </div>
 
-    <div class="form-group">
+    @*<div class="form-group">
         <label for="inputRace" class="sr-only">
             Race
         </label>
         @Html.DropDownList("inputRace", Model.RaceCodes, "Race", new { @class = "form-control" })
-    </div>
+    </div>*@
     <div id="form_PN" class="form-group">
         <label for="inputPhone" class="sr-only">Phone Number</label>
         <input type="tel" name="Phone" class="form-control" id="inputPhone" placeholder="Phone Number" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Numbers only, please. i.e.6151234567" data-original-title="" title="Phone Number">
@@ -121,8 +121,8 @@ var google_remarketing_only = false;
             <input type="text" name="MOTOR_YR" class="form-control" id="inputMotorYR" placeholder="Year" maxlength="4">
             <input type="text" name="MOTOR_MK" class="form-control" id="inputMotorMK" placeholder="Make" maxlength="20">
             <input type="text" name="MOTOR_MD" class="form-control" id="inputMotorMD" placeholder="Model" maxlength="20">
-            <label for="inputHelmet" class="form-group">Do you have a motorcycle helmet?</label>
-            <input type="checkbox" name="HELMET" value="true" /> Yes
+            <label for="inputHelmet" class="form-group">I understand I must provide my own helmet</label> (Required for Basic RiderCourse I registration)
+            <input type="checkbox" name="inputHelmet" id="inputHelmet"/>
         </div>
     }
 
