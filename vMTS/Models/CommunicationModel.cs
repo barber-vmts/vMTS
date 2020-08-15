@@ -56,7 +56,7 @@ namespace vMTS.Models
                 body += "<tr><td>Riding gear includes:<ul><li>DOT helmet - you must provide your own helmet<br><b>Note:</b> If you do not have a helmet, show this confirmation to the staff at Cycle Gear to receive a 10% discount toward a new helmet.  Cycle Gear is located at Rivergate Station, 1677 Gallatin Pike N,Madison, TN 37115</li>";
                 body +="<li>Shatter proof eye wear if using open face helmet</li><li>Long sleeve shirt or jacket must be worn while sitting on the motorcycle and riding.</li><li>Full fingered gloves; cut off gloves not allowed</li><li>Long pants- no holes or exposed skin</li><li>Over the ankle boots with good grip soles</li></ul></td></tr>";
 
-                body += "<tr><td>Please review the Motorcycle Safety Foundation Liability Waiver and Indemnification form by clicking on the link <a href='https://www.learntoridetn.com/images/Liability%20Waiver/MSF_RiderCourse_Waiver_November_2018.pdf' target='_blank'>here</a>. You will sign the form upon your arrival to class.</td></tr>";
+                body += "<tr><td>Please review the Motorcycle Safety Foundation Liability Waiver and Indemnification form by clicking on the link <a href='https://www.learntoridetn.com/images/Liability%20Waiver/MSF-RiderCourseWaiver.pdf' target='_blank'>here</a>. You will sign the form upon your arrival to class.</td></tr>";
 
                 if (regList.FirstOrDefault().CLASS_TYPE == "Basic RiderCourse I")
                 {
