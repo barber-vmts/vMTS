@@ -383,7 +383,8 @@ namespace vMTS.Models
                             ClassDay = r.ClassDay,
                             REGISTRATIONS = r.REGISTRATIONS,
                             OPEN_SEATS = r.OPEN_SEATS,
-                            CLASS_START_DATE = r.CLASS_START_DATE
+                            CLASS_START_DATE = r.CLASS_START_DATE,
+                            CLASS_TYPE = r.CLASS_TYPE
                         });
                     }
                 }

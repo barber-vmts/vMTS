@@ -71,14 +71,6 @@ namespace vMTS.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<RegistrationCount> RegistrationCounts
-		{
-			get
-			{
-				return this.GetTable<RegistrationCount>();
-			}
-		}
-		
 		public System.Data.Linq.Table<NAME_SUFFIX> NAME_SUFFIXes
 		{
 			get
@@ -116,6 +108,14 @@ namespace vMTS.Models
 			get
 			{
 				return this.GetTable<errorLogging>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RegistrationCount> RegistrationCounts
+		{
+			get
+			{
+				return this.GetTable<RegistrationCount>();
 			}
 		}
 		
@@ -224,105 +224,6 @@ namespace vMTS.Models
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cOURSE_ID, fIRSTNAME, mIDDLENAME, lASTNAME, sUFFIX, aDDRESS1, aDDRESS2, cITY, sTATE, zIP, gDR, rACE, pHONE, eMAIL, dOB, aGE, eVAL, mOTOR_YR, mOTOR_MK, mOTOR_MD, dL_NUM, dL_STATE, pMT_TYPE, cARD_NAME, cARD_NUM, eXP_MN, eXP_YR, cVV, pROMO, pROMO_VALUE, rECEIPT);
 			rECEIPT = ((System.Nullable<long>)(result.GetParameterValue(30)));
 			return ((int)(result.ReturnValue));
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RegistrationCount")]
-	public partial class RegistrationCount
-	{
-		
-		private int _CLASS_ID;
-		
-		private string _ClassDay;
-		
-		private System.Nullable<int> _REGISTRATIONS;
-		
-		private System.Nullable<int> _OPEN_SEATS;
-		
-		private System.Nullable<System.DateTime> _CLASS_START_DATE;
-		
-		public RegistrationCount()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_ID", DbType="Int NOT NULL")]
-		public int CLASS_ID
-		{
-			get
-			{
-				return this._CLASS_ID;
-			}
-			set
-			{
-				if ((this._CLASS_ID != value))
-				{
-					this._CLASS_ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClassDay", DbType="NVarChar(30)")]
-		public string ClassDay
-		{
-			get
-			{
-				return this._ClassDay;
-			}
-			set
-			{
-				if ((this._ClassDay != value))
-				{
-					this._ClassDay = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REGISTRATIONS", DbType="Int")]
-		public System.Nullable<int> REGISTRATIONS
-		{
-			get
-			{
-				return this._REGISTRATIONS;
-			}
-			set
-			{
-				if ((this._REGISTRATIONS != value))
-				{
-					this._REGISTRATIONS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OPEN_SEATS", DbType="Int")]
-		public System.Nullable<int> OPEN_SEATS
-		{
-			get
-			{
-				return this._OPEN_SEATS;
-			}
-			set
-			{
-				if ((this._OPEN_SEATS != value))
-				{
-					this._OPEN_SEATS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_START_DATE", DbType="Date")]
-		public System.Nullable<System.DateTime> CLASS_START_DATE
-		{
-			get
-			{
-				return this._CLASS_START_DATE;
-			}
-			set
-			{
-				if ((this._CLASS_START_DATE != value))
-				{
-					this._CLASS_START_DATE = value;
-				}
-			}
 		}
 	}
 	
@@ -1564,6 +1465,123 @@ namespace vMTS.Models
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RegistrationCount")]
+	public partial class RegistrationCount
+	{
+		
+		private int _CLASS_ID;
+		
+		private string _ClassDay;
+		
+		private System.Nullable<int> _REGISTRATIONS;
+		
+		private System.Nullable<int> _OPEN_SEATS;
+		
+		private System.Nullable<System.DateTime> _CLASS_START_DATE;
+		
+		private string _CLASS_TYPE;
+		
+		public RegistrationCount()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_ID", DbType="Int NOT NULL")]
+		public int CLASS_ID
+		{
+			get
+			{
+				return this._CLASS_ID;
+			}
+			set
+			{
+				if ((this._CLASS_ID != value))
+				{
+					this._CLASS_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClassDay", DbType="NVarChar(30)")]
+		public string ClassDay
+		{
+			get
+			{
+				return this._ClassDay;
+			}
+			set
+			{
+				if ((this._ClassDay != value))
+				{
+					this._ClassDay = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REGISTRATIONS", DbType="Int")]
+		public System.Nullable<int> REGISTRATIONS
+		{
+			get
+			{
+				return this._REGISTRATIONS;
+			}
+			set
+			{
+				if ((this._REGISTRATIONS != value))
+				{
+					this._REGISTRATIONS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OPEN_SEATS", DbType="Int")]
+		public System.Nullable<int> OPEN_SEATS
+		{
+			get
+			{
+				return this._OPEN_SEATS;
+			}
+			set
+			{
+				if ((this._OPEN_SEATS != value))
+				{
+					this._OPEN_SEATS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_START_DATE", DbType="Date")]
+		public System.Nullable<System.DateTime> CLASS_START_DATE
+		{
+			get
+			{
+				return this._CLASS_START_DATE;
+			}
+			set
+			{
+				if ((this._CLASS_START_DATE != value))
+				{
+					this._CLASS_START_DATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_TYPE", DbType="NVarChar(50)")]
+		public string CLASS_TYPE
+		{
+			get
+			{
+				return this._CLASS_TYPE;
+			}
+			set
+			{
+				if ((this._CLASS_TYPE != value))
+				{
+					this._CLASS_TYPE = value;
+				}
 			}
 		}
 	}
