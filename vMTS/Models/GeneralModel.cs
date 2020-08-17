@@ -69,7 +69,8 @@ namespace vMTS.Models
         public List<CourseDescriptions> GetCourseDescriptions()
         {
             var l = new List<CourseDescriptions>();
-
+            try
+            {
             JObject courses = JObject.Parse(File.ReadAllText(jsonFileCourses));
 
             JArray riderCourses = (JArray)courses["Courses"];
@@ -86,6 +87,18 @@ namespace vMTS.Models
                     Cost = (string)c["Cost"]
                 });
 
+            }
+            
+            }
+            catch
+            {
+                l.Add(new CourseDescriptions
+                {
+                    CourseName = "",
+                    Description = (JArray)"",
+                    MinRiders = "0",
+                    Requirements = null
+                });
             }
             return l;
         }
