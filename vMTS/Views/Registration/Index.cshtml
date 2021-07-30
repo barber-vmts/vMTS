@@ -9,7 +9,11 @@
     ViewBag.Title = "Class Registration";
 }
 
-@{int classCount = 0;}
+@{int classCount = 0;
+    string classDescription = @"";
+    string minRiders = @"";
+    string fees = @"";
+    }
 
 
 <h1>@ViewBag.Title</h1>
@@ -20,9 +24,23 @@
         {
             <thead>
                 <tr class="info">
-                    @if (i.Key != "")
+                    @if (i.Values.Count() >=1)
                     {
-                        <th colspan="3" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="@Model.Item2.Where(x => x.CourseName == i.Key).FirstOrDefault().Description[0] Requires a minimum of @Model.Item2.Where(x => x.CourseName == i.Key).FirstOrDefault().MinRiders riders for class to be held." data-original-title="" title="@i.Key">@i.Key - Class Minimum: @Model.Item2.Where(x => x.CourseName == i.Key).FirstOrDefault().MinRiders</th>
+                        if (Model.Item2.Count >= 1)
+                        {
+                            try
+                            {
+                                classDescription = Model.Item2.Where(x => x.CourseName == i.Key).FirstOrDefault().Description[0].ToString();
+                                minRiders = Model.Item2.Where(x => x.CourseName == i.Key).FirstOrDefault().MinRiders;
+
+                            }
+                            catch
+                            {
+                                classDescription = "";
+                                minRiders = "Not Specified";
+                            }
+                        }
+                        <th colspan="3" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="@classDescription Requires a minimum of @minRiders riders for class to be held." data-original-title="" title="@i.Key">@i.Key - Class Minimum: @minRiders</th>
                     }
                     else
                     {
@@ -70,7 +88,15 @@
                         </td>
                         @if (i.Key != "")
                         {
-                            <td data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="@Model.Item2.Where(x => x.CourseName == i.Key).FirstOrDefault().FeeStructure" data-original-title="" title="Class Fee Structure">
+                            try
+                            {
+                                fees = Model.Item2.Where(x => x.CourseName == i.Key).FirstOrDefault().FeeStructure;
+                            }
+                            catch
+                            {
+                                fees = "N/A";
+                            }
+                            <td data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="@fees" data-original-title="" title="Class Fee Structure">
                                 @string.Format("{0:c}", cl.CLASS_FEE)
                             </td>
 
