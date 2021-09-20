@@ -32,15 +32,15 @@ var google_remarketing_only = false;
     <legend>Course Registration</legend>
     <div id="form_FN" class="form-group">
         <label for="inputFirstName" class="sr-only">First Name</label>
-        <input type="text" name="FirstName" class="form-control" id="inputFirstName" placeholder="First Name" aria-describedby="fn_addon" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="As appears on driver's license or birth certificate" data-original-title="" title="First Name">
+        <input type="text" name="FirstName" class="form-control" id="inputFirstName" placeholder="First Name as appears on your DL" aria-describedby="fn_addon" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="As appears on driver's license or birth certificate" data-original-title="" title="First Name">
     </div>
     <div id="form_MN" class="form-group">
         <label for="inputMiddleName" class="sr-only">Middle Name</label>
-        <input type="text" name="MiddleName" class="form-control" id="inputMiddleName" placeholder="Middle Name/Initial" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="As appears on driver's license or birth certificate" data-original-title="" title="Middle Name or Initial">
+        <input type="text" name="MiddleName" class="form-control" id="inputMiddleName" placeholder="Middle Name/Initialas appears on your DL" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="As appears on driver's license or birth certificate" data-original-title="" title="Middle Name or Initial">
     </div>
     <div id="form_LN" class="form-group">
         <label for="inputLastName" class="sr-only">Last Name</label>
-        <input type="text" name="LastName" class="form-control" id="inputLastName" placeholder="Last Name" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="As appears on driver's license or birth certificate" data-original-title="" title="Last Name">
+        <input type="text" name="LastName" class="form-control" id="inputLastName" placeholder="Last Name as appears on your DL" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="As appears on driver's license or birth certificate" data-original-title="" title="Last Name">
     </div>
     <div id="form_Suffix" class="form-group">
         <label for="inputSsuffix" class="sr-only">Suffix</label>
@@ -83,6 +83,7 @@ var google_remarketing_only = false;
         </label>
         @Html.DropDownList("inputRace", Model.RaceCodes, "Race", new { @class = "form-control" })
     </div>
+
     <div id="form_PN" class="form-group">
         <label for="inputPhone" class="sr-only">Phone Number</label>
         <input type="tel" name="Phone" class="form-control" id="inputPhone" placeholder="Phone Number" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Numbers only, please. i.e.6151234567" data-original-title="" title="Phone Number">
@@ -128,7 +129,7 @@ var google_remarketing_only = false;
 
     <div id="form_DL_NUM" class="form-group">
         <label for="inputDLNumber" class="sr-only">Drivers License Number</label>
-        <input type="text" name="DL_NUM" class="form-control" id="inputDLNumber" placeholder="Drivers License Number">
+        <input type="text" name="DL_NUM" class="form-control" id="inputDLNumber" placeholder="Driver's License Number">
     </div>
     <div id="form_DL_ST" class="form-group">
         <label for="inputDLState" class="sr-only">
@@ -157,6 +158,7 @@ var google_remarketing_only = false;
                     <option value="Discover">Discover</option>
                     <option value="Check">Check</option>
                     <option value="Gift">Gift Card/Certificate</option>
+                    <option value="Pre-Paid">Pre-Paid</option>
                 </select>
             </div>
             <div id="CardFields">
