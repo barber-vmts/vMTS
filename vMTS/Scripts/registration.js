@@ -77,6 +77,7 @@
 
     /* REGISTRATION ACTIONS */
     $('#CheckoutForm').addClass('hidden');
+    $('#SurveyForm').addClass('hidden');
     var noSpecialChars = /[!@,#$%\^&\*\(\)\/\\\}\{\]\[\-]/; //no special characters allowed
     var zip5 = /^([0-9]{5,5})$/; //5 numbers only
     var phone10 = /^([0-9]{10,10})$/; //10 numbers only
@@ -580,7 +581,11 @@
                 $('#inputPaymentType').focus();
 
                 $('#RegistrantForm').addClass('hidden'); // Hide the registration information
-                $('#CheckoutForm').removeClass('hidden'); // Show the payment information
+                if ($('#CLASS_TYPE_REG').val() === 'Basic RiderCourse I') {
+                    $('#SurveyForm').removeClass('hidden'); // Show the payment information
+                } else {
+                    $('#CheckoutForm').removeClass('hidden'); // Show the payment information
+                }
             });
             } else {
             //alert('Correct Errors');
@@ -934,13 +939,23 @@
 
     // The Cancel payment button was clicked
     $('#CancelPayment').click(function () {
-        $('#RegistrantForm').removeClass('hidden'); // Show the registration information
         $('#CheckoutForm').addClass('hidden'); // Hide the payment information
 
-        $('#inputFirstName').focus();
+        if ($('#CLASS_TYPE_REG').val() === 'Basic RiderCourse I') {
+            $('#SurveyForm').removeClass('hidden'); // Show the payment information
+        } else {
+            $('#RegistrantForm').removeClass('hidden'); // Show the payment information
+        }
     });
     /*******************/
 
+    // The Cancel survey button was clicked
+    $('#CancelSurvey').click(function () {
+        $('#RegistrantForm').removeClass('hidden'); // Show the registration information
+        $('#SurveyForm').addClass('hidden');
+
+        $('#inputFirstName').focus();
+    });
     /** CONFIRM REGISTRATION **/
     $('#ConfirmReg').on("submit", function (e) {
         e.preventDefault();
@@ -960,6 +975,18 @@
 
             }
         });
+    });
+
+    $('#btn_SurveyCheckout').click(function () {
+        if ($("input[name='chkBicycle']:checked").val() &&
+                $("input[name='chkECourse']:checked").val() &&
+                $("input[name='chkKnowledgeTest']:checked").val() &&
+                $("input[name='chkGear']:checked").val() &&
+                $("input[name='chkPaymentAgreement']:checked").val() &&
+                $("input[name='chkCommunication']:checked").val()) {
+            $('#SurveyForm').addClass('hidden'); // Show the payment information
+            $('#CheckoutForm').removeClass('hidden'); // Hide the registration information
+        }
     });
 
     window.ConfirmRegistration = function (callback) {

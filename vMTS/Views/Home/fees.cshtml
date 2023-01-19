@@ -6,9 +6,10 @@
 {
     foreach (var i in Model)
     {
-        if (i.Cost != "")
+        decimal cost;
+        if (i.Cost != "" && Decimal.TryParse(i.Cost, out cost))
         {
-            <a href="~/Home/Courses" class="btn btn-info btn-lg btn-block">@i.CourseName @String.Format("{0:c}",Convert.ToDecimal(i.Cost))</a>
+            <a href="~/Home/Courses" class="btn btn-info btn-lg btn-block">@i.CourseName @String.Format("{0:c}",cost)</a>
         }
     }
 }
