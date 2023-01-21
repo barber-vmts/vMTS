@@ -9,27 +9,31 @@
         decimal cost;
         if (i.Cost != "" && Decimal.TryParse(i.Cost, out cost))
         {
-            <a href="~/Home/Courses" class="btn btn-info btn-lg btn-block">@i.CourseName @String.Format("{0:c}",cost)</a>
+            <a href="~/Home/Courses" class="btn btn-info btn-lg btn-block">@i.CourseName @String.Format("{0:c}", cost)</a>
+        }
+        else
+        {
+            <a href="~/Home/Courses" class="btn btn-info btn-lg btn-block">@i.CourseName @i.Cost</a>
         }
     }
 }
-    <div class="well">
-        <p class="lead">
-            Skills Evaluation and Knowledge Written Testing is not required to register and participate in one of the courses offered by Volunteer Motorcycle Training Services (VMTS). The Skills Evaluation and Knowledge Written Testing is separate and apart from the courses.
-        </p>
-        <p class="lead">
-            However, for those who wish to be examined and successfully complete the Skills Evaluation and Knowledge Written Test, VMTS will issue a certificate that may presented at the Department of Motor Vehicles (DMV) where the motorcycle endorsement will be added to the driver's license. Choosing to be examined by VMTS does not guarantee successful completion. The student must demonstrate the skills taught during the course.
-        </p>
-        <p class="lead text-primary">
-            For those who wish to come ride for additional practice and already have a motorcycle endorsement or have no desire to obtain a motorcycle endorsement, classroom and testing is optional.
-        </p>
-    </div>
+<div class="well">
+    <p class="lead">
+        Skills Evaluation and Knowledge Written Testing is not required to register and participate in one of the courses offered by Volunteer Motorcycle Training Services (VMTS). The Skills Evaluation and Knowledge Written Testing is separate and apart from the courses.
+    </p>
+    <p class="lead">
+        However, for those who wish to be examined and successfully complete the Skills Evaluation and Knowledge Written Test, VMTS will issue a certificate that may presented at the Department of Motor Vehicles (DMV) where the motorcycle endorsement will be added to the driver's license. Choosing to be examined by VMTS does not guarantee successful completion. The student must demonstrate the skills taught during the course.
+    </p>
+    <p class="lead text-primary">
+        For those who wish to come ride for additional practice and already have a motorcycle endorsement or have no desire to obtain a motorcycle endorsement, classroom and testing is optional.
+    </p>
+</div>
 
 <div class="well well-lg">
     <h3 class="text-primary">For groups of four or more, call for special pricing.</h3>
     <p>If you have a promotion code you will receive the associated discount when your order is processed.</p>
     <p class="lead">
-        You may register and pay @Html.ActionLink("online","Index","Registration").<br />
+        You may register and pay @Html.ActionLink("online", "Index", "Registration").<br />
         Or you may pay by check or Money Orders payable to VMTS and mail to 124 Robinhood Circle, Hendersonville, TN  37075. However, you are not guaranteed a place in the class until full payment is collected.
     </p>
 
