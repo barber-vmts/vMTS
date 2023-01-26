@@ -55,18 +55,13 @@ namespace vMTS.Models
 
                 body += "<tr><td>Riding gear includes:<ul><li>DOT helmet - you must provide your own helmet<br><b>Note:</b> If you do not have a helmet, show this confirmation to the staff at Cycle Gear to receive a 10% discount toward a new helmet.  Cycle Gear is located at Rivergate Station, 1677 Gallatin Pike N,Madison, TN 37115</li>";
                 body +="<li>Shatter proof eye wear if using open face helmet</li><li>Long sleeve shirt or jacket must be worn while sitting on the motorcycle and riding.</li><li>Full fingered gloves; cut off gloves not allowed</li><li>Long pants- no holes or exposed skin</li><li>Over the ankle boots with good grip soles</li></ul></td></tr>";
+                body += "<tr><td><b>You Will not be allowed to particiapte in the riding exercises and will forfeit your fee without all the gear.</b></td></tr>";
 
                 body += "<tr><td>Please review the Motorcycle Safety Foundation Liability Waiver and Indemnification form by clicking on the link <a href='https://www.learntoridetn.com/images/Liability%20Waiver/MSF-RiderCourseWaiver.pdf' target='_blank'>here</a>. You will sign the form upon your arrival to class.</td></tr>";
 
                 if (regList.FirstOrDefault().CLASS_TYPE == "Basic RiderCourse I")
                 {
-                    body += "<tr><td>Come prepared with the riding gear outlined in our website at <a href='www.learntoridetn.com' target='_blank'>www.learntoridetn.com</a>. You will not be allowed to participate in the riding exercises and will forfeit your fee without all the gear.</td></tr>";
-
-                body += "<tr><td>To help better prepare for class, we suggest reviewing the online study guide at <a href='http://www.msf-usa.org/downloads/BRCHandbook.pdf' target='_blank'>www.msf-usa.org/downloads/BRCHandbook.pdf</a> with study questions beginning on page 53. You will receive a copy of the handbook when you arrive.</td></tr>";
-                body += "<tr><td>Another good source is the MSF 48 question review at <a href='http://www.msf-usa.org/BRCQuiz.aspx#/H3w0CSdF1x/PlnH05KLo1/SfsW80tFCk' target='_blank'>www.msf-usa.org/BRCQuiz.aspx#/H3w0CSdF1x/PlnH05KLo1/SfsW80tFCk</a>.</td></tr>";
-
-                body += "<tr><td>If you are interested in an in-depth study you can sign up for the Basic e-Course for an additional cost of $19.99. This course is available at the MSF website <a href='www.msf-usa.org' target='_blank'>www.msf-usa.org</a> under the Student tab.</td></tr>";
-                body += "<tr><td>Note that additional self-study is voluntary and is not required prior to class.</td></tr>";
+                    body += "<tr><td>A requirement to successfully complete the Basic Rider Course and receive a Tennessee Department of Safety completion certificate good toward licensing is to complete the online eCourse located in an accompanying email. We will also include a crossword puzzle in this email to help you prepare for the test.</td></tr>";
                     body += "<tr><td>Requires a minumum of 4 riders for class to be held.</td></tr>";
 
                     body += "<tr><td>Learning to ride a motorcycle is challenging both physically and mentally, but certainly attainable. We ask that you not schedule any activities during the two days of class, including work, parties and late night outings. Get a good nights rest the night before the class and the night following the first day. Successful completion is up to you.</td><tr>";
@@ -74,8 +69,8 @@ namespace vMTS.Models
 
                 if (regList.FirstOrDefault().CLASS_TYPE == "Basic RiderCourse II" || regList.FirstOrDefault().CLASS_TYPE == "Advanced RiderCourse")
                 {
-                body += "<tr><td>You must come with a DOT street legal motorcycle with all components in good working order, i.e. tires with good tread, both brakes working, all lights working, and plenty of gas in the tank, no physical damage, etc.</td></tr>";
-                body += "<tr><td>You must provide registration and proof of insurance. If you have a borrowed or rented bike, you must bring consent from the owner or a copy of the rental agreement.</td></tr>";
+                    body += "<tr><td>You must come with a DOT street legal motorcycle with all components in good working order, i.e. tires with good tread, both brakes working, all lights working, and plenty of gas in the tank, no physical damage, etc.</td></tr>";
+                    body += "<tr><td>You must provide registration and proof of insurance. If you have a borrowed or rented bike, you must bring consent from the owner or a copy of the rental agreement.</td></tr>";
                     body += "<tr><td>Requires a minumum of 4 riders for class to be held.</td></tr>";
                     body += "<tr><td>Learning to ride a motorcycle is challenging both physically and mentally, but certainly attainable. We ask that you not schedule any activities during the two days of class, including work, parties and late night outings. Get a good nights rest the night before the class and the night following the first day. Successful completion is up to you.</td><tr>";
                 }
@@ -99,12 +94,12 @@ namespace vMTS.Models
                 body += "</table>";
 
                 body += "<table><tr><td><h3>Important Refund/Cancellation Policy</h3></td></tr>";
-                body += "<tr><td>NO REFUNDS will be made, except for course cancellations, at least 14 days in advance of the scheduled class date. One reschedule will be permitted if notified at least 24 hours in advance of the class start time. The cost of the reschedule is $100. If a request is not made within the specified time period, the class fee will be forfeited and a new fee will be charged for a later class.</td></tr>";
+                body += "<tr><td>NO REFUNDS will be made, except for course cancellations, at least 7 days in advance of the scheduled class date. One reschedule will be permitted if notified at least 24 hours in advance of the class start time. The cost of the reschedule is $100. If a request is not made within the specified time period, the class fee will be forfeited and a new fee will be charged for a later class.</td></tr>";
                 body += "<tr><td>Students who are unable to meet the minimum physical requirements in the opinion of the RiderCoach, or students whose behavior pose a hazard to themselves and/or other students will be asked to discontinue the riding portion of the class with NO REFUND GIVEN. They may stay to observe the remainder of the class but will not be certified for completion. Students must successfully complete the entire class (including the written and riding skills evaluation) to receive a completion certificate and MSF card completion card.</tr></td></table>";
 
                 body += "<table>";
                 body += "<tr><td>If links in the email do not work, copy and paste them into your browser</td></tr>";
-                body += "<tr><td>Do not reply to this email.  If you need assistance, please <a href='https://www.learntoridetn.com/home/contact' target='_blank'>learntoridetn.com/home/contact</a></td></tr></table>";
+                body += "<tr><td>Do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to 615.414.9042 or email at <a href='mailto:steve.barber@comcast.net'>steve.barber@comcast.net</a>. ";
 
                 MailMessage m = new MailMessage();
                 m.From = new MailAddress("registration@learntoridetn.com");
