@@ -83,6 +83,9 @@
     }
 
     $('#CheckoutForm').addClass('hidden');
+    $('#loader').addClass('hidden');
+    $("#SurveyErrors").addClass('hidden');
+
     var noSpecialChars = /[!@,#$%\^&\*\(\)\/\\\}\{\]\[\-]/; //no special characters allowed
     var zip5 = /^([0-9]{5,5})$/; //5 numbers only
     var phone10 = /^([0-9]{10,10})$/; //10 numbers only
@@ -874,6 +877,7 @@
     window.SubmitRegistration = function (callback) {
         var form = $('#CourseRegForm');
         var parameters = form.serialize();
+        $('#loader').removeClass('hidden');
         $.ajax({
             type: "POST",
             url: "../NewClassRegistration",
@@ -881,6 +885,7 @@
             //contentType: "application/json; charset=utf-8",
             success: function (list) {
                 callback(list);
+                $('#loader').addClass('hidden');
             }
         });
 
@@ -967,14 +972,19 @@
     });
 
     $('#btn_SurveySubmit').click(function () {
+        $("#SurveyErrors").addClass('hidden');
+
         if ($("input[name='chkBicycle']:checked").val() &&
-                $("input[name='chkECourse']:checked").val() &&
-                $("input[name='chkKnowledgeTest']:checked").val() &&
-                $("input[name='chkGear']:checked").val() &&
-                $("input[name='chkPaymentAgreement']:checked").val() &&
-                $("input[name='chkCommunication']:checked").val()) {
+            $("input[name='chkECourse']:checked").val() &&
+            $("input[name='chkKnowledgeTest']:checked").val() &&
+            $("input[name='chkGear']:checked").val() &&
+            $("input[name='chkPaymentAgreement']:checked").val() &&
+            $("input[name='chkCommunication']:checked").val()) {
             $('#SurveyForm').addClass('hidden'); // Hide survey information
             $('#RegistrantForm').removeClass('hidden'); // Show the registration information
+        }
+        else {
+            $("#SurveyErrors").removeClass('hidden');
         }
     });
 

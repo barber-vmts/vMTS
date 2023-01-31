@@ -19,6 +19,12 @@ var google_remarketing_only = false;
     </div>
 </noscript>
 
+<div class="loader-container" id="loader">
+    <div class="loader">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
 <h1>@ViewBag.Title</h1>
 @using (Html.BeginForm("", "", FormMethod.Post, new { id = "CourseRegForm", @class = "form-vertical", @role = "form" }))
 {
@@ -182,7 +188,11 @@ var google_remarketing_only = false;
                 </li>
             </ul>
         </div>
- 
+
+        <div id="SurveyErrors" class="alert alert-danger">
+            All survey items must be selected.
+        </div>
+
         <div class="form-group">
             <button id="btn_SurveySubmit" type="button" class="btn btn-primary">Register</button>
         </div>
