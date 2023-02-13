@@ -7,7 +7,6 @@ using vMTS.Models;
 
 namespace vMTS.Controllers
 {
-    [RequireHttps]
     [Authorize]
     public class AccountController : Controller
     {

@@ -76,7 +76,16 @@
     //GetAge(maxBirthDate);
 
     /* REGISTRATION ACTIONS */
+    if ($('#CLASS_TYPE_REG').val() === 'Basic RiderCourse I') {
+        $('#RegistrantForm').addClass('hidden');
+    } else {
+        $('#SurveyForm').addClass('hidden');
+    }
+
     $('#CheckoutForm').addClass('hidden');
+    $('#loader').addClass('hidden');
+    $("#SurveyErrors").addClass('hidden');
+
     var noSpecialChars = /[!@,#$%\^&\*\(\)\/\\\}\{\]\[\-]/; //no special characters allowed
     var zip5 = /^([0-9]{5,5})$/; //5 numbers only
     var phone10 = /^([0-9]{10,10})$/; //10 numbers only
@@ -868,6 +877,7 @@
     window.SubmitRegistration = function (callback) {
         var form = $('#CourseRegForm');
         var parameters = form.serialize();
+        $('#loader').removeClass('hidden');
         $.ajax({
             type: "POST",
             url: "../NewClassRegistration",
@@ -875,6 +885,7 @@
             //contentType: "application/json; charset=utf-8",
             success: function (list) {
                 callback(list);
+                $('#loader').addClass('hidden');
             }
         });
 
@@ -934,10 +945,8 @@
 
     // The Cancel payment button was clicked
     $('#CancelPayment').click(function () {
-        $('#RegistrantForm').removeClass('hidden'); // Show the registration information
         $('#CheckoutForm').addClass('hidden'); // Hide the payment information
-
-        $('#inputFirstName').focus();
+        $('#RegistrantForm').removeClass('hidden'); // Show the payment information
     });
     /*******************/
 
@@ -960,6 +969,23 @@
 
             }
         });
+    });
+
+    $('#btn_SurveySubmit').click(function () {
+        $("#SurveyErrors").addClass('hidden');
+
+        if ($("input[name='chkBicycle']:checked").val() &&
+            $("input[name='chkECourse']:checked").val() &&
+            $("input[name='chkKnowledgeTest']:checked").val() &&
+            $("input[name='chkGear']:checked").val() &&
+            $("input[name='chkPaymentAgreement']:checked").val() &&
+            $("input[name='chkCommunication']:checked").val()) {
+            $('#SurveyForm').addClass('hidden'); // Hide survey information
+            $('#RegistrantForm').removeClass('hidden'); // Show the registration information
+        }
+        else {
+            $("#SurveyErrors").removeClass('hidden');
+        }
     });
 
     window.ConfirmRegistration = function (callback) {
