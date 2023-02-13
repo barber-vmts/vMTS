@@ -83,12 +83,12 @@ var google_remarketing_only = false;
             </label>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             <label for="inputRace" class="sr-only">
                 Race
             </label>
             @Html.DropDownList("inputRace", Model.RaceCodes, "Race", new { @class = "form-control" })
-        </div>
+        </div>*@
 
         <div id="form_PN" class="form-group">
             <label for="inputPhone" class="sr-only">Phone Number</label>
@@ -105,7 +105,7 @@ var google_remarketing_only = false;
         </div>
         <div id="form_DOB" class="form-group">
             <label for="inputDOB" class="sr-only">Date of Birth</label>
-            <input type="text" name="DOB" class="form-control" id="inputDOB" placeholder="Birth Date (YYYY-MM-DD)" data-mask="9999-99-99" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Your birth date must be entered in the following format: 4 digit year-2 digit month-2 digit day (YYYY-MM-DD). Example: 2000-01-01 (January 1 2000)" data-original-title="" title="Date of Birth">@*readonly="readonly"*@
+            <input type="text" name="DOB" class="form-control" id="inputDOB" placeholder="Birth Date (MM-DD-YYYY)" data-mask="99-99-9999" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Your birth date must be entered in the following format: 4 digit year-2 digit month-2 digit day (YYYY-MM-DD). Example: 2000-01-01 (January 1 2000)" data-original-title="" title="Date of Birth">@*readonly="readonly"*@
             <input type="hidden" name="AGE" id="AGE" />
             <div id="waiver_alert" class="alert alert-danger hidden"></div>
         </div>
@@ -226,13 +226,13 @@ var google_remarketing_only = false;
             <div id="CC_Fields">
                 <div id="form_CD_EXP" class="form-group">
                     <label for="inputCardExp" class="sr-only">Expiration Date</label>
-                    <input type="number" name="CardMonth" class="form-control" min="01" max="12" value="01" id="inputCardMonth" placeholder="Expiration Month" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="The month number of the expiration date. (January = 01, February = 02, etc...)" data-original-title="" title="Card Expiration Month">
+                    <input type="number" name="CardMonth" class="form-control" min="01" max="12" id="inputCardMonth" placeholder="Exp MM" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="The month number of the expiration date. (January = 01, February = 02, etc...)" data-original-title="" title="Card Expiration Month">
                     &nbsp;/&nbsp;
-                    <input type="number" name="CardYear" class="form-control" min="2015" max="2025" value="2016" id="inputCardYear" placeholder="Expiration Year" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="The year of the expiration date. The format should be the 4 digit year of expiration." data-original-title="" title="Card Expiration Year">
+                    <input type="number" name="CardYear" class="form-control" min="2015" max="2025"  id="inputCardYear" placeholder="Exp YYYY" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="The year of the expiration date. The format should be the 4 digit year of expiration." data-original-title="" title="Card Expiration Year">
                 </div>
                 <div id="form_CD_CVV" class="form-group">
                     <label for="inputCardExp" class="sr-only">CVV</label>
-                    <input type="number" name="CardCVV" class="form-control" min="1" max="999" value="001" id="inputCardCVV" placeholder="CVV" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Enter the card verification value on the back of the card" data-original-title="" title="Card Verification Value">
+                    <input type="number" name="CardCVV" class="form-control" min="1" max="999" id="inputCardCVV" placeholder="***" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Enter the card verification value on the back of the card" data-original-title="" title="Card Verification Value">
                 </div>
 
             </div>

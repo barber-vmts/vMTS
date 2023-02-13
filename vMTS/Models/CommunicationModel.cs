@@ -35,6 +35,7 @@ namespace vMTS.Models
                 body += "<tr><td>Participant Name:</td><td>" + regList.FirstOrDefault().NAME + "</td></tr>";
                 body += "<tr><td>Participant Phone:</td><td>" + regList.FirstOrDefault().PHONE + "</td></tr></table>";
 
+                body += "<b><span style=\"color:red;margin-top:10px;margin-bottom:10px;\"> Notice: This is a confirmation of your registration. Payment has not been processed. You will receive a separate email message when payment has been processed.<span></b>";
                 if (regList.FirstOrDefault().AGE <= 17)
                 {
                     body += "<h1>Because the participant is under 18, a parent or legal guardian will need to be present to sign a waiver.</h1>";
@@ -57,12 +58,17 @@ namespace vMTS.Models
                 body +="<li>Shatter proof eye wear if using open face helmet</li><li>Long sleeve shirt or jacket must be worn while sitting on the motorcycle and riding.</li><li>Full fingered gloves; cut off gloves not allowed</li><li>Long pants- no holes or exposed skin</li><li>Over the ankle boots with good grip soles</li></ul></td></tr>";
                 body += "<tr><td><b>You Will not be allowed to particiapte in the riding exercises and will forfeit your fee without all the gear.</b></td></tr>";
 
-                body += "<tr><td>Please review the Motorcycle Safety Foundation Liability Waiver and Indemnification form by clicking on the link <a href='https://www.learntoridetn.com/images/Liability%20Waiver/MSF-RiderCourseWaiver.pdf' target='_blank'>here</a>. You will sign the form upon your arrival to class.</td></tr>";
+                body += "<tr><td>Please review the Motorcycle Safety Foundation Liability Waiver and Indemnification form by clicking on the link <a href='https://www.learntoridetn.com/images/Liability%20Waiver/MSF-RiderCourseWaiver.pdf' target='_blank'>Liability Waiver</a>. You will sign the form upon your arrival to class.</td></tr>";
 
                 if (regList.FirstOrDefault().CLASS_TYPE == "Basic RiderCourse I")
                 {
                     body += "<tr><td>A requirement to successfully complete the Basic Rider Course and receive a Tennessee Department of Safety completion certificate good toward licensing is to complete the online eCourse located in an accompanying email. We will also include a crossword puzzle in this email to help you prepare for the test.</td></tr>";
                     body += "<tr><td>Requires a minumum of 4 riders for class to be held.</td></tr>";
+
+                    body += "<tr><td>To successfully complete the Basic RiderCourse, you must complete the MSF eCourse (online) and complete the Tennessee Department of Safety and Homeland Security motorcycle knowledge test.</td></tr>";
+                    body += "<tr><td><ul><li>Click on <a href='https://www.learntoridetn.com/images/MSF%20eCourse%20Instructions/MSF%20eCourse%20Instructions.pdf' target='_blank'>MSF eCourse</a> for instructions for completing the online class.</li>";
+                    body += "<li>Click <a href='https://www.learntoridetn.com/images/TN%20Knowledge%20Test%20Prep/TN%20Knowledge%20Test%20Prep.pdf' target='_blank'>Knowledge Test</a> as preparation for the Tennessee knowledge test.</li></ul></td></tr>";
+
 
                     body += "<tr><td>Learning to ride a motorcycle is challenging both physically and mentally, but certainly attainable. We ask that you not schedule any activities during the two days of class, including work, parties and late night outings. Get a good nights rest the night before the class and the night following the first day. Successful completion is up to you.</td><tr>";
                 }
@@ -72,6 +78,9 @@ namespace vMTS.Models
                     body += "<tr><td>You must come with a DOT street legal motorcycle with all components in good working order, i.e. tires with good tread, both brakes working, all lights working, and plenty of gas in the tank, no physical damage, etc.</td></tr>";
                     body += "<tr><td>You must provide registration and proof of insurance. If you have a borrowed or rented bike, you must bring consent from the owner or a copy of the rental agreement.</td></tr>";
                     body += "<tr><td>Requires a minumum of 4 riders for class to be held.</td></tr>";
+                    body += "<tr><td>To successfully complete the Basic RiderCourse, you must complete the MSF eCourse (online) and complete the Tennessee Department of Safety and Homeland Security motorcycle knowledge test.</td></tr>";
+                    body += "<tr><td><ul><li>Click on <a href='https://www.learntoridetn.com/images/MSF%20eCourse%20Instructions/MSF%20eCourse%20Instructions.pdf' target='_blank'>MSF eCourse</a> for instructions for completing the online class.</li>";
+                    body += "<li>Click <a href='https://www.learntoridetn.com/images/TN%20Knowledge%20Test%20Prep/TN%20Knowledge%20Test%20Prep.pdf' target='_blank'>Knowledge Test</a> as preparation for the Tennessee knowledge test.</li></ul></td></tr>";
                     body += "<tr><td>Learning to ride a motorcycle is challenging both physically and mentally, but certainly attainable. We ask that you not schedule any activities during the two days of class, including work, parties and late night outings. Get a good nights rest the night before the class and the night following the first day. Successful completion is up to you.</td><tr>";
                 }
 

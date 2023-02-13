@@ -2,7 +2,7 @@
     $('#inputFirstName').focus();
     var today = new Date($('#START_DATE').val());//;
     var currentYear = today.getFullYear();
-    $('#inputCardYear').val(currentYear + 1);
+    //$('#inputCardYear').val(currentYear + 1); // Do not dispaly year in textbox
 
     window.GetMaxBirthDate = function () {
         var minimumYear = currentYear - 14;
@@ -80,6 +80,13 @@
         $('#RegistrantForm').addClass('hidden');
     } else {
         $('#SurveyForm').addClass('hidden');
+        // Remove required attribute because we are hiding SurveryFrom
+        $("input[name='chkBicycle']").removeAttr('required');
+        $("input[name='chkECourse']").removeAttr('required');
+        $("input[name='chkKnowledgeTest']").removeAttr('required');
+        $("input[name='chkGear']").removeAttr('required');
+        $("input[name='chkPaymentAgreement']").removeAttr('required');
+        $("input[name='chkCommunication']").removeAttr('required');
     }
 
     $('#CheckoutForm').addClass('hidden');
@@ -319,11 +326,14 @@
         return isValid;
     }
     window.RACE = function () {
+
+        // No need to capture race information.
+
         //var isValid;
-        var input = $('#inputRace').val();
-        if (input.length == 0) {
-            $('#inputRace').val(8);
-        }
+        //var input = $('#inputRace').val();
+        //if (input.length == 0) {
+        //    $('#inputRace').val(8);
+        //}
 
         //if (isValid == false) {
         //    $('#form_RC').addClass('has-error');

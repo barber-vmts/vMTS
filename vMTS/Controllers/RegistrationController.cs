@@ -147,7 +147,7 @@ namespace vMTS.Controllers
             return View(c);
         }
 
-        public string NewClassRegistration(Int32 COURSE_ID, string FirstName, string MiddleName, string LastName, string Suffix, string Address1, string Address2, string City, string inputState, string Zip, string Gender, Int32 inputRace, string Phone, string Email, DateTime DOB, Int32 AGE, string Eval, string MOTOR_YR, string MOTOR_MK, string MOTOR_MD, string DL_NUM, string inputDLState, string PaymentType, string CardName, string CardNum, string CardMonth, string CardYear, string CardCVV, string PromoCode)
+        public string NewClassRegistration(Int32 COURSE_ID, string FirstName, string MiddleName, string LastName, string Suffix, string Address1, string Address2, string City, string inputState, string Zip, string Gender, Int32? inputRace, string Phone, string Email, DateTime DOB, Int32 AGE, string Eval, string MOTOR_YR, string MOTOR_MK, string MOTOR_MD, string DL_NUM, string inputDLState, string PaymentType, string CardName, string CardNum, string CardMonth, string CardYear, string CardCVV, string PromoCode)
         {
             string msg = "";
             using (vmts_dataDataContext db = new vmts_dataDataContext())
