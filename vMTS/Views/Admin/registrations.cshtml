@@ -31,7 +31,7 @@
                 <td>@i.CLASS_TYPE</td>
                 <td><a href="_students/@i.CLASS_ID" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="@i.REGISTRATIONS registration(s) for this class.  Click to view." data-original-title="" title="Current Registrations"><span class="badge">@i.REGISTRATIONS</span></a></td>
                 <td>@i.OPEN_SEATS</td>
-                <td><span id="ClassExp_@i.CLASS_ID" name="@i.CLASS_ID" class="glyphicon glyphicon-export" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Class Date: @i.ClassDay. Export the entire class roster." data-original-title="" title="Export: Export Class Roster"></span></td>
+                <td> <span id="ClassExp_@i.CLASS_ID" name="@i.CLASS_ID" class="glyphicon glyphicon-save-file" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Class Date: @i.ClassDay. Export the entire class roster." data-original-title="" title="Export: Export Class Roster" onClick="window.open('/Admin/ExportClassToCSV?COURSE_ID=@i.CLASS_ID');"></span></td>
             </tr>
                 }
             </table>
