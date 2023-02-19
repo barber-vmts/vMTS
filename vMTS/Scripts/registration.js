@@ -76,18 +76,19 @@
     //GetAge(maxBirthDate);
 
     /* REGISTRATION ACTIONS */
-    if ($('#CLASS_TYPE_REG').val() === 'Basic RiderCourse I') {
-        $('#RegistrantForm').addClass('hidden');
-    } else {
-        $('#SurveyForm').addClass('hidden');
-        // Remove required attribute because we are hiding SurveryFrom
-        $("input[name='chkBicycle']").removeAttr('required');
-        $("input[name='chkECourse']").removeAttr('required');
-        $("input[name='chkKnowledgeTest']").removeAttr('required');
-        $("input[name='chkGear']").removeAttr('required');
-        $("input[name='chkPaymentAgreement']").removeAttr('required');
-        $("input[name='chkCommunication']").removeAttr('required');
-    }
+    $('#RegistrantForm').addClass('hidden');
+    //if ($('#CLASS_TYPE_REG').val() === 'Basic RiderCourse I') {
+    //    $('#RegistrantForm').addClass('hidden');
+    //} else {
+    //    $('#SurveyForm').addClass('hidden');
+    //    // Remove required attribute because we are hiding SurveryFrom
+    //    $("input[name='chkBicycle']").removeAttr('required');
+    //    $("input[name='chkECourse']").removeAttr('required');
+    //    $("input[name='chkKnowledgeTest']").removeAttr('required');
+    //    $("input[name='chkGear']").removeAttr('required');
+    //    $("input[name='chkPaymentAgreement']").removeAttr('required');
+    //    $("input[name='chkCommunication']").removeAttr('required');
+    //}
 
     $('#CheckoutForm').addClass('hidden');
     $('#loader').addClass('hidden');

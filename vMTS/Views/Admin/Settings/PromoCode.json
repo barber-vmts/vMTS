@@ -1,110 +1,250 @@
 ﻿{
-    "PromoCodes": [
+    "PromoCodes": 
+   [
+         {
+            "PromoCode": "Reschedule",
+            "StartDate": "2023-03-01",
+            "EndDate": "2023-12-31",
+            "Value": "25",
+            "Valid": "True"
+        },
         {
-            "PromoCode": "1003-16",
-            "StartDate": "10-03-2016",
-            "EndDate": "10-15-2016",
-            "Value": "25.00",
+            "PromoCode": "Already Licensed",
+            "StartDate": "2023-03-01",
+            "EndDate": "2035-12-31",
+            "Value": "100.00",
+            "Valid": "True"
+        },
+       {
+            "PromoCode": "ANG",
+            "StartDate": "2023-03-01",
+            "EndDate": "2023-12-31",
+            "Value": "150",
+            "Valid": "True"
+        },
+        {
+            "PromoCode": "2022_Gift",
+            "StartDate": "2023-02-01",
+            "EndDate": "2023-03-31",
+            "Value": "230.00",
+            "Valid": "True"
+        },
+        {
+            "PromoCode": "xmas",
+            "StartDate": "2020-12-09",
+            "EndDate": "2020-12-31",
+            "Value": "20.00",
             "Valid": "False"
         },
         {
-            "PromoCode": "1022-16",
-            "StartDate": "10-03-2016",
-            "EndDate": "10-22-2016",
-            "Value": "25.00",
+            "PromoCode": "XMAS",
+            "StartDate": "2020-12-09",
+            "EndDate": "2020-12-31",
+            "Value": "20.00",
+            "Valid": "False"
+        },   
+        {
+            "PromoCode": "Lawson",
+            "StartDate": "2020-12-09",
+            "EndDate": "2020-12-31",
+            "Value": "20.00",
             "Valid": "False"
         },
         {
-            "PromoCode": "1029-16",
-            "StartDate": "10-10-2016",
-            "EndDate": "10-29-2016",
-            "Value": "25.00",
+            "PromoCode": "lawson",
+            "StartDate": "2020-12-09",
+            "EndDate": "2020-12-31",
+            "Value": "20.00",
             "Valid": "False"
         },
         {
-            "PromoCode": "924",
-            "StartDate": "09-24-2016",
-            "EndDate": "09-25-2016",
-            "Value": "25.00",
+            "PromoCode": "LAWSON",
+            "StartDate": "2020-12-09",
+            "EndDate": "2020-12-31",
+            "Value": "20.00",
+            "Valid": "False"
+        },   
+       {
+            "PromoCode": "RCP Candidate",
+            "StartDate": "2020-07-13",
+            "EndDate": "2022-12-31",
+            "Value": "105.00",
+            "Valid": "False"
+        }, 
+        {
+            "PromoCode": "Discount",
+            "StartDate": "2020-10-01",
+            "EndDate": "2023-12-31",
+            "Value": "117.00",
+            "Valid": "True"
+        }, 
+        {
+            "PromoCode": "Repeat",
+            "StartDate": "2020-09-25",
+            "EndDate": "2022-12-31",
+            "Value": "117.00",
+            "Valid": "True"
+        }, 
+        { 
+            "PromoCode": "Standby",
+            "StartDate": "04-14-2019",
+            "EndDate": "12-31-2021",
+            "Value": "105.00",
+            "Valid": "False"
+        },
+        { 
+            "PromoCode": "Guaranteed",
+            "StartDate": "04-14-2019",
+            "EndDate": "12-31-2020",
+            "Value": "40.00",
             "Valid": "False"
         },
         {
-            "PromoCode": "042017",
-            "StartDate": "08-24-2017",
-            "EndDate": "08-24-2017",
-            "Value": "25.00",
-            "Valid": "False"
+            "PromoCode": "Comp",
+            "StartDate": "03-28-2020",
+            "EndDate": "12-31-2022",
+            "Value": "235.00",
+            "Valid": "True"
+        }, 
+        { 
+            "PromoCode": "Vet",
+            "StartDate": "08-11-2020",
+            "EndDate": "08-31-2022",
+            "Value": "47.00",
+            "Valid": "True"
+        },
+        { 
+            "PromoCode": "First Responder",
+            "StartDate": "05-01-2020",
+            "EndDate": "12-31-2020",
+            "Value": "50.00",
+            "Valid": "True"
         },
         {
-            "PromoCode": "082617",
-            "StartDate": "08-25-2017",
-            "EndDate": "08-28-2017",
-            "Value": "25.00",
-            "Valid": "False"
-        },
-        {
-            "PromoCode": "102017",
-            "StartDate": "04-07-2017",
-            "EndDate": "10-31-2017",
-            "Value": "25.00",
-            "Valid": "False"
-        },
-        {
-            "PromoCode": "ALADDIN",
-            "StartDate": "04-18-2017",
-            "EndDate": "11-30-2017",
+            "PromoCode": "RC_ARC",
+            "StartDate": "08-09-2020",
+            "EndDate": "12-31-2020",
             "Value": "100.00",
             "Valid": "False"
         },
-        {
-            "PromoCode": "FAITH",
-            "StartDate": "02-01-2018",
-            "EndDate": "12-31-2018",
-            "Value": "25.00",
+       {
+            "PromoCode": "WHudson_ARC",
+            "StartDate": "09-26-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
             "Valid": "True"
-        },
+        }, 
+       {
+            "PromoCode": "KBurns_ARC",
+            "StartDate": "09-26-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
+            "Valid": "True"
+        },   
         {
-            "PromoCode": "EarlyBird",
-            "StartDate": "02-28-2018",
-            "EndDate": "04-30-2018",
-            "Value": "25.00",
-            "Valid": "False"
+            "PromoCode": "ZProsser_ARC",
+            "StartDate": "09-26-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
+            "Valid": "True"
+        },           
+        {
+            "PromoCode": "Holloway_ARC",
+            "StartDate": "03-28-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
+            "Valid": "True"
+        },        
+        {
+            "PromoCode": "Richards_ARC",
+            "StartDate": "05-09-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
+            "Valid": "True"
+        },     
+        {
+            "PromoCode": "Corbett_ARC",
+            "StartDate": "05-09-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
+            "Valid": "True"
+        },     
+        {
+            "PromoCode": "Ralston_ARC",
+            "StartDate": "05-09-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
+            "Valid": "True"
+        },     
+        {
+            "PromoCode": "TDavis_ARC",
+            "StartDate": "02-09-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
+            "Valid": "True"
+        },     
+        {
+            "PromoCode": "TMurray_ARC",
+            "StartDate": "06-13-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
+            "Valid": "True"
         },         
-        { 
-            "PromoCode": "BRC-May 26",
-            "StartDate": "02-11-2018",
-            "EndDate": "02-28-2018",
-            "Value": "35.00",
-            "Valid": "False"
-        },
-        { 
-            "PromoCode": "BMWMCON",
-            "StartDate": "02-20-2018",
-            "EndDate": "12-28-2018",
-            "Value": "25.00",
+        {
+            "PromoCode": "RHoffman_ARC",
+            "StartDate": "06-13-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
+            "Valid": "True"
+        },           
+        {
+            "PromoCode": "CSandu_ARC",
+            "StartDate": "06-13-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
             "Valid": "True"
         },
-        { 
-            "PromoCode": "Returning",
-            "StartDate": "02-20-2018",
-            "EndDate": "12-28-2018",
-            "Value": "25.00",
+        {
+            "PromoCode": "MJones_ARC",
+            "StartDate": "06-13-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
             "Valid": "True"
         },
-        { 
-            "PromoCode": "RidingPractice",
-            "StartDate": "04-23-2018",
-            "EndDate": "12-28-2018",
-            "Value": "105.00",
+        {
+            "PromoCode": "JJumper_ARC",
+            "StartDate": "07-18-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
+            "Valid": "True"
+        }, 
+        {
+            "PromoCode": "MDefreitas_ARC",
+            "StartDate": "07-18-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
             "Valid": "True"
         },
-        { 
-            "PromoCode": "Repeat",
-            "StartDate": "08-27-2018",
-            "EndDate": "09-15-2018",
-            "Value": "105.00",
+        {
+            "PromoCode": "HReynolds_ARC",
+            "StartDate": "07-18-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
+            "Valid": "True"
+        },
+        {
+            "PromoCode": "JPartin_ARC",
+            "StartDate": "07-18-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
+            "Valid": "True"
+        },
+        {
+            "PromoCode": "JDNichols_ARC",
+            "StartDate": "07-18-2020",
+            "EndDate": "12-31-2022",
+            "Value": "100.00",
             "Valid": "True"
         }
-
     ]
 }
