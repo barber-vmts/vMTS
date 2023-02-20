@@ -158,7 +158,8 @@ namespace vMTS.Controllers
                     {
 
                     Int64? OrderNum = 0;
-
+                        
+                        inputRace = 8; // Set to empty Race
                         db.NewRegistration(COURSE_ID, FirstName, MiddleName, LastName, Suffix, Address1, Address2, City, inputState, Zip, Gender, inputRace, Phone, Email, DOB, AGE, Eval, MOTOR_YR, MOTOR_MK, MOTOR_MD, DL_NUM, inputDLState, PaymentType, CardName, CardNum, CardMonth, CardYear, CardCVV, PromoCode, GM.GetPromoCodeValue(PromoCode), ref OrderNum);
 
                     if (OrderNum.Value > 0)

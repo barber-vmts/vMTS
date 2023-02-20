@@ -179,7 +179,7 @@ namespace vMTS.Controllers
             var exportCe = export.CreateClassCSV(COURSE_ID);
             string fileName = "class.xlsx";
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[18] {
+            dt.Columns.AddRange(new DataColumn[19] {
                                             new DataColumn("First Name"),
                                             new DataColumn("Middle Name"),
                                             new DataColumn("Last Name"),
@@ -188,7 +188,8 @@ namespace vMTS.Controllers
                                             new DataColumn("Contact Type"),
                                             new DataColumn("Phone"),
                                             new DataColumn("Gender"),
-                                            new DataColumn("Date Of Birht"),
+                                            new DataColumn("Date Of Birth"),
+                                            new DataColumn("Race"),
                                             new DataColumn("Email"),
                                             new DataColumn("T-Shirt Size"),
                                             new DataColumn("Address Line 1"),
@@ -205,7 +206,14 @@ namespace vMTS.Controllers
                 fileName = exportCe.FirstOrDefault().ClassDay + ".xlsx";
                 foreach (var customer in exportCe)
                 {
-                    dt.Rows.Add(customer.FirstName, customer.MiddleName, customer.LastName, customer.Suffix, customer.Nickname, customer.ContactType, customer.Phone, customer.Gender, customer.DateofBirth, customer.Email, customer.TShirtSize,
+                    var dateOfBirth = "";
+                    if (!string.IsNullOrEmpty(customer.DateofBirth))
+                    {
+                        DateTime date = DateTime.Parse(customer.DateofBirth);
+                        dateOfBirth = date.ToString("MM/dd/yyyy");
+                    }
+
+                    dt.Rows.Add(customer.FirstName, customer.MiddleName, customer.LastName, customer.Suffix, customer.Nickname, customer.ContactType, customer.Phone, customer.Gender, dateOfBirth, customer.Race, customer.Email, customer.TShirtSize,
                         customer.Street1, customer.Street2, customer.City, customer.State, customer.ZIP, customer.DriverLicenseState, customer.DriverLicenseNumber);
                 }
             }
