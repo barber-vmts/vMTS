@@ -414,7 +414,8 @@
         var isValid;
         var age;
         var input = $('#inputDOB').val();
-        var parse = Date.parse(input);
+        var a = input.split(/[^0-9]/);
+        var parse = new Date(a[2], a[0] - 1, a[1])
         if (isNaN(parse.valueOf())) {
             isValid = false;
         } else {
@@ -427,7 +428,7 @@
             $('#inputDOB').focus();
 
             $('#waiver_alert').removeClass('hidden');
-            $('#waiver_alert').html('The date you entered is not valid. Enter the value like this: 2000-01-01 (YEAR-MONTH-DAY)');
+            $('#waiver_alert').html('The date you entered is not valid. Enter the value like this: 01-01-2000 (MONTH-DAY-YEAR)');
 
         } else {
             $('#form_DOB').removeClass('has-error');
