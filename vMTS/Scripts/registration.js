@@ -35,8 +35,8 @@
     //    var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));d
     //}
 
-    window.GetAge = function (dateString) {
-        var birthDate = new Date(dateString);
+    window.GetAge = function (birthDate) {
+        //var birthDate = new Date(dateString);
         var age = today.getFullYear() - birthDate.getFullYear();
         var m = today.getMonth() - birthDate.getMonth();
         if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
@@ -415,12 +415,13 @@
         var age;
         var input = $('#inputDOB').val();
         var a = input.split(/[^0-9]/);
-        var parse = new Date(a[2], a[0] - 1, a[1])
+        var birthdate = new Date(a[2], a[0] - 1, a[1]);
+        var parse =  Date.parse(birthdate);
         if (isNaN(parse.valueOf())) {
             isValid = false;
         } else {
             isValid = true;
-            age = GetAge(input); //get registrants age
+            age = GetAge(birthdate); //get registrants age
         }
 
         if (isValid == false) {
