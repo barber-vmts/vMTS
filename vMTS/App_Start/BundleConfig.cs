@@ -19,16 +19,19 @@ namespace vMTS
             bundles.Add(new ScriptBundle("~/bundles/jasnyCSS", "//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Moment").Include(
+            "~/Scripts/moment.js"));
+
             //bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
             //            "~/Scripts/jquery.validate*"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/ionicons", "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css").Include(
                         "~/Scripts/jquery-{version}.js"));
-        
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            
+
             bundles.Add(new ScriptBundle("~/bundles/modernizr", "https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js").Include(
                         "~/Scripts/modernizr-*"));
 
@@ -78,6 +81,7 @@ namespace vMTS
           "~/Scripts/admin_Sponsors.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/registration").Include(
+         "~/Scripts/moment.js",
          "~/Scripts/registration.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/admin_PromoCodes").Include(

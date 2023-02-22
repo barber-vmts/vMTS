@@ -414,14 +414,12 @@
         var isValid;
         var age;
         var input = $('#inputDOB').val();
-        var a = input.split(/[^0-9]/);
-        var birthdate = new Date(a[2], a[0] - 1, a[1]);
-        var parse =  Date.parse(birthdate);
-        if (isNaN(parse.valueOf())) {
-            isValid = false;
+        isValid = moment(input, 'MM-DD-YYYY', true).isValid();
+        if (isValid) {
+            const myMomentObject = new Date(moment(input, 'MM-DD-YYYY'));
+            age = GetAge(myMomentObject); //get registrants age
         } else {
-            isValid = true;
-            age = GetAge(birthdate); //get registrants age
+            isValid = false;
         }
 
         if (isValid == false) {
