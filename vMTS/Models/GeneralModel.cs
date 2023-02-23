@@ -236,7 +236,7 @@ namespace vMTS.Models
             string msg;
             try
             {
-            JObject codes = JObject.Parse(HostingEnvironment.MapPath(File.ReadAllText(jsonFilePromoCodes)));
+            JObject codes = JObject.Parse(File.ReadAllText(HostingEnvironment.MapPath(jsonFilePromoCodes)));
 
             msg = (from c in codes["PromoCodes"]
                    where c["PromoCode"].ToString() == code
@@ -265,7 +265,7 @@ namespace vMTS.Models
             string jsonValue;
             try
             {
-                JObject codes = JObject.Parse(HostingEnvironment.MapPath(File.ReadAllText(jsonFilePromoCodes)));
+                JObject codes = JObject.Parse(File.ReadAllText(HostingEnvironment.MapPath(jsonFilePromoCodes)));
 
                 jsonValue = (from c in codes["PromoCodes"]
                              where c["PromoCode"].ToString() == code && c["Valid"].ToString() == "True"
