@@ -432,17 +432,20 @@
         } else {
             $('#form_DOB').removeClass('has-error');
 
-            if (age <= 17) {
+            if (age <= 13) {
                 $('#waiver_alert').removeClass('hidden');
-                $('#waiver_alert').html('A parent will need to sign a waiver since you are under 18.');
+                $('#waiver_alert').html('At least 14 years old to register.');
+                return false;
+            }
+            else if (age <= 17) {
+                $('#waiver_alert').removeClass('hidden');
+                $('#waiver_alert').html('A parent will need to appear in person the first day of class to sign the liability waiver since you are under 18.');
+                return false;
             } else {
                 $('#waiver_alert').addClass('hidden');
                 $('#waiver_alert').html('&nbsp;');
 
             }
-
-
-
         }
         return isValid;
     }
