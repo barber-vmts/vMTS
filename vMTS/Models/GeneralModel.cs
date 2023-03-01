@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Office.Interop.Excel;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace vMTS.Models
@@ -71,7 +73,7 @@ namespace vMTS.Models
             var l = new List<CourseDescriptions>();
             try
             {
-            JObject courses = JObject.Parse(File.ReadAllText(jsonFileCourses));
+            JObject courses = JObject.Parse(File.ReadAllText(HostingEnvironment.MapPath(jsonFileCourses)));
 
             JArray riderCourses = (JArray)courses["Courses"];
             foreach (var c in riderCourses)
@@ -106,7 +108,7 @@ namespace vMTS.Models
         {
             var l = new List<Sponsor>();
             try{
-                JObject sponsors = JObject.Parse(File.ReadAllText(jsonFileSponsors));
+                JObject sponsors = JObject.Parse(File.ReadAllText(HostingEnvironment.MapPath(jsonFileSponsors)));
 
                 JArray riderCoaches = (JArray)sponsors["Sponsors"];
                 foreach (var c in riderCoaches)
@@ -136,7 +138,7 @@ namespace vMTS.Models
             var l = new List<Instructors>();
             try
             {
-                JObject instructors = JObject.Parse(File.ReadAllText(jsonFileInstructors));
+                JObject instructors = JObject.Parse(File.ReadAllText(HostingEnvironment.MapPath(jsonFileInstructors)));
 
                 JArray riderCoaches = (JArray)instructors["Instructors"];
                 foreach (var c in riderCoaches)
@@ -169,7 +171,7 @@ namespace vMTS.Models
             var l = new List<InstructorClasses>();
             try
             {
-                JObject instructors = JObject.Parse(File.ReadAllText(jsonFileInstructorClasses));
+                JObject instructors = JObject.Parse(File.ReadAllText(HostingEnvironment.MapPath(jsonFileInstructorClasses)));
 
                 JArray instClasses = (JArray)instructors["InstructorsClasses"];
                 foreach (var c in instClasses)
@@ -200,7 +202,7 @@ namespace vMTS.Models
             var l = new List<CarouselImgs>();
             try
             {
-                JObject carousel = JObject.Parse(File.ReadAllText(jsonFileCarousel));
+                JObject carousel = JObject.Parse(File.ReadAllText(HostingEnvironment.MapPath(jsonFileCarousel)));
 
                 JArray carImages = (JArray)carousel["Carousel"];
                 foreach (var c in carImages)
@@ -234,7 +236,7 @@ namespace vMTS.Models
             string msg;
             try
             {
-            JObject codes = JObject.Parse(File.ReadAllText(jsonFilePromoCodes));
+            JObject codes = JObject.Parse(File.ReadAllText(HostingEnvironment.MapPath(jsonFilePromoCodes)));
 
             msg = (from c in codes["PromoCodes"]
                    where c["PromoCode"].ToString() == code
@@ -263,7 +265,7 @@ namespace vMTS.Models
             string jsonValue;
             try
             {
-                JObject codes = JObject.Parse(File.ReadAllText(jsonFilePromoCodes));
+                JObject codes = JObject.Parse(File.ReadAllText(HostingEnvironment.MapPath(jsonFilePromoCodes)));
 
                 jsonValue = (from c in codes["PromoCodes"]
                              where c["PromoCode"].ToString() == code && c["Valid"].ToString() == "True"

@@ -2,7 +2,7 @@
     $('#inputFirstName').focus();
     var today = new Date($('#START_DATE').val());//;
     var currentYear = today.getFullYear();
-    $('#inputCardYear').val(currentYear + 1);
+    //$('#inputCardYear').val(currentYear + 1); // Do not dispaly year in textbox
 
     window.GetMaxBirthDate = function () {
         var minimumYear = currentYear - 14;
@@ -35,8 +35,8 @@
     //    var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));d
     //}
 
-    window.GetAge = function (dateString) {
-        var birthDate = new Date(dateString);
+    window.GetAge = function (birthDate) {
+        //var birthDate = new Date(dateString);
         var age = today.getFullYear() - birthDate.getFullYear();
         var m = today.getMonth() - birthDate.getMonth();
         if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
@@ -76,11 +76,19 @@
     //GetAge(maxBirthDate);
 
     /* REGISTRATION ACTIONS */
-    if ($('#CLASS_TYPE_REG').val() === 'Basic RiderCourse I') {
-        $('#RegistrantForm').addClass('hidden');
-    } else {
-        $('#SurveyForm').addClass('hidden');
-    }
+    $('#RegistrantForm').addClass('hidden');
+    //if ($('#CLASS_TYPE_REG').val() === 'Basic RiderCourse I') {
+    //    $('#RegistrantForm').addClass('hidden');
+    //} else {
+    //    $('#SurveyForm').addClass('hidden');
+    //    // Remove required attribute because we are hiding SurveryFrom
+    //    $("input[name='chkBicycle']").removeAttr('required');
+    //    $("input[name='chkECourse']").removeAttr('required');
+    //    $("input[name='chkKnowledgeTest']").removeAttr('required');
+    //    $("input[name='chkGear']").removeAttr('required');
+    //    $("input[name='chkPaymentAgreement']").removeAttr('required');
+    //    $("input[name='chkCommunication']").removeAttr('required');
+    //}
 
     $('#CheckoutForm').addClass('hidden');
     $('#loader').addClass('hidden');
@@ -319,11 +327,14 @@
         return isValid;
     }
     window.RACE = function () {
+
+        // No need to capture race information.
+
         //var isValid;
-        var input = $('#inputRace').val();
-        if (input.length == 0) {
-            $('#inputRace').val(8);
-        }
+        //var input = $('#inputRace').val();
+        //if (input.length == 0) {
+        //    $('#inputRace').val(8);
+        //}
 
         //if (isValid == false) {
         //    $('#form_RC').addClass('has-error');
@@ -403,12 +414,12 @@
         var isValid;
         var age;
         var input = $('#inputDOB').val();
-        var parse = Date.parse(input);
-        if (isNaN(parse.valueOf())) {
-            isValid = false;
+        isValid = moment(input, 'MM-DD-YYYY', true).isValid();
+        if (isValid) {
+            const myMomentObject = new Date(moment(input, 'MM-DD-YYYY'));
+            age = GetAge(myMomentObject); //get registrants age
         } else {
-            isValid = true;
-            age = GetAge(input); //get registrants age
+            isValid = false;
         }
 
         if (isValid == false) {
@@ -416,7 +427,7 @@
             $('#inputDOB').focus();
 
             $('#waiver_alert').removeClass('hidden');
-            $('#waiver_alert').html('The date you entered is not valid. Enter the value like this: 2000-01-01 (YEAR-MONTH-DAY)');
+            $('#waiver_alert').html('The date you entered is not valid. Enter the value like this: 01-01-2000 (MONTH-DAY-YEAR)');
 
         } else {
             $('#form_DOB').removeClass('has-error');

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -8,8 +11,9 @@ using vMTS.Models;
 
 namespace vMTS.Controllers
 {
-    //[SessionExpire]
+    [SessionExpire]
     //[RequireHttps]
+    [RoleName]
     public class AdminController : Controller
     {
         LoginPartialViewModel lp = new LoginPartialViewModel();
@@ -54,7 +58,7 @@ namespace vMTS.Controllers
             //u.RoleName = u.LoadRoles();
             return View();
         }
-            [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public JsonResult NewUser(string Email, string RoleName)
         {
             string r = "Fail";
@@ -65,8 +69,9 @@ namespace vMTS.Controllers
 
             if (mat.Success)
             {
-                if (RoleName.Length > 0) {
-                r = am.AddUser(Email, RoleName);
+                if (RoleName.Length > 0)
+                {
+                    r = am.AddUser(Email, RoleName);
                 }
                 else
                 {
@@ -91,7 +96,7 @@ namespace vMTS.Controllers
         }
 
         //[Role]
-            public ActionResult students(Int32 id)
+        public ActionResult students(Int32 id)
         {
             ra.StudentsByClass = ra.Get_StudentsByClass(id);
 
@@ -115,7 +120,7 @@ namespace vMTS.Controllers
         }
 
         //[Role]
-            public PartialViewResult _print_studentreg(Int64 id)
+        public PartialViewResult _print_studentreg(Int64 id)
         {
             ra.StudentRegistration = ra.Get_StudentRegistration(id);
 
@@ -124,28 +129,28 @@ namespace vMTS.Controllers
             return PartialView(ra);
         }
 
-            public JsonResult RegConfirmation(Int64 r)
-            {
-                RegistrationModel c = new RegistrationModel();
-                string result;
+        public JsonResult RegConfirmation(Int64 r)
+        {
+            RegistrationModel c = new RegistrationModel();
+            string result;
 
-                result = c.RegistrationConfirm(r);
+            result = c.RegistrationConfirm(r);
 
-                return Json(result);
-            }
+            return Json(result);
+        }
 
-            public JsonResult ProcessPayment(Int64 r)
-            {
-                string result;
+        public JsonResult ProcessPayment(Int64 r)
+        {
+            string result;
 
-                result = ra.ProcessPayment(r);
+            result = ra.ProcessPayment(r);
 
-                return Json(result);
-            }
+            return Json(result);
+        }
 
 
         //[Role]
-            public ActionResult regpayment()
+        public ActionResult regpayment()
         {
 
             //ra.RegistrationPayment = ra.Get_RegistrationPayment(id);
@@ -169,21 +174,59 @@ namespace vMTS.Controllers
             return Json(msg);
         }
 
-        public JsonResult ExportClassToCSV(Int32 COURSE_ID)
+        public FileResult ExportClassToCSV(int COURSE_ID)
         {
-            string msg;
-            try
-            {
-                export.CreateClassCSV(COURSE_ID);
+            var exportCe = export.CreateClassCSV(COURSE_ID);
+            string fileName = "class.xlsx";
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[19] {
+                                            new DataColumn("First Name"),
+                                            new DataColumn("Middle Name"),
+                                            new DataColumn("Last Name"),
+                                            new DataColumn("Suffix"),
+                                            new DataColumn("Nick Name"),
+                                            new DataColumn("Contact Type"),
+                                            new DataColumn("Phone"),
+                                            new DataColumn("Gender"),
+                                            new DataColumn("Date Of Birth"),
+                                            new DataColumn("Race"),
+                                            new DataColumn("Email"),
+                                            new DataColumn("T-Shirt Size"),
+                                            new DataColumn("Address Line 1"),
+                                            new DataColumn("Address Line 2"),
+                                            new DataColumn("City"),
+                                            new DataColumn("State"),
+                                            new DataColumn("Zip"),
+                                            new DataColumn("Driver License State of Issue"),
+                                            new DataColumn("Driver License Number")
+            });
 
-                msg = "Success";
-            }
-            catch (Exception e)
+            if (exportCe.Any())
             {
-                msg = "Error: " + e.Message;
+                fileName = exportCe.FirstOrDefault().ClassDay + ".xlsx";
+                foreach (var customer in exportCe)
+                {
+                    var dateOfBirth = "";
+                    if (!string.IsNullOrEmpty(customer.DateofBirth))
+                    {
+                        DateTime date = DateTime.Parse(customer.DateofBirth);
+                        dateOfBirth = date.ToString("MM/dd/yyyy");
+                    }
+
+                    dt.Rows.Add(customer.FirstName, customer.MiddleName, customer.LastName, customer.Suffix, customer.Nickname, customer.ContactType, customer.Phone, customer.Gender, dateOfBirth, customer.Race, customer.Email, customer.TShirtSize,
+                        customer.Street1, customer.Street2, customer.City, customer.State, customer.ZIP, customer.DriverLicenseState, customer.DriverLicenseNumber);
+                }
             }
 
-            return Json(msg);
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+                }
+            }
         }
 
         public JsonResult CancelRegistration(Int64 r)
@@ -204,11 +247,11 @@ namespace vMTS.Controllers
             return PartialView(ra);
         }
 
-        public JsonResult SwitchClasses(Int64 r,Int32 o, Int32 n)
+        public JsonResult SwitchClasses(Int64 r, Int32 o, Int32 n)
         {
             string result;
 
-            result = ra.ChangeClass(r,o,n);
+            result = ra.ChangeClass(r, o, n);
 
             return Json(result);
         }
@@ -262,10 +305,10 @@ namespace vMTS.Controllers
             var log = new List<errorLogging>();
             using (vmts_dataDataContext db = new vmts_dataDataContext())
             {
-                     var sql = (from c in db.errorLoggings
-                               select (c)).ToList();
-                      foreach (var r in sql)
-                    {
+                var sql = (from c in db.errorLoggings
+                           select (c)).ToList();
+                foreach (var r in sql)
+                {
                     log.Add(new errorLogging
                     {
                         logID = r.logID,
@@ -274,8 +317,8 @@ namespace vMTS.Controllers
                         logMessage = r.logMessage,
                         logStackTrace = r.logStackTrace
                     });
-                    }
-         }
+                }
+            }
 
             return View(log);
         }

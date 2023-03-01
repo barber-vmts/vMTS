@@ -6,6 +6,7 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace vMTS.Models
@@ -640,7 +641,7 @@ namespace vMTS.Models
             try
             {
 
-                JObject s = JObject.Parse(File.ReadAllText(jsonFileSponsors));
+                JObject s = JObject.Parse(File.ReadAllText(HostingEnvironment.MapPath(jsonFileSponsors)));
 
                 JArray promoCodes = (JArray)s["Sponsors"];
                 foreach (var c in promoCodes)
@@ -687,7 +688,7 @@ namespace vMTS.Models
             try
             {
 
-                JObject codes = JObject.Parse(File.ReadAllText(jsonFilePromoCodes));
+                JObject codes = JObject.Parse(File.ReadAllText(HostingEnvironment.MapPath(jsonFilePromoCodes)));
 
                 JArray promoCodes = (JArray)codes["PromoCodes"];
                 foreach (var c in promoCodes)

@@ -1,16 +1,21 @@
 ﻿@model vMTS.Models.RegistrationAdministration
 
 @{var itemList = @Model.StudentRegistration.ToList();}
+<style>
+    .table-responsive tr td {
+        line-height: 6px !important;
+    }
+</style>
 
 @if (itemList.Count() >= 1)
 {
-    <div class="table-responsive">
+    <div class="table-responsive" style="font-size: 11px !important;">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Registration for @itemList[0].FIRSTNAME&nbsp;@itemList[0].LASTNAME</h3>
             </div>
             <div class="panel-body">
-                <table class="table">
+                <table class="table" style="margin-bottom: -15px;">
                     <tr>
                         <th>Registration #</th>
                         <th>Class Date</th>

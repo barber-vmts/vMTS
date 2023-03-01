@@ -12,6 +12,7 @@ using Microsoft.Office.Interop.Excel;*/
 using System.Reflection;
 using System.IO;
 using System.Text;
+using System.Web.Hosting;
 
 namespace vMTS.Models
 {
@@ -44,9 +45,9 @@ namespace vMTS.Models
             //public string SocialSecurityNumber{get; set;}
             //public string MSFnumber{get; set;}
             //public string Owner{get; set;}
+            public string ClassDay { get; set; }
         }
 
-        [RoleName]
         public void CreateCSV(Int64 r)
         {
              // GET THE REGISTRATION DATA
@@ -124,21 +125,10 @@ namespace vMTS.Models
            }
 
             File.WriteAllText(pathRoot + fileName, csv.ToString());
-            
-            //Download the CSV file.
-            //HttpContext ctx = HttpContext.Current;
-            //ctx.Response.Clear();
-            //ctx.Response.Buffer = true;
-            //ctx.Response.AddHeader("content-disposition", string.Format("attachment; filename={0}", fileName));
-            //ctx.Response.ContentType = "text/csv";
-            //ctx.Response.AddHeader("Pragma", "public");
-            //ctx.Response.Write(csv);
-            //ctx.Response.Flush();
-            //ctx.Response.End();
         }
 
         [RoleName]
-        public void CreateClassCSV(Int32 COURSE_ID)
+        public List<MREP> CreateClassCSV(Int32 COURSE_ID)
         {
             var list = new List<MREP>();
             List<Registration> StudentsByClass = new List<Registration>();
@@ -170,10 +160,11 @@ namespace vMTS.Models
                         Street1 = l.ADDRESS1,
                         Street2 = l.ADDRESS2,
                         City = l.CITY,
-                        State = l.STATE_NAME,
+                        State = l.STATE,
                         ZIP = l.ZIP,
                         DriverLicenseState = l.DL_ST,
-                        DriverLicenseNumber = l.DL_NUM
+                        DriverLicenseNumber = l.DL_NUM,
+                        ClassDay = l.CLASS_DAY
                         //,SocialSecurityNumber = "",
                         //MSFnumber = "",
                         //Owner = ""
@@ -181,61 +172,7 @@ namespace vMTS.Models
                 }
             }
 
-            //Build the CSV file data as a Comma separated string.
-            var csv = new StringBuilder();
-
-            //Get the properties for type T for the headers
-            PropertyInfo[] propInfos = typeof(MREP).GetProperties();
-            string fileName = StudentsByClass.FirstOrDefault().CLASS_DAY + ".csv";
-            string pathRoot = @"E:/web/learntor/Content/RegistrationFiles/";
-            //string pathRoot = @"E:\LogiTeks\vMTS\Documentation\";
-
-            string columns;
-
-            if (list.Count > 0)
-            {
-                columns = @"First Name,Middle Name,Last Name,Suffix,Nickname,Contact Type,Address 1: Phone,Gender,Date of Birth,Race,E-mail,T-Shirt Size,Licensing Instructor Number,Street 1,Address 1: Street 2,City,State,ZIP/Postal Code,Driver License State of Issue,Driver License Number,Social Security Number,MSF number,Owner";
-                csv.Append(columns);
-                csv.Append(Environment.NewLine);
-
-                for (int i = 0; i <= list.Count - 1; i++)
-                {
-                    MREP item = list[i];
-
-                    for (int j = 0; j <= propInfos.Length - 1; j++)
-                    {
-
-                        object o = item.GetType().GetProperty(propInfos[j].Name).GetValue(item, null);
-                        string value = "";
-                        if (o != null)
-                        {
-                            value = o.ToString();
-                        }
-                        else
-                        {
-                            value = "";
-                        }
-                        csv.Append(value);
-                        if (j < propInfos.Length - 1)
-                        {
-                            csv.Append(",");
-                        }
-                    }
-                }
-            }
-
-            File.WriteAllText(pathRoot + fileName, csv.ToString());
-
-            //Download the CSV file.
-            //HttpContext ctx = HttpContext.Current;
-            //ctx.Response.Clear();
-            //ctx.Response.Buffer = true;
-            //ctx.Response.AddHeader("content-disposition", string.Format("attachment; filename={0}", fileName));
-            //ctx.Response.ContentType = "text/csv";
-            //ctx.Response.AddHeader("Pragma", "public");
-            //ctx.Response.Write(csv);
-            //ctx.Response.Flush();
-            //ctx.Response.End();
+            return list;
         }
     }
 }

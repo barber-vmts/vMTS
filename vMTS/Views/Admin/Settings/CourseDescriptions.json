@@ -6,47 +6,56 @@
 
                 "The Basic RiderCourse is designed to teach the novice motorcyclist the skills necessary to ride safely on the street.",
                 "The course takes the beginning rider through the basics of motorcycle operation: straight line riding, turning, shifting, stopping and safe riding strategies.",
-                "During the winter months if snow/ice are forecast, registrations will be moved to the next available date."
-
-            ],
-            "MinRiders": "4",
+                "Course completion requires an online MSF eCourse. This is a self-paced video course and is approximately 5-hours in length.",
+                "To get the most from the Basic RiderCourse, it is suggested that the eCourse be completed before coming to the riding portion. However, completion of the eCourse is not required before coming to participate in the in-person range activities.",
+                "A Tennessee course completion certificate used toward a motorcycle license will not be issued until all parts of the Basic RiderCourse are successfully completed, i.e. eCourse, Tennessee Division of Motor Vehicles knowledge test, participation in the MSF range activities and an on-cycle skills evaluation.",
+                "Learning to ride a motorcycle is challenging both physically and mentally, but certainly attainable. We ask that you not schedule any activities during the two days of class, including work, parties and late night outings. Get a good nights rest the night before the class and the night following the first day. Successful completion is up to you.",  
+                "During the winter months, and early spring, if snow/ice are forecast, registrations will be moved to the next available date.",
+                "A minimum number for 4 students is required to have a class. If class cancellation is required, notice may not occur until the day before the class date."
+                          ],
+            "MinRiders": "4---Class cancellation may not occur until the day before class date.",
             "Requirements": [
                 "Ability to ride a bicycle",
+                "DOT - approved helmet",
                 "Protective eye wear",
                 "Full fingered gloves",
-                "Long pants and shirt",
+                "Long pants - no holes or exposed skin",
+                "Long sleeve shirt or jacket - no holes or exposed skin ",
                 "Sturdy over the ankle footwear",
                 "Snacks, lunches and water",
                 "Rain gear if needed"
-            ],
+                            ],
             "Evaluation": "The Skills Evaluation and Knowledge Written Test is not required to enroll and participate in Basic RiderCourse. Students may choose to complete testing at the Dept of Motor Vehicles (DMV). However, if VMTS administers the Skills Evaluation and Knowledge Written Test and upon successful completion, student will be issued a certificate for licensing at the DMV.",
-            "FeeStructure": "Fee includes course insurance, loaner helmet, use of training motorcycle, and instruction.",
-            "Cost" :  "200.00"
-
+            "FeeStructure": "Fee includes course insurance, use of training motorcycle, and instruction.",
+            "Cost" :  "250.00"
         },
         {
             "CourseName": "Basic RiderCourse II",
             "Description": [
-                "The Basic RiderCourse II (formerly known as Experienced RiderCourse) is designed to teach advanced skills to the motorcyclist with basic riding skills that will enable the rider to respond with precision and accuracy to unexpected road and traffic situations.",
+                "The Basic RiderCourse II (also known as Experienced RiderCourse) is designed to teach advanced skills to the motorcyclist with basic riding skills that will enable the rider to respond with precision and accuracy to unexpected road and traffic situations.",
+                "The Experienced RiderCourse also covers protective gear, rider responsibility, motorcycle inspection and care, the effects of alcohol and other drugs on riding, and includes an optional skill evaluation and knowledge test.",
                 "It is the next logical progression in becoming a safe, experienced rider.",
-                "There is no formal classroom but safety concepts and content are discussed.",
-                "This is a one day, approximately, 6-hour course. All instruction is conducted on the riding range.",
-                "The rider is encouraged to ride their own motorcycle in order to practice the advanced skills, but if the experienced rider does not have a motorcycle, a training motorcycle is available for rent."
-            ],
-            "MinRiders": "4",
+                "There is an online eCourse, Street Strategies-approximately 3 hours, required for those seeking a motorcycle license. The online eCourse is not required for licensed riders coming for additional or refresher training.",
+                "This is a one day, approximately, 6-hour course. However, factoring in breaks, lunch time, knowledge testing and riding evaluation, the time can be expanded to as much 8 to 9 total hours. All instruction is conducted on the riding range.",
+                "The rider is highly encouraged to ride their own motorcycle in order to practice the advanced skills, but if the experienced rider does not have a motorcycle, but has experienced riding, a training motorcycle may be available for rent.",
+                "If cancellation is required, notice may not occur until the day before the class date."
+                          ],
+            "MinRiders":  "4 Riders---------------------------------------------Cancellation may not occur until the day before class date.-------------------------------------------------------------",
+                           //If you already have a motorcycle endorsement, $100 will be discounted off the standard cost when you complete the registration making the final price $150.-------------------------If you are taking the class to get an endorsement, you will automatically be eligible for the Advanced RiderCourse on a future date at no additional cost.",
             "Requirements": [
                 "A registered, inspected and insured motorcycle, or a training motorcycle may be rented",
+                "DOT - approved helmet",
                 "Protective eye wear",
                 "Full fingered gloves",
-                "Long pants and shirt",
+                "Long pants - no holes or exposed skin",
+                "Long sleeve shirt or jacket - no holes or exposed skin ",
                 "Sturdy over the ankle footwear",
                 "Snacks, lunches and water",
-                "Rain gear if needed",
-                "DOT - approved helmet"
-            ],
+                "Rain gear if needed"
+                            ],
             "Evaluation": "The Skills Evaluation and Knowledge Written Test is not required to enroll and participate in the Basic RiderCourse II. Students may choose to complete testing at the Dept of Motor Vehicles (DMV). However, those needing a motorcycle endorsement and request testing by VMTS will be issued a certificate upon successful completion to present to the  Dept of Motor Vehicles (DMV).",
             "FeeStructure": "Fee includes course insurance, loaner helmet (if needed), use of training motorcycle (if needed), and instruction.",
-            "Cost" :  "100"
+            "Cost" :  "250.00"
         },
         {
             "CourseName": "Advanced RiderCourse",
@@ -55,19 +64,19 @@
                 "The course consists of activities that emphasize personal risk management and self-assessment strategies, and on-cycle exercises with emphasis in cornering, braking and swerving.",
                 "Even if you’ve been riding for some time, there’s always something new to learn. Increasing numbers of seasoned riders are flocking to the half-day Experienced RiderCourse to hone their skills and fine-tune the mental skills needed for survival in traffic.",
                 "You’ll discuss with your peers how to balance the mental and physical aspects of safe riding, manage risk, increase visibility and optimize your lane position.",
-                "The Experienced RiderCourse also covers protective gear, rider responsibility, motorcycle inspection and care, the effects of alcohol and other drugs on riding, and includes an optional skill evaluation and knowledge test."
-            ],
-            "MinRiders": "7",
+                "If cancellation is required, notice may not occur until the day before the class date."
+                           ],
+            "MinRiders": "7---Cancellation may not occur until the day before class date.-----------------------------------------------------------------------------------------------------------Note: Eligibilty for this class requires an endorsement and riding your own bike.",
             "Requirements": [
                 "A valid motorcycle license, or endorsement",
                 "Riders must provide their own street-legal and safe motorcycle"
-            ],
+                            ],
             "Evaluation": "Using your own motorcycle and helmet, you’ll put into practice the techniques of managing traction, stopping quickly, cornering and swerving.",
             "FeeStructure": "Fee includes course insurance and instruction.",
-            "Cost" :  ""
+            "Cost" :  "135"
         },
         {
-            "CourseName": "Three-Wheel Basic RiderCourse",
+            "CourseName": "3 Wheel (Trike) Course",
             "Description": [
                 "Welcome to the world of three-wheel motorcycles.",
                 "As a new rider participating in education and training activities, you’re about to embark on an adventure that only three-wheel motorcycle riders can know.",
@@ -78,37 +87,25 @@
                 "Through this process, you might even decide that three-wheel riding is not for you.",
                 "This course covers the fundamentals for you to develop your capabilities to become a safe and responsible rider. It provides the opportunity for you to learn the physical and mental skills important for operating a three-wheel motorcycle.",
                 "In the classroom, you will learn ways to minimize risk and handle special riding situations.",
-                "During riding portions of the three-wheel Basic RiderCousre&#8480; (3WBRC&#8480;), you will be coached to develop the physical skills of basic control that include: clutch/throttle control, straight line riding, stopping, turning, and shifting, and then move on to more advanced skills in stopping quickly, cornering, and swerving."
-            ],
-            "MinRiders": "4",
+                "During riding portions of the 3-Wheel Basic RiderCousre (3WBRC), you will be coached to develop the physical skills of basic control that include: clutch/throttle control, straight line riding, stopping, turning, and shifting, and then move on to more advanced skills in stopping quickly, cornering, and swerving.",
+                "Learning to ride a 3 wheel motorcycle is challenging both physically and mentally, but certainly attainable. We ask that you not schedule any activities during the two days of class, including work, parties and late night outings. Get a good nights rest the night before the class and the night following the first day. Successful completion is up to you.",
+                "If cancellation is required, notice may not occur until the day before the class date."
+                            ],
+            "MinRiders": "2",
             "Requirements": [
-            ],
-            "Evaluation": "Your RiderCoach(es) are here to help guide you through your learning journey. Be sure to ask lots of questions and let them know how to help you.",
-            "FeeStructure": "Fee includes course insurance and instruction.",
-            "Cost" :  ""
-        },
-        {
-            "CourseName": "Skills Practice and Improvement",
-            "Description": [
-                "Would you and your friends like to learn some advance motorcycle skills used by the motor cops?",
-                "This is your chance to test your skills with other riders. We are offering a one-time class to be conducted with an experienced Motor Trooper.",
-                "Several skills courses will be setup and instruction provided.",
-                "After some practice, each rider will get the opportunity to compete against each other like the motor cops do in their bike skills training and rodeo."
-            ],
-            "MinRiders": "10",
-            "Requirements": [
-                "Rider must have a motorcycle endorsement on their license",
-                "DOT street legal motorcycle",
-                "Current registration and proof of insurance",
-                "Long pants",
+                "A registered, inspected and insured 3-wheel motorcycle",
+                "DOT - approved helmet",
                 "Protective eye wear",
                 "Full fingered gloves",
-                "Boots with good grippy soles",
-                "DOT - approved helmet"
-            ],
-            "Evaluation": "Space is limited for this special class.",
+                "Long pants - no holes or exposed skin",
+                "Long sleeve shirt or jacket - no holes or exposed skin ",
+                "Sturdy over the ankle footwear",
+                "Snacks, lunches and water",
+                "Rain gear if needed"
+                            ],
+            "Evaluation": "Using your own motorcycle and helmet, your RiderCoach is here to help guide you through your learning journey. Be sure to ask lots of questions and let them know how to help you.",
             "FeeStructure": "Fee includes course insurance and instruction.",
-            "Cost" : ""
+            "Cost" :  "235"
         }
-    ]
+        ]
 }
