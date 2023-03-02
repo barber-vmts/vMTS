@@ -14,7 +14,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Registration for @itemList[0].FIRSTNAME&nbsp;@itemList[0].LASTNAME</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="margin-bottom: 1px !important;">
                 <table class="table" style="margin-bottom: -15px;">
                     <tr>
                         <th>Registration #</th>
@@ -53,16 +53,13 @@
             </thead>
             @foreach (var i in itemList)
             {
-                <tr><td>@i.FIRSTNAME</td><td>@i.PHONE</td></tr>
+                <tr><td>@i.SUFFIX @i.FIRSTNAME</td><td>@i.PHONE</td></tr>
                 <tr><td>@i.MIDDLENAME</td><td>@i.GENDER</td></tr>
                 <tr><td>@i.LASTNAME</td><td>@i.RACE</td></tr>
-                <tr><td>@i.SUFFIX</td><td>@i.EMAIL</td></tr>
-                <tr><td>@i.DOB</td><td>@i.RACE</td></tr>
-
+                <tr><td>@i.DOB</td><td>@i.EMAIL</td></tr>
                 <tr><th colspan="2">Address</th></tr>
-                <tr><td>@i.ADDRESS1</td><td>@i.STATE_NAME</td></tr>
-                <tr><td>@i.ADDRESS2</td><td>@i.ZIP</td></tr>
-                <tr><td>@i.CITY</td><td>&nbsp;</td></tr>
+                <tr><td>@i.ADDRESS1 @i.ADDRESS2</td><td>@i.STATE_NAME</td></tr>
+                <tr><td>@i.CITY</td><td>@i.ZIP</td></tr>
                 <tr><th colspan="2">Drivers License Details</th></tr>
                 <tr><td>@i.DL_ST</td><td>&nbsp;</td></tr>
                 <tr><td>@i.DL_NUM</td><td>&nbsp;</td></tr>
@@ -75,9 +72,7 @@
                 {
                     <tr><td>License NOT Needed</td><td>&nbsp;</td></tr>
                 }
-                <tr><td>@i.MOTOR_YR</td><td>&nbsp;</td></tr>
-                <tr><td>@i.MOTOR_MK</td><td>&nbsp;</td></tr>
-                <tr><td>@i.MOTOR_MD</td><td>&nbsp;</td></tr>
+                <tr><td>@i.MOTOR_YR</td><td>@i.MOTOR_MK</td><td>@i.MOTOR_MD</td></tr>
             }
         </table>
 
