@@ -434,7 +434,7 @@
 
             if (age <= 13) {
                 $('#waiver_alert').removeClass('hidden');
-                $('#waiver_alert').html('At least 14 years old to register.');
+                $('#waiver_alert').html('Student must turn 15 within 12 months of the class date to attend and receive a Tennessee license permit.');
                 return false;
             }
             else if (age <= 17) {
