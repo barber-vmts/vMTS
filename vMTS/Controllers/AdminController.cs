@@ -112,6 +112,58 @@ namespace vMTS.Controllers
 
             return View(ra);
         }
+        
+        public ActionResult studentedit(Int64 id)
+        {
+            RaceLookup Race = new RaceLookup();
+            StateList States = new StateList();
+            NameSuffix Suffix = new NameSuffix();
+            List<SelectListItem> Gender = new List<SelectListItem>();
+            Gender.Add(new SelectListItem
+            {
+                Value = "Male",
+                Text = "M"
+
+            });
+            Gender.Add( new SelectListItem
+            {
+                Value = "Female",
+                Text = "F"
+
+            });
+            Gender.Add(new SelectListItem
+            {
+                Value = "",
+                Text = ""
+
+            });
+            List<SelectListItem> YesNo = new List<SelectListItem>();
+            Gender.Add(new SelectListItem
+            {
+                Value = "Y",
+                Text = "Yes"
+
+            });
+            Gender.Add(new SelectListItem
+            {
+                Value = "N",
+                Text = "No"
+
+            });
+
+            ViewBag.Suffix = Suffix.SuffixSelectList();
+            ViewBag.RaceCodes = Race.RaceSelectList();
+            ViewBag.States = States.StateSelectList();
+            ViewBag.Gender = new SelectList(Gender, "Value", "Text");
+            ViewBag.YesNo = new SelectList(YesNo, "Value", "Text");
+
+            ra.StudentRegistration = ra.Get_StudentRegistration(id);
+
+            ra.RegistrationPayment = ra.Get_RegistrationPayment(id);
+            
+
+            return View(ra);
+        }
 
         public PartialViewResult _studentclass()
         {
