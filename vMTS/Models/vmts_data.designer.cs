@@ -22,7 +22,7 @@ namespace vMTS.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DB_62333_vmts")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DB_62333_devvmts")]
 	public partial class vmts_dataDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -154,12 +154,6 @@ namespace vMTS.Models
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetPayment", IsComposable=true)]
-		public IQueryable<GetPaymentResult> GetPayment([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPT_ID", DbType="BigInt")] System.Nullable<long> rECEIPT_ID)
-		{
-			return this.CreateMethodCallQuery<GetPaymentResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rECEIPT_ID);
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CancelRegistration")]
 		public ISingleResult<CancelRegistrationResult> CancelRegistration([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPT", DbType="BigInt")] System.Nullable<long> rECEIPT)
 		{
@@ -179,12 +173,6 @@ namespace vMTS.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), c_ID, c_TYPE, sTART, sTART_TIME, eND, eND_TIME, lOCATION, cOURSE_NUMBER, oPEN_SEATS, fEE);
 			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetRegistration", IsComposable=true)]
-		public IQueryable<GetRegistrationResult> GetRegistration([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPT", DbType="BigInt")] System.Nullable<long> rECEIPT)
-		{
-			return this.CreateMethodCallQuery<GetRegistrationResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rECEIPT);
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.NewRegistration")]
@@ -223,6 +211,55 @@ namespace vMTS.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cOURSE_ID, fIRSTNAME, mIDDLENAME, lASTNAME, sUFFIX, aDDRESS1, aDDRESS2, cITY, sTATE, zIP, gDR, rACE, pHONE, eMAIL, dOB, aGE, eVAL, mOTOR_YR, mOTOR_MK, mOTOR_MD, dL_NUM, dL_STATE, pMT_TYPE, cARD_NAME, cARD_NUM, eXP_MN, eXP_YR, cVV, pROMO, pROMO_VALUE, rECEIPT);
 			rECEIPT = ((System.Nullable<long>)(result.GetParameterValue(30)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetRegistration", IsComposable=true)]
+		public IQueryable<GetRegistrationResult> GetRegistration([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPT", DbType="BigInt")] System.Nullable<long> rECEIPT)
+		{
+			return this.CreateMethodCallQuery<GetRegistrationResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rECEIPT);
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetPayment", IsComposable=true)]
+		public IQueryable<GetPaymentResult> GetPayment([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPT_ID", DbType="BigInt")] System.Nullable<long> rECEIPT_ID)
+		{
+			return this.CreateMethodCallQuery<GetPaymentResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rECEIPT_ID);
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UpdateRegistration")]
+		public int UpdateRegistration(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="STD_NUMBER", DbType="Int")] System.Nullable<int> sTD_NUMBER, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ADDRESS_ID", DbType="Int")] System.Nullable<int> aDDRESS_ID, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PMT_ID", DbType="Int")] System.Nullable<int> pMT_ID, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FIRSTNAME", DbType="VarChar(50)")] string fIRSTNAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MIDDLE_NAME", DbType="NVarChar(50)")] string mIDDLE_NAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LASTNAME", DbType="VarChar(75)")] string lASTNAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUFFIX", DbType="NVarChar(10)")] string sUFFIX, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ADDRESS1", DbType="VarChar(150)")] string aDDRESS1, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ADDRESS2", DbType="VarChar(150)")] string aDDRESS2, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CITY", DbType="VarChar(100)")] string cITY, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="STATE", DbType="VarChar(2)")] string sTATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ZIP", DbType="VarChar(5)")] string zIP, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="GENDER", DbType="VarChar(1)")] string gENDER, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="RACE", DbType="Int")] System.Nullable<int> rACE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PHONE", DbType="VarChar(11)")] string pHONE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EMAIL", DbType="VarChar(75)")] string eMAIL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DOB", DbType="Date")] System.Nullable<System.DateTime> dOB, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="AGE", DbType="Int")] System.Nullable<int> aGE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EVAL", DbType="VarChar(1)")] string eVAL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MOTOR_YR", DbType="VarChar(4)")] string mOTOR_YR, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MOTOR_MK", DbType="VarChar(20)")] string mOTOR_MK, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MOTOR_MD", DbType="VarChar(20)")] string mOTOR_MD, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DL_NUM", DbType="VarChar(50)")] string dL_NUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DL_ST", DbType="VarChar(2)")] string dL_ST, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PMT_TYPE", DbType="VarChar(50)")] string pMT_TYPE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CARD_NAME", DbType="VarChar(150)")] string cARD_NAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CARD_NUM", DbType="VarChar(22)")] string cARD_NUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EXP_MN", DbType="VarChar(2)")] string eXP_MN, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EXP_YR", DbType="VarChar(4)")] string eXP_YR, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CVV", DbType="VarChar(3)")] string cVV)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), sTD_NUMBER, aDDRESS_ID, pMT_ID, fIRSTNAME, mIDDLE_NAME, lASTNAME, sUFFIX, aDDRESS1, aDDRESS2, cITY, sTATE, zIP, gENDER, rACE, pHONE, eMAIL, dOB, aGE, eVAL, mOTOR_YR, mOTOR_MK, mOTOR_MD, dL_NUM, dL_ST, pMT_TYPE, cARD_NAME, cARD_NUM, eXP_MN, eXP_YR, cVV);
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -1586,302 +1623,6 @@ namespace vMTS.Models
 		}
 	}
 	
-	public partial class GetPaymentResult
-	{
-		
-		private System.Nullable<long> _RECEIPT;
-		
-		private string _PMT_TYPE;
-		
-		private string _CARDNAME;
-		
-		private string _CARDNUMBER;
-		
-		private string _CARD_EXP;
-		
-		private string _CARD_EXP_YR;
-		
-		private string _CVV;
-		
-		private System.Nullable<bool> _PROCESSED;
-		
-		private string _STUFF_CARDNUMBER;
-		
-		private string _STUFF_CARD_EXP;
-		
-		private string _STUFF_CARD_EXP_YR;
-		
-		private string _STUFF_CVV;
-		
-		private string _PROMOCODE;
-		
-		private System.Nullable<decimal> _CLASS_FEE;
-		
-		private System.Nullable<decimal> _PROMO_VALUE;
-		
-		private System.Nullable<decimal> _TOTAL;
-		
-		public GetPaymentResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RECEIPT", DbType="BigInt")]
-		public System.Nullable<long> RECEIPT
-		{
-			get
-			{
-				return this._RECEIPT;
-			}
-			set
-			{
-				if ((this._RECEIPT != value))
-				{
-					this._RECEIPT = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PMT_TYPE", DbType="VarChar(100)")]
-		public string PMT_TYPE
-		{
-			get
-			{
-				return this._PMT_TYPE;
-			}
-			set
-			{
-				if ((this._PMT_TYPE != value))
-				{
-					this._PMT_TYPE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARDNAME", DbType="VarChar(150)")]
-		public string CARDNAME
-		{
-			get
-			{
-				return this._CARDNAME;
-			}
-			set
-			{
-				if ((this._CARDNAME != value))
-				{
-					this._CARDNAME = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARDNUMBER", DbType="VarChar(100)")]
-		public string CARDNUMBER
-		{
-			get
-			{
-				return this._CARDNUMBER;
-			}
-			set
-			{
-				if ((this._CARDNUMBER != value))
-				{
-					this._CARDNUMBER = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARD_EXP", DbType="VarChar(100)")]
-		public string CARD_EXP
-		{
-			get
-			{
-				return this._CARD_EXP;
-			}
-			set
-			{
-				if ((this._CARD_EXP != value))
-				{
-					this._CARD_EXP = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARD_EXP_YR", DbType="VarChar(100)")]
-		public string CARD_EXP_YR
-		{
-			get
-			{
-				return this._CARD_EXP_YR;
-			}
-			set
-			{
-				if ((this._CARD_EXP_YR != value))
-				{
-					this._CARD_EXP_YR = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CVV", DbType="VarChar(100)")]
-		public string CVV
-		{
-			get
-			{
-				return this._CVV;
-			}
-			set
-			{
-				if ((this._CVV != value))
-				{
-					this._CVV = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROCESSED", DbType="Bit")]
-		public System.Nullable<bool> PROCESSED
-		{
-			get
-			{
-				return this._PROCESSED;
-			}
-			set
-			{
-				if ((this._PROCESSED != value))
-				{
-					this._PROCESSED = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CARDNUMBER", DbType="VarChar(100)")]
-		public string STUFF_CARDNUMBER
-		{
-			get
-			{
-				return this._STUFF_CARDNUMBER;
-			}
-			set
-			{
-				if ((this._STUFF_CARDNUMBER != value))
-				{
-					this._STUFF_CARDNUMBER = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CARD_EXP", DbType="VarChar(100)")]
-		public string STUFF_CARD_EXP
-		{
-			get
-			{
-				return this._STUFF_CARD_EXP;
-			}
-			set
-			{
-				if ((this._STUFF_CARD_EXP != value))
-				{
-					this._STUFF_CARD_EXP = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CARD_EXP_YR", DbType="VarChar(100)")]
-		public string STUFF_CARD_EXP_YR
-		{
-			get
-			{
-				return this._STUFF_CARD_EXP_YR;
-			}
-			set
-			{
-				if ((this._STUFF_CARD_EXP_YR != value))
-				{
-					this._STUFF_CARD_EXP_YR = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CVV", DbType="VarChar(100)")]
-		public string STUFF_CVV
-		{
-			get
-			{
-				return this._STUFF_CVV;
-			}
-			set
-			{
-				if ((this._STUFF_CVV != value))
-				{
-					this._STUFF_CVV = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROMOCODE", DbType="VarChar(100)")]
-		public string PROMOCODE
-		{
-			get
-			{
-				return this._PROMOCODE;
-			}
-			set
-			{
-				if ((this._PROMOCODE != value))
-				{
-					this._PROMOCODE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_FEE", DbType="Money")]
-		public System.Nullable<decimal> CLASS_FEE
-		{
-			get
-			{
-				return this._CLASS_FEE;
-			}
-			set
-			{
-				if ((this._CLASS_FEE != value))
-				{
-					this._CLASS_FEE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROMO_VALUE", DbType="Money")]
-		public System.Nullable<decimal> PROMO_VALUE
-		{
-			get
-			{
-				return this._PROMO_VALUE;
-			}
-			set
-			{
-				if ((this._PROMO_VALUE != value))
-				{
-					this._PROMO_VALUE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOTAL", DbType="Money")]
-		public System.Nullable<decimal> TOTAL
-		{
-			get
-			{
-				return this._TOTAL;
-			}
-			set
-			{
-				if ((this._TOTAL != value))
-				{
-					this._TOTAL = value;
-				}
-			}
-		}
-	}
-	
 	public partial class CancelRegistrationResult
 	{
 		
@@ -2174,6 +1915,10 @@ namespace vMTS.Models
 		private System.Nullable<bool> _CONFIRMED;
 		
 		private string _CONFIRMED_DATE;
+		
+		private System.Nullable<int> _AGE;
+		
+		private System.Nullable<int> _ADDRESS_ID;
 		
 		public GetRegistrationResult()
 		{
@@ -2639,6 +2384,370 @@ namespace vMTS.Models
 				if ((this._CONFIRMED_DATE != value))
 				{
 					this._CONFIRMED_DATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AGE", DbType="Int")]
+		public System.Nullable<int> AGE
+		{
+			get
+			{
+				return this._AGE;
+			}
+			set
+			{
+				if ((this._AGE != value))
+				{
+					this._AGE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ADDRESS_ID", DbType="Int")]
+		public System.Nullable<int> ADDRESS_ID
+		{
+			get
+			{
+				return this._ADDRESS_ID;
+			}
+			set
+			{
+				if ((this._ADDRESS_ID != value))
+				{
+					this._ADDRESS_ID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetPaymentResult
+	{
+		
+		private System.Nullable<long> _RECEIPT;
+		
+		private string _PMT_TYPE;
+		
+		private string _CARDNAME;
+		
+		private string _CARDNUMBER;
+		
+		private string _CARD_EXP;
+		
+		private string _CARD_EXP_YR;
+		
+		private string _CVV;
+		
+		private System.Nullable<bool> _PROCESSED;
+		
+		private string _STUFF_CARDNUMBER;
+		
+		private string _STUFF_CARD_EXP;
+		
+		private string _STUFF_CARD_EXP_YR;
+		
+		private string _STUFF_CVV;
+		
+		private string _PROMOCODE;
+		
+		private System.Nullable<decimal> _CLASS_FEE;
+		
+		private System.Nullable<decimal> _PROMO_VALUE;
+		
+		private System.Nullable<decimal> _TOTAL;
+		
+		private System.Nullable<System.DateTime> _PROCESSED_DATE;
+		
+		private System.Nullable<int> _PMT_ID;
+		
+		public GetPaymentResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RECEIPT", DbType="BigInt")]
+		public System.Nullable<long> RECEIPT
+		{
+			get
+			{
+				return this._RECEIPT;
+			}
+			set
+			{
+				if ((this._RECEIPT != value))
+				{
+					this._RECEIPT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PMT_TYPE", DbType="VarChar(100)")]
+		public string PMT_TYPE
+		{
+			get
+			{
+				return this._PMT_TYPE;
+			}
+			set
+			{
+				if ((this._PMT_TYPE != value))
+				{
+					this._PMT_TYPE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARDNAME", DbType="VarChar(150)")]
+		public string CARDNAME
+		{
+			get
+			{
+				return this._CARDNAME;
+			}
+			set
+			{
+				if ((this._CARDNAME != value))
+				{
+					this._CARDNAME = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARDNUMBER", DbType="VarChar(100)")]
+		public string CARDNUMBER
+		{
+			get
+			{
+				return this._CARDNUMBER;
+			}
+			set
+			{
+				if ((this._CARDNUMBER != value))
+				{
+					this._CARDNUMBER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARD_EXP", DbType="VarChar(100)")]
+		public string CARD_EXP
+		{
+			get
+			{
+				return this._CARD_EXP;
+			}
+			set
+			{
+				if ((this._CARD_EXP != value))
+				{
+					this._CARD_EXP = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARD_EXP_YR", DbType="VarChar(100)")]
+		public string CARD_EXP_YR
+		{
+			get
+			{
+				return this._CARD_EXP_YR;
+			}
+			set
+			{
+				if ((this._CARD_EXP_YR != value))
+				{
+					this._CARD_EXP_YR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CVV", DbType="VarChar(100)")]
+		public string CVV
+		{
+			get
+			{
+				return this._CVV;
+			}
+			set
+			{
+				if ((this._CVV != value))
+				{
+					this._CVV = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROCESSED", DbType="Bit")]
+		public System.Nullable<bool> PROCESSED
+		{
+			get
+			{
+				return this._PROCESSED;
+			}
+			set
+			{
+				if ((this._PROCESSED != value))
+				{
+					this._PROCESSED = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CARDNUMBER", DbType="VarChar(100)")]
+		public string STUFF_CARDNUMBER
+		{
+			get
+			{
+				return this._STUFF_CARDNUMBER;
+			}
+			set
+			{
+				if ((this._STUFF_CARDNUMBER != value))
+				{
+					this._STUFF_CARDNUMBER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CARD_EXP", DbType="VarChar(100)")]
+		public string STUFF_CARD_EXP
+		{
+			get
+			{
+				return this._STUFF_CARD_EXP;
+			}
+			set
+			{
+				if ((this._STUFF_CARD_EXP != value))
+				{
+					this._STUFF_CARD_EXP = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CARD_EXP_YR", DbType="VarChar(100)")]
+		public string STUFF_CARD_EXP_YR
+		{
+			get
+			{
+				return this._STUFF_CARD_EXP_YR;
+			}
+			set
+			{
+				if ((this._STUFF_CARD_EXP_YR != value))
+				{
+					this._STUFF_CARD_EXP_YR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CVV", DbType="VarChar(100)")]
+		public string STUFF_CVV
+		{
+			get
+			{
+				return this._STUFF_CVV;
+			}
+			set
+			{
+				if ((this._STUFF_CVV != value))
+				{
+					this._STUFF_CVV = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROMOCODE", DbType="VarChar(100)")]
+		public string PROMOCODE
+		{
+			get
+			{
+				return this._PROMOCODE;
+			}
+			set
+			{
+				if ((this._PROMOCODE != value))
+				{
+					this._PROMOCODE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_FEE", DbType="Money")]
+		public System.Nullable<decimal> CLASS_FEE
+		{
+			get
+			{
+				return this._CLASS_FEE;
+			}
+			set
+			{
+				if ((this._CLASS_FEE != value))
+				{
+					this._CLASS_FEE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROMO_VALUE", DbType="Money")]
+		public System.Nullable<decimal> PROMO_VALUE
+		{
+			get
+			{
+				return this._PROMO_VALUE;
+			}
+			set
+			{
+				if ((this._PROMO_VALUE != value))
+				{
+					this._PROMO_VALUE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOTAL", DbType="Money")]
+		public System.Nullable<decimal> TOTAL
+		{
+			get
+			{
+				return this._TOTAL;
+			}
+			set
+			{
+				if ((this._TOTAL != value))
+				{
+					this._TOTAL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROCESSED_DATE", DbType="Date")]
+		public System.Nullable<System.DateTime> PROCESSED_DATE
+		{
+			get
+			{
+				return this._PROCESSED_DATE;
+			}
+			set
+			{
+				if ((this._PROCESSED_DATE != value))
+				{
+					this._PROCESSED_DATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PMT_ID", DbType="Int")]
+		public System.Nullable<int> PMT_ID
+		{
+			get
+			{
+				return this._PMT_ID;
+			}
+			set
+			{
+				if ((this._PMT_ID != value))
+				{
+					this._PMT_ID = value;
 				}
 			}
 		}

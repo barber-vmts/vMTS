@@ -365,7 +365,6 @@ namespace vMTS.Models
             return new SelectList(list, "Value", "Text", value);
         }
 
-
         public List<RegistrationCount> Get_CurrentRegCounts()
         {
             var l = new List<RegistrationCount>();
@@ -498,8 +497,10 @@ namespace vMTS.Models
                             RECEIPT = r.RECEIPT,
                             REG_DATE = r.REG_DATE,
                             CONFIRMED = r.CONFIRMED,
-                            CONFIRMED_DATE = r.CONFIRMED_DATE
-
+                            CONFIRMED_DATE = r.CONFIRMED_DATE,
+                            AGE = r.AGE,
+                            ADDRESS_ID = r.ADDRESS_ID,
+                            
                         });
                     }
                 }
@@ -534,8 +535,9 @@ namespace vMTS.Models
                             CARD_EXP_YR = r.CARD_EXP_YR,
                             CVV = r.CVV,
                             PROCESSED = r.PROCESSED,
-                            TOTAL = r.TOTAL
-
+                            TOTAL = r.TOTAL,
+                            PMT_ID = r.PMT_ID
+                            
                         });
                     }
                 }

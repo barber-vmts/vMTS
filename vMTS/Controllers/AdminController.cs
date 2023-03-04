@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -116,53 +117,160 @@ namespace vMTS.Controllers
         public ActionResult studentedit(Int64 id)
         {
             RaceLookup Race = new RaceLookup();
+            Race.RaceSelectList();
             StateList States = new StateList();
+            States.StateSelectList();
+            StateList DLStates = new StateList();
+            DLStates.StateSelectList();
             NameSuffix Suffix = new NameSuffix();
-            List<SelectListItem> Gender = new List<SelectListItem>();
-            Gender.Add(new SelectListItem
+            Suffix.SuffixSelectList();
+            List<SelectListItem> Gender = new List<SelectListItem>
             {
-                Value = "Male",
-                Text = "M"
+                new SelectListItem
+                {
+                    Value = "Male",
+                    Text = "M"
 
-            });
-            Gender.Add( new SelectListItem
+                },
+                new SelectListItem
+                {
+                    Value = "Female",
+                    Text = "F"
+
+                },
+                new SelectListItem
+                {
+                    Value = "",
+                    Text = ""
+
+                }
+            };
+            List<SelectListItem> Eval = new List<SelectListItem>
             {
-                Value = "Female",
-                Text = "F"
+                new SelectListItem
+                {
+                    Value = "Y",
+                    Text = "Yes"
 
-            });
-            Gender.Add(new SelectListItem
-            {
-                Value = "",
-                Text = ""
+                },
+                new SelectListItem
+                {
+                    Value = "N",
+                    Text = "No"
 
-            });
-            List<SelectListItem> YesNo = new List<SelectListItem>();
-            Gender.Add(new SelectListItem
-            {
-                Value = "Y",
-                Text = "Yes"
+                }
+            };
+            List<SelectListItem> CardType = new List<SelectListItem> {
+                new SelectListItem
+                {
+                    Value = "Visa",
+                    Text = "Visa"
 
-            });
-            Gender.Add(new SelectListItem
-            {
-                Value = "N",
-                Text = "No"
+                },
+                new SelectListItem
+                {
+                    Value = "MasterCard",
+                    Text = "Master Card"
 
-            });
+                },
+                new SelectListItem
+                {
+                    Value = "Discover",
+                    Text = "Discover"
 
-            ViewBag.Suffix = Suffix.SuffixSelectList();
-            ViewBag.RaceCodes = Race.RaceSelectList();
-            ViewBag.States = States.StateSelectList();
-            ViewBag.Gender = new SelectList(Gender, "Value", "Text");
-            ViewBag.YesNo = new SelectList(YesNo, "Value", "Text");
+                },
+                new SelectListItem
+                {
+                    Value = "Gift",
+                    Text = "Gift Card/Certificate"
+                }
+            };
 
             ra.StudentRegistration = ra.Get_StudentRegistration(id);
-
             ra.RegistrationPayment = ra.Get_RegistrationPayment(id);
-            
+
+            var dob = Convert.ToDateTime(ra.StudentRegistration.First().DOB);
+            ra.StudentRegistration.First().DOB = dob.ToString("dd-MM-yyyy");
+
+            foreach (var project in States.list.Where(p => p.Value == ra.StudentRegistration.First().STATE))
+            {
+                project.Selected = true;
+            }
+            foreach (var project in DLStates.list.Where(p => p.Value == ra.StudentRegistration.First().DL_ST))
+            {
+                project.Selected = true;
+            }
+
+            foreach (var project in Suffix.list.Where(p => p.Value == ra.StudentRegistration.First().SUFFIX))
+            {
+                project.Selected = true;
+            }
+
+            foreach (var project in Race.list.Where(p => p.Text == ra.StudentRegistration.First().RACE))
+            {
+                project.Selected = true;
+            }
+
+            foreach (var project in Gender.Where(p => p.Value == ra.StudentRegistration.First().GENDER))
+            {
+                project.Selected = true;
+            }
+
+            foreach (var project in Eval.Where(p => p.Value == ra.StudentRegistration.First().EVAL))
+            {
+                project.Selected = true;
+            }
+            foreach (var project in CardType.Where(p => p.Value == ra.RegistrationPayment.First().PMT_TYPE))
+            {
+                project.Selected = true;
+            }
+
+            DateTime? Start;
+            using (vmts_dataDataContext db = new vmts_dataDataContext())
+            {
+                var sql = (from cl in db.Class_Schedule_views
+                           where cl.CLASS_ID == ra.StudentRegistration.First().CLASS_ID
+                           select (cl)).FirstOrDefault();
+                Start = sql.CLASS_START_DATE;
+            }
+
+            ViewBag.Suffix = Suffix.list;
+            ViewBag.RaceCodes = Race.list;
+            ViewBag.States = States.list;
+            ViewBag.Gender = Gender;
+            ViewBag.YesNo = Eval;
+            ViewBag.CardType = CardType;
+            ViewBag.DLStates = DLStates.list;
+            ViewBag.StartDate = String.Format("{0:d}", Start);
 
             return View(ra);
+        }
+
+        public ActionResult UpdateRegistration(Int32? ADDRESS_ID, Int32? STUDENT_ID, Int32? PMT_ID, string FirstName, string MiddleName, string LastName, string Suffix, string Address1, string Address2, string City, string State, string Zip, string Gender, Int32? Race, string Phone, string Email, DateTime? DOB, Int32? AGE, string Eval, string MOTOR_YR, string MOTOR_MK, string MOTOR_MD, string DL_NUM, string DL_ST, string PMT_TYPE, string CardName, string CardNum, string CardMonth, string CardYear, string CardCVV)
+        {
+
+
+            using (vmts_dataDataContext db = new vmts_dataDataContext())
+            {
+                try
+                {
+                    if (Race == 0)
+                        Race = 8;
+                    db.UpdateRegistration(STUDENT_ID, ADDRESS_ID, PMT_ID, FirstName, MiddleName, LastName, Suffix, Address1, Address2, City, State, Zip, Gender, Race, Phone, Email, DOB, AGE, Eval, MOTOR_YR, MOTOR_MK, MOTOR_MD, DL_NUM, DL_ST, PMT_TYPE, CardName, CardNum, CardMonth, CardYear, CardCVV);
+                    return RedirectToAction("registrations");
+                }
+                catch (Exception e)
+                {
+                    string msg = "";
+                    msg = "Error Updating Registration: Check your entries and try again."; //+e.Message + " " + e.StackTrace;
+
+                    CommunicationModel C = new CommunicationModel();
+                    C.SendErrorEmail(e.Message + Environment.NewLine + "Student Name: " + FirstName + " " + LastName, "EditClassRegistration");
+
+                    C.LogErrorToDB("EditClassRegistration", e.Message, e.StackTrace);
+                }
+            }
+            return RedirectToAction("Error","Home");
         }
 
         public PartialViewResult _studentclass()

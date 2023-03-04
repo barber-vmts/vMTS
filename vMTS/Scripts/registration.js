@@ -863,6 +863,19 @@
     $('#inputCardCVV').blur(function () { CVV(); });
 
     // The Submit Payment button was clicked
+
+    // The Submit Payment button was clicked
+    $('#UpdateRegForm').on("submit", function (e) {
+        //e.preventDefault();
+        var v = ValidatePayment();
+
+        if (v == true) {
+            return true;
+        } else {
+            return false;
+        };
+    });
+
     $('#CourseRegForm').on("submit", function (e) {
         e.preventDefault();
         var v = ValidatePayment();
