@@ -190,7 +190,7 @@ namespace vMTS.Controllers
             ra.RegistrationPayment = ra.Get_RegistrationPayment(id);
 
             var dob = Convert.ToDateTime(ra.StudentRegistration.First().DOB);
-            ra.StudentRegistration.First().DOB = dob.ToString("dd-MM-yyyy");
+            ra.StudentRegistration.First().DOB = dob.ToString("MM-dd-yyyy");
 
             foreach (var project in States.list.Where(p => p.Value == ra.StudentRegistration.First().STATE))
             {
