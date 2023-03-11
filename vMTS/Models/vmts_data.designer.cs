@@ -22,7 +22,7 @@ namespace vMTS.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DB_62333_devvmts")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DB_62333_vmts")]
 	public partial class vmts_dataDataContext : System.Data.Linq.DataContext
 	{
 		

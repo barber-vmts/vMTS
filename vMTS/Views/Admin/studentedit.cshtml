@@ -135,7 +135,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Submit Payment</button>
+                <button type="submit" class="btn btn-success">Save</button>
+                @Html.ActionLink("Cancel", "registrations", "admin", new { @class ="btn btn-primary"})
             </div>
         </fieldset>
     }

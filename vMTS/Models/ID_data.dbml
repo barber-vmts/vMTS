@@ -1,5 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Identity" Class="ID_dataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=tcp:s11.winhost.com;Initial Catalog=DB_62333_identity;Integrated Security=False;User ID=DB_62333_identity_user" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Identity_Prod" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="DB_62333_vmts" Class="vmts_dataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=tcp:s11.winhost.com;Initial Catalog=DB_62333_vmts;Integrated Security=False;User ID=DB_62333_vmts_user" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="vMTS_Prod" Provider="System.Data.SqlClient" />
   <Table Name="dbo.UserList_vw" Member="UserList_vws">
     <Type Name="UserList_vw">
       <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
