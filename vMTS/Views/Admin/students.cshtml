@@ -49,10 +49,10 @@
                     </td>
                 }
                 <!-- EXPORT TO CSV -->
-                <td>
-                    <a href="studentreg/@i.RECEIPT" class="btn-xs btn-info" target="_blank" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="View # - @i.RECEIPT.  ** Will open in a new window **" data-original-title="" title="View Registration">View</a>&nbsp;<a href="_print_studentreg/@i.RECEIPT" class="btn-xs btn-warning" target="_blank" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="Print Reg # - @i.RECEIPT.  ** Will open in a new window **" data-original-title="" title="Print Registration">Print</a>
-                    <input type="button" id="Exp_@i.RECEIPT" name="@i.RECEIPT" class="btn-xs btn-success" value="Export" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Export registration to upload to the state database. Reg # - @i.RECEIPT." data-original-title="" title="Export Registration" />
-                </td>
+            <td>
+                <a href="studentedit/@i.RECEIPT" class="btn-xs btn-primary" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Edit # - @i.RECEIPT.  ** Will open in a new window **" data-original-title="" title="View Registration">Edit</a>&nbsp;<a href="studentreg/@i.RECEIPT" class="btn-xs btn-info" target="_blank" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="View # - @i.RECEIPT.  ** Will open in a new window **" data-original-title="" title="View Registration">View</a>&nbsp;<a href="_print_studentreg/@i.RECEIPT" class="btn-xs btn-warning" target="_blank" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="Print Reg # - @i.RECEIPT.  ** Will open in a new window **" data-original-title="" title="Print Registration">Print</a>
+                <input type="button" id="Exp_@i.RECEIPT" name="@i.RECEIPT" class="btn-xs btn-success" value="Export" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Export registration to upload to the state database. Reg # - @i.RECEIPT." data-original-title="" title="Export Registration" />
+            </td>
                 <!-- CANCEL REGISTRATION -->
                 <td>
                     <span id="CR_@i.RECEIPT" class="hidden"><img src="~/images/ajax-loader.gif" alt="Loading" /></span>

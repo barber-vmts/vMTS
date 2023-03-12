@@ -432,17 +432,19 @@
         } else {
             $('#form_DOB').removeClass('has-error');
 
-            if (age <= 17) {
+            if (age <= 13) {
                 $('#waiver_alert').removeClass('hidden');
-                $('#waiver_alert').html('A parent will need to sign a waiver since you are under 18.');
+                $('#waiver_alert').html('Student must turn 15 within 12 months of the class date to attend and receive a Tennessee license permit.');
+                return false;
+            }
+            else if (age <= 17) {
+                $('#waiver_alert').removeClass('hidden');
+                $('#waiver_alert').html('A parent will need to appear in person the first day of class to sign the liability waiver since you are under 18.');
             } else {
                 $('#waiver_alert').addClass('hidden');
                 $('#waiver_alert').html('&nbsp;');
 
             }
-
-
-
         }
         return isValid;
     }
@@ -861,6 +863,19 @@
     $('#inputCardCVV').blur(function () { CVV(); });
 
     // The Submit Payment button was clicked
+
+    // The Submit Payment button was clicked
+    $('#UpdateRegForm').on("submit", function (e) {
+        //e.preventDefault();
+        var v = ValidatePayment();
+
+        if (v == true) {
+            return true;
+        } else {
+            return false;
+        };
+    });
+
     $('#CourseRegForm').on("submit", function (e) {
         e.preventDefault();
         var v = ValidatePayment();

@@ -54,16 +54,16 @@ namespace vMTS.Models
                 body += "<tr><td>Class will begin at " + string.Format("{0:t}",regList.FirstOrDefault().CLASS_START_TIME) + " on " + string.Format("{0:D}",regList.FirstOrDefault().CLASS_START_DATE) + ".  Plan to arrive a little early to complete some paper work before class begins.</td></tr>";
                 body += "<tr><td>The address of the training site is 270 E. Main Street, Hendersonville, TN 37075.  Note that GPS will take you to the main entrance, west parking lot; we are located on the other side of the plant in the east parking lot.  Come to the Shipping/Receiving entrance next to Pinnacle Bank, across from Simmons Bank.</td></tr>";
 
-                body += "<tr><td>Riding gear includes:<ul><li>DOT helmet - you must provide your own helmet<br><b>Note:</b> If you do not have a helmet, show this confirmation to the staff at Cycle Gear to receive a 10% discount toward a new helmet.  Cycle Gear is located at Rivergate Station, 1677 Gallatin Pike N,Madison, TN 37115</li>";
+                body += "<tr><td>Riding gear includes:<ul><li>DOT helmet - you must provide your own helmet<br><b>Note:</b> If you do not have a helmet, show this confirmation to the staff at Cycle Gear to receive a 10% discount toward a new helmet.  Cycle Gear is located at Rivergate Station, 1677 Gallatin Pike N. Madison, TN 37115</li>";
                 body +="<li>Shatter proof eye wear if using open face helmet</li><li>Long sleeve shirt or jacket must be worn while sitting on the motorcycle and riding.</li><li>Full fingered gloves; cut off gloves not allowed</li><li>Long pants- no holes or exposed skin</li><li>Over the ankle boots with good grip soles</li></ul></td></tr>";
-                body += "<tr><td><b>You Will not be allowed to particiapte in the riding exercises and will forfeit your fee without all the gear.</b></td></tr>";
+                body += "<tr><td><b>You Will not be allowed to participate in the riding exercises and will forfeit your fee without all the gear.</b></td></tr>";
 
                 body += "<tr><td>Please review the Motorcycle Safety Foundation Liability Waiver and Indemnification form by clicking on the link <a href='https://www.learntoridetn.com/images/Liability%20Waiver/MSF-RiderCourseWaiver.pdf' target='_blank'>Liability Waiver</a>. You will sign the form upon your arrival to class.</td></tr>";
 
                 if (regList.FirstOrDefault().CLASS_TYPE == "Basic RiderCourse I")
                 {
                     body += "<tr><td>A requirement to successfully complete the Basic Rider Course and receive a Tennessee Department of Safety completion certificate good toward licensing is to complete the online eCourse located in an accompanying email. We will also include a crossword puzzle in this email to help you prepare for the test.</td></tr>";
-                    body += "<tr><td>Requires a minumum of 4 riders for class to be held.</td></tr>";
+                    body += "<tr><td>Requires a minimum of 4 riders for class to be held.</td></tr>";
 
                     body += "<tr><td>To successfully complete the Basic RiderCourse, you must complete the MSF eCourse (online) and complete the Tennessee Department of Safety and Homeland Security motorcycle knowledge test.</td></tr>";
                     body += "<tr><td><ul><li>Click on <a href='https://www.learntoridetn.com/images/MSF%20eCourse%20Instructions/MSF%20eCourse%20Instructions.pdf' target='_blank'>MSF eCourse</a> for instructions for completing the online class.</li>";
@@ -77,7 +77,7 @@ namespace vMTS.Models
                 {
                     body += "<tr><td>You must come with a DOT street legal motorcycle with all components in good working order, i.e. tires with good tread, both brakes working, all lights working, and plenty of gas in the tank, no physical damage, etc.</td></tr>";
                     body += "<tr><td>You must provide registration and proof of insurance. If you have a borrowed or rented bike, you must bring consent from the owner or a copy of the rental agreement.</td></tr>";
-                    body += "<tr><td>Requires a minumum of 4 riders for class to be held.</td></tr>";
+                    body += "<tr><td>Requires a minimum of 4 riders for class to be held.</td></tr>";
                     body += "<tr><td>To successfully complete the Basic RiderCourse, you must complete the MSF eCourse (online) and complete the Tennessee Department of Safety and Homeland Security motorcycle knowledge test.</td></tr>";
                     body += "<tr><td><ul><li>Click on <a href='https://www.learntoridetn.com/images/MSF%20eCourse%20Instructions/MSF%20eCourse%20Instructions.pdf' target='_blank'>MSF eCourse</a> for instructions for completing the online class.</li>";
                     body += "<li>Click <a href='https://www.learntoridetn.com/images/TN%20Knowledge%20Test%20Prep/TN%20Knowledge%20Test%20Prep.pdf' target='_blank'>Knowledge Test</a> as preparation for the Tennessee knowledge test.</li></ul></td></tr>";
@@ -96,14 +96,14 @@ namespace vMTS.Models
 
                 if (regList.FirstOrDefault().CLASS_TYPE == "Skills Practice and Improvement")
                 {
-                    body += "<tr><td>Requires a minumum of 10 riders for class to be held.</td></tr>";
+                    body += "<tr><td>Requires a minimum of 10 riders for class to be held.</td></tr>";
                 }
-                body += "<tr><td>We will take lots of breaks and there will be a lunch break included.  Feel free to bring a lunch and snacks.  We will provide water.</td></tr>";
+                body += "<tr><td>We will take lots of breaks. Feel free to bring snacks. We will provide water.</td></tr>";
               
                 body += "</table>";
 
                 body += "<table><tr><td><h3>Important Refund/Cancellation Policy</h3></td></tr>";
-                body += "<tr><td>NO REFUNDS will be made, except for course cancellations, at least 7 days in advance of the scheduled class date. One reschedule will be permitted if notified at least 24 hours in advance of the class start time. The cost of the reschedule is $100. If a request is not made within the specified time period, the class fee will be forfeited and a new fee will be charged for a later class.</td></tr>";
+                body += "<tr><td>NO REFUNDS will be made, except for course cancellations, at least 7 days in advance of the scheduled class date. One re-schedule will be permitted if notified at least 24 hours in advance of the class start time. The cost of the reschedule is $100. If a request is not made within the specified time period, the class fee will be forfeited and a new fee will be charged for a later class.</td></tr>";
                 body += "<tr><td>Students who are unable to meet the minimum physical requirements in the opinion of the RiderCoach, or students whose behavior pose a hazard to themselves and/or other students will be asked to discontinue the riding portion of the class with NO REFUND GIVEN. They may stay to observe the remainder of the class but will not be certified for completion. Students must successfully complete the entire class (including the MSF eCourse, written and riding skills evaluation) to receive a completion certificate and MSF completion card.</tr></td></table>";
 
                 body += "<table>";

@@ -1,0 +1,192 @@
+﻿@model vMTS.Models.RegistrationAdministration
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h1>@ViewBag.title</h1>
+
+@if (Model.StudentRegistration.Count() >= 1)
+{
+    var itemList = Model.StudentRegistration.First();
+    using (Html.BeginForm("UpdateRegistration", "Admin", FormMethod.Post, new { id = "UpdateRegForm", @class = "form-vertical", @role = "form" }))
+    {
+        @Html.Hidden("ADDRESS_ID", (object)@itemList.ADDRESS_ID)
+        @Html.Hidden("STUDENT_ID", (object)@itemList.STUDENT_ID)
+        @Html.Hidden("PMT_ID", (object)@Model.RegistrationPayment.First().PMT_ID)
+        @Html.Hidden("START_DATE", (object)String.Format("{0:MM/dd/yyyy}", ViewBag.StartDate))
+
+        <fieldset id="EditForm">
+            <legend>Edit Registration for @itemList.FIRSTNAME&nbsp;@itemList.LASTNAME</legend>
+            <div id="form_FN" class="form-group">
+                <label for="inputFirstName" class="control-label">First Name</label>
+                <input type="text" name="FirstName" value="@itemList.FIRSTNAME" class="form-control" id="inputFirstName" placeholder="First Name as appears on your DL" aria-describedby="fn_addon" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="As appears on driver's license or birth certificate" data-original-title="" title="First Name">
+            </div>
+
+            <div id="form_MN" class="form-group">
+                <label for="inputMiddleName" class="control-label">Middle Name</label>
+                <input type="text" name="MiddleName" value="@itemList.MIDDLENAME" class="form-control" id="inputMiddleName" placeholder="Middle Name/Initialas appears on your DL" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="As appears on driver's license or birth certificate" data-original-title="" title="Middle Name or Initial">
+            </div>
+            <div id="form_LN" class="form-group">
+                <label for="inputLastName" class="control-label">Last Name</label>
+                <input type="text" name="LastName" value="@itemList.LASTNAME" class="form-control" id="inputLastName" placeholder="Last Name as appears on your DL" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="As appears on driver's license or birth certificate" data-original-title="" title="Last Name">
+            </div>
+            <div id="form_Suffix" class="form-group">
+                <label for="inputSsuffix" class="control-label">Suffix</label>
+                @Html.DropDownListFor(x => x.StudentRegistration.First().SUFFIX, (List<SelectListItem>)ViewBag.Suffix, new { @class = "form-control" })
+            </div>
+            <div id="form_ADDR" class="form-group">
+                <div class="input-group">
+                    <label for="inputAddressLine1" class="control-label">Address</label>
+                    <input type="text" name="Address1" value="@itemList.ADDRESS1" class="form-control" id="inputAddressLine1" placeholder="Street Number and Name">
+                    <input type="text" name="Address2" value="@itemList.ADDRESS2" class="form-control" id="inputAddressLine2" placeholder="Apt #, Suite #">
+                </div>
+            </div>
+            <div id="form_CITY" class="form-group">
+                <label for="inputCity" class="control-label">City</label>
+                <input type="text" name="City" value="@itemList.CITY" class="form-control" id="inputCity" placeholder="City">
+            </div>
+            <div id="form_ADDR_ST" class="form-group">
+                <label for="inputState" class="control-label">State</label>
+                @Html.DropDownListFor(x => x.StudentRegistration.First().STATE, (List<SelectListItem>)ViewBag.States, new { @class = "form-control" })
+            </div>
+            <div id="form_ZIP" class="form-group">
+                <label for="inputZip" class="control-label">Zip</label>
+                <input type="text" class="form-control" value="@itemList.ZIP" name="Zip" id="inputZip" placeholder="Zip Code">
+            </div>
+            <div id="form_GN" class="form-group">
+                <label for="Gender" class="control-label">Gender</label>
+                @Html.DropDownListFor(x => x.StudentRegistration.First().GENDER, (List<SelectListItem>)ViewBag.Gender, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label for="Race" class="control-label">
+                    Race
+                </label>
+                @Html.DropDownListFor(x => x.StudentRegistration.First().RACE, (List<SelectListItem>)ViewBag.RaceCodes, new { @class = "form-control" })
+            </div>
+
+            <div id="form_PN" class="form-group">
+                <label for="inputPhone" class="control-label">Phone Number</label>
+                <input type="tel" name="Phone" value="@itemList.PHONE" class="form-control" id="inputPhone" placeholder="Phone Number" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Numbers only, please. i.e.6151234567" data-original-title="" title="Phone Number">
+            </div>
+            <div id="form_EM" class="form-group">
+                <label for="inputEmail" class="control-label">E-Mail</label>
+                <input type="email" name="Email" value="@itemList.EMAIL" class="form-control" id="inputEmail" placeholder="Email Address" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Enter a valid email address. i.e.someone@something.com" data-original-title="" title="Email Address">
+            </div>
+            <div id="form_DOB" class="form-group">
+                <label for="DOB" class="control-label">Date of Birth</label>
+                <input type="text" name="DOB" value="@itemList.DOB" class="form-control" id="inputDOB" placeholder="Birth Date (MM-DD-YYYY)" data-mask="99-99-9999" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Your birth date must be entered in the following format: 2 digit month 2 digit day 4 digit year (MM-DD-YYYY). Example: 01-01-2000 (January 1 2000)" data-original-title="" title="Date of Birth">@*readonly="readonly"*@
+            </div>
+
+            <div id="form_DOB" class="form-group">
+                <label for="AGE" class="control-label">Age</label>
+                <input type="text" name="AGE" value="@itemList.AGE" class="form-control" id="AGE">
+                <div id="waiver_alert" class="alert alert-danger hidden"></div>
+            </div>
+
+            <div id="form_EV" class="form-group">
+                <label for="inputEval" class="control-label">Do you need a motorcycle license?</label>
+                @Html.DropDownListFor(x => x.StudentRegistration.First().EVAL, (List<SelectListItem>)ViewBag.YesNo, new { @class = "form-control" })
+            </div>
+
+            <div id="form_MC_TYPE" class="form-group">
+                <label for="inputMotorYR" class="control-label">What Motorcycle do you have?</label>
+                <input type="text" name="MOTOR_YR" class="form-control" value="@itemList.MOTOR_YR" id="inputMotorYR" placeholder="Year" maxlength="4">
+                <input type="text" name="MOTOR_MK" class="form-control" value="@itemList.MOTOR_MK" id="inputMotorMK" placeholder="Make" maxlength="20">
+                <input type="text" name="MOTOR_MD" class="form-control" value="@itemList.MOTOR_MD" id="inputMotorMD" placeholder="Model" maxlength="20">
+            </div>
+
+            <div id="form_DL_NUM" class="form-group">
+                <label for="inputDLNumber" class="control-label">Drivers License Number</label>
+                <input type="text" name="DL_NUM" value="@itemList.DL_NUM" class="form-control" id="inputDLNumber" placeholder="Driver's License Number">
+            </div>
+            <div id="form_DL_ST" class="form-group">
+                <label for="DL_ST" class="control-label">
+                    State of Drivers License Issued
+                </label>
+                @Html.DropDownListFor(x => x.StudentRegistration.First().DL_ST, (List<SelectListItem>)ViewBag.DLStates, new { @class = "form-control" })
+            </div>
+            <div id="form_PMT_TPE" class="form-group">
+                <label for="inputPaymentType" class="control-label">
+                    Payment Type
+                </label>
+                @Html.DropDownListFor(x => @Model.RegistrationPayment.First().PMT_TYPE, (List<SelectListItem>)ViewBag.CardType, new { @class = "form-control" })
+            </div>
+            <div id="CardFields">
+                <div id="form_CD_NM" class="form-group">
+                    <label for="inputCardName" class="control-label">Name on Card</label>
+                    <input type="text" name="CardName" value="@Model.RegistrationPayment.First().CARDNAME" class="form-control" id="inputCardName" placeholder="Name on Card" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Enter the name as it appears on the card" data-original-title="" title="Card Name">
+                </div>
+                <div id="form_CD_NU" class="form-group">
+                    <label for="inputCardNum" class="control-label">Card Number</label>
+                    <input type="text" name="CardNum" value="@Model.RegistrationPayment.First().CARDNUMBER" class="form-control" id="inputCardNum" placeholder="Card Number" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Enter a valid card number" data-original-title="" title="Card Number">
+                </div>
+            </div>
+            <div id="CC_Fields">
+                <div id="form_CD_EXP" class="form-group">
+                    <label for="inputCardExp" class="control-label">Expiration Date</label>
+                    <input type="number" name="CardMonth" value="@Model.RegistrationPayment.First().CARD_EXP" class="form-control" min="01" max="12" id="inputCardMonth" placeholder="Exp MM" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="The month number of the expiration date. (January = 01, February = 02, etc...)" data-original-title="" title="Card Expiration Month">
+                    &nbsp;/&nbsp;
+                    <input type="number" name="CardYear" value="@Model.RegistrationPayment.First().CARD_EXP_YR" class="form-control" min="2022" id="inputCardYear" placeholder="Exp YYYY" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="The year of the expiration date. The format should be the 4 digit year of expiration." data-original-title="" title="Card Expiration Year">
+                </div>
+                <div id="form_CD_CVV" class="form-group">
+                    <label for="inputCardExp" class="control-label">CVV</label>
+                    <input type="number" name="CardCVV" value="@Model.RegistrationPayment.First().CVV" class="form-control" min="1" max="999" id="inputCardCVV" placeholder="***" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="Enter the card verification value on the back of the card" data-original-title="" title="Card Verification Value">
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Save</button>
+                @Html.ActionLink("Cancel", "registrations", "admin", new { @class ="btn btn-primary"})
+            </div>
+        </fieldset>
+    }
+
+    <div class="modal" id="InvalidAddress" tabindex="-1" role="dialog" aria-labelledby="addrModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="addrModalLabel">Invalid USPS Address</h4>
+                </div>
+                <div class="modal-body">
+                    <h2>The address you entered is invalid.</h2>
+                    <blockquote id="USPSerror"></blockquote>
+                    <p class="lead">Please correct the address you entered:</p>
+                    <blockquote><address id="BadAddressValues"></address></blockquote>
+
+                    <p><small>Tip: make sure you spelled the street address correctly (Dr, Court, Circle, etc...)</small></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Ok">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="RegSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Registration Success</h4>
+                </div>
+                <div class="modal-body">
+                    <h2>Thank You for registering with us.</h2>
+                    <p class="lead">You will receive a class confirmation email soon.</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="regNum" name="regNum" />
+                    <button id="RegConfirm" type="button" class="btn btn-primary">View Confirmation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/registration")
+    }
+}
+else
+{
+    <h2>The registration details could not be found.</h2>
+}
+

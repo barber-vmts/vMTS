@@ -510,6 +510,7 @@
     <Content Include="Views\Admin\Settings\Sponsors.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Admin\studentedit.cshtml" />
     <None Include="Web.Testing.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

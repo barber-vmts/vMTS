@@ -15,9 +15,10 @@ namespace vMTS.Models
 {
     public class NameSuffix
     {
+        public List<SelectListItem> list { get; set; }
         public SelectList SuffixSelectList()
         {
-            List<SelectListItem> list = new List<SelectListItem>();
+            list = new List<SelectListItem>();
             try
             {
                 using (vmts_dataDataContext db = new vmts_dataDataContext())
@@ -43,12 +44,12 @@ namespace vMTS.Models
             return new SelectList(list, "Value", "Text");
         }
     }
-
-        public class RaceLookup
+    public class RaceLookup
         {
-            public SelectList RaceSelectList()
+        public List<SelectListItem> list { get; set; }
+        public SelectList RaceSelectList()
             {
-                List<SelectListItem> list = new List<SelectListItem>();
+            list = new List<SelectListItem>();
                 try
                 {
                     using (vmts_dataDataContext db = new vmts_dataDataContext())
@@ -77,9 +78,10 @@ namespace vMTS.Models
         }
         public class StateList
         {
-            public SelectList StateSelectList()
+        public List<SelectListItem> list { get; set; }
+        public SelectList StateSelectList()
             {
-                List<SelectListItem> list = new List<SelectListItem>();
+            list = new List<SelectListItem>();
                 try
                 {
                     list.Add(new SelectListItem { Value = "AL", Text = "Alabama" });
