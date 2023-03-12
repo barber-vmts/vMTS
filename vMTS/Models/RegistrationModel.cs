@@ -207,7 +207,8 @@ namespace vMTS.Models
                             PHONE = r.PHONE,
                             VERBAL_FLAG = r.VERBAL_FLAG,
                             CONFIRMED = r.CONFIRMED,
-                            CONFIRMED_DATE = r.CONFIRMED_DATE
+                            CONFIRMED_DATE = r.CONFIRMED_DATE,
+                            EVAL = r.EVAL
                         });
                     }
                 }

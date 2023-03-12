@@ -22,7 +22,7 @@ namespace vMTS.Models
             var regList = new List<Registration>();
 
             regList = r.GetConfirmation(id);
-
+                
             var msg = "";
             var body = "";//<h1>THIS IS ONLY A TEST</h1>
             try
@@ -54,9 +54,31 @@ namespace vMTS.Models
                 body += "<tr><td>Class will begin at " + string.Format("{0:t}",regList.FirstOrDefault().CLASS_START_TIME) + " on " + string.Format("{0:D}",regList.FirstOrDefault().CLASS_START_DATE) + ".  Plan to arrive a little early to complete some paper work before class begins.</td></tr>";
                 body += "<tr><td>The address of the training site is 270 E. Main Street, Hendersonville, TN 37075.  Note that GPS will take you to the main entrance, west parking lot; we are located on the other side of the plant in the east parking lot.  Come to the Shipping/Receiving entrance next to Pinnacle Bank, across from Simmons Bank.</td></tr>";
 
-                body += "<tr><td>Riding gear includes:<ul><li>DOT helmet - you must provide your own helmet<br><b>Note:</b> If you do not have a helmet, show this confirmation to the staff at Cycle Gear to receive a 10% discount toward a new helmet.  Cycle Gear is located at Rivergate Station, 1677 Gallatin Pike N. Madison, TN 37115</li>";
-                body +="<li>Shatter proof eye wear if using open face helmet</li><li>Long sleeve shirt or jacket must be worn while sitting on the motorcycle and riding.</li><li>Full fingered gloves; cut off gloves not allowed</li><li>Long pants- no holes or exposed skin</li><li>Over the ankle boots with good grip soles</li></ul></td></tr>";
-                body += "<tr><td><b>You Will not be allowed to participate in the riding exercises and will forfeit your fee without all the gear.</b></td></tr>";
+                if (regList.FirstOrDefault().CLASS_TYPE == "Basic RiderCourse II")
+                {
+                    body += "<tr><td>How to come prepared:<ul><li>DOT street legal motorcycle.</li><li>DOT helmet - you must provide your own helmet<br>";
+                }
+                else if (regList.FirstOrDefault().CLASS_TYPE == "3 Wheel (Trike) Course")
+                {
+                    body += "<tr><td>Riding gear includes:<ul><li>DOT street legal 3-wheel motorcycle.</li><li>DOT helmet - you must provide your own helmet<br>";
+                }
+                else {
+                    body += "<tr><td>Riding gear includes:<ul><li>DOT helmet - you must provide your own helmet<br>";
+                }
+
+                body += "<b>Note:</b> If you do not have a helmet, show this confirmation to the staff at Cycle Gear to receive a 10% discount toward a new helmet.  Cycle Gear is located at Rivergate Station, 1677 Gallatin Pike N. Madison, TN 37115</li>";
+                body +="<li>Shatter proof eyewear if using open face helmet</li><li>Long sleeve shirt or jacket must be worn while sitting on the motorcycle and riding.</li><li>Full fingered gloves; cut off gloves not allowed</li><li>Long pants- no holes or exposed skin</li><li>Over the ankle boots with good grip soles</li></ul></td></tr>";
+
+                if (regList.FirstOrDefault().CLASS_TYPE == "3 Wheel (Trike) Course")
+                {
+                    body += "<tr><td><b>You Will not be allowed to participate in the riding exercises and will forfeit your fee without a street legal 3-wheel motorcycle and all the gear.</b></td></tr>";
+                }
+                else
+                {
+                    body += "<tr><td><b>You Will not be allowed to participate in the riding exercises and will forfeit your fee without all the gear.</b></td></tr>";
+                }
+
+                    
 
                 body += "<tr><td>Please review the Motorcycle Safety Foundation Liability Waiver and Indemnification form by clicking on the link <a href='https://www.learntoridetn.com/images/Liability%20Waiver/MSF-RiderCourseWaiver.pdf' target='_blank'>Liability Waiver</a>. You will sign the form upon your arrival to class.</td></tr>";
 
@@ -75,23 +97,39 @@ namespace vMTS.Models
 
                 if (regList.FirstOrDefault().CLASS_TYPE == "Basic RiderCourse II" || regList.FirstOrDefault().CLASS_TYPE == "Advanced RiderCourse")
                 {
-                    body += "<tr><td>You must come with a DOT street legal motorcycle with all components in good working order, i.e. tires with good tread, both brakes working, all lights working, and plenty of gas in the tank, no physical damage, etc.</td></tr>";
-                    body += "<tr><td>You must provide registration and proof of insurance. If you have a borrowed or rented bike, you must bring consent from the owner or a copy of the rental agreement.</td></tr>";
+                    if (regList.FirstOrDefault().EVAL == "N")
+                    {
+                        body += "<tr><td>A requirement to successfully complete the Basic RiderCourse II and receive a Motorcycle Safety Foundation (MSF) completion card good toward an insurance discount and/or employment requirement is on-time attendance and participation in all riding exercises and discussions.</td></tr>";
+                    }
+                    //body += "<tr><td>You must come with a DOT street legal motorcycle with all components in good working order, i.e. tires with good tread, both brakes working, all lights working, and plenty of gas in the tank, no physical damage, etc.</td></tr>";
+                    //body += "<tr><td>You must provide registration and proof of insurance. If you have a borrowed or rented bike, you must bring consent from the owner or a copy of the rental agreement.</td></tr>";
                     body += "<tr><td>Requires a minimum of 4 riders for class to be held.</td></tr>";
+
+                    if (regList.FirstOrDefault().EVAL == "Y")
+                    {
+                        body += "<tr><td>To successfully complete the Basic RiderCourse, you must complete the MSF eCourse (online) and complete the Tennessee Department of Safety and Homeland Security motorcycle knowledge test.</td></tr>";
+                        body += "<tr><td><ul><li>Click on <a href='https://www.learntoridetn.com/images/MSF%20Street%20Strategies%20eCourse/Enroll_Access_Street_Strategies_eCourse_02.pdf' target='_blank'>Street Strategies eCourse</a> for instructions for completing the online class.</li>";
+                        body += "<li>Click <a href='https://www.learntoridetn.com/images/TN%20Knowledge%20Test%20Prep/TN%20Knowledge%20Test%20Prep.pdf' target='_blank'>Knowledge Test</a> as preparation for the Tennessee knowledge test.</li></ul></td></tr>";
+                        body += "<tr><td>Learning to ride a motorcycle is challenging both physically and mentally, but certainly attainable. We ask that you not schedule any activities during the two days of class, including work, parties and late night outings. Get a good nights rest the night before the class and the night following the first day. Successful completion is up to you.</td><tr>";
+                    }
+                }
+                if (regList.FirstOrDefault().CLASS_TYPE == "3 Wheel (Trike) Course")
+                {
+                    body += "<tr><td>A requirement to successfully complete the Basic Rider Course and receive a Tennessee Department of Safety completion certificate good toward licensing is to complete the online eCourse located in an accompanying email. We will also include a crossword puzzle in this email to help you prepare for the test.</td></tr>";
+                    body += "<tr><td>Requires a minimum of 4 riders for class to be held.</td></tr>";
+
+
                     body += "<tr><td>To successfully complete the Basic RiderCourse, you must complete the MSF eCourse (online) and complete the Tennessee Department of Safety and Homeland Security motorcycle knowledge test.</td></tr>";
-                    body += "<tr><td><ul><li>Click on <a href='https://www.learntoridetn.com/images/MSF%20eCourse%20Instructions/MSF%20eCourse%20Instructions.pdf' target='_blank'>MSF eCourse</a> for instructions for completing the online class.</li>";
+                    body += "<tr><td><ul><li>Click on <a href='https://www.learntoridetn.com/images/MSF%203Wheel%20eCourse/MSF%203Wheel%20Instructions.pdf' target='_blank'>3-Wheel eCourse</a> for instructions for completing the online class.</li>";
                     body += "<li>Click <a href='https://www.learntoridetn.com/images/TN%20Knowledge%20Test%20Prep/TN%20Knowledge%20Test%20Prep.pdf' target='_blank'>Knowledge Test</a> as preparation for the Tennessee knowledge test.</li></ul></td></tr>";
                     body += "<tr><td>Learning to ride a motorcycle is challenging both physically and mentally, but certainly attainable. We ask that you not schedule any activities during the two days of class, including work, parties and late night outings. Get a good nights rest the night before the class and the night following the first day. Successful completion is up to you.</td><tr>";
-                }
 
-                if (regList.FirstOrDefault().CLASS_TYPE == "3 Wheel Course")
-                {
-                    body += "<tr><td>You must come with a DOT street legal trike with all components in good working order, i.e. tires with good tread, both brakes working, clutch properly working, and plenty of gas in the tank, no physical damage, etc.</td></tr>";
-                    body += "<tr><td>You must provide registration and proof of insurance. If you have a borrowed or rented trike, you must bring consent from the owner or a copy of the rental agreement.</td></tr>";
+                    //body += "<tr><td>You must come with a DOT street legal trike with all components in good working order, i.e. tires with good tread, both brakes working, clutch properly working, and plenty of gas in the tank, no physical damage, etc.</td></tr>";
+                    //body += "<tr><td>You must provide registration and proof of insurance. If you have a borrowed or rented trike, you must bring consent from the owner or a copy of the rental agreement.</td></tr>";
 
-                    body += "<tr><td>To help better prepare for class, we suggest reviewing the online study guide at <a href='http://www.msf-usa.org/downloads/3WBRC_Student_Handbook_2010.pdf' target='_blank'>www.msf-usa.org/downloads/3WBRC_Student_Handbook_2010.pdf</a> with study questions beginning on page 51.</td></tr>";
-                    body += "<tr><td>Another good source is the MSF 48 question review at <a href='http://www.msf-usa.org/BRCQuiz.aspx#/H3w0CSdF1x/PlnH05KLo1/SfsW80tFCk' target='_blank'>www.msf-usa.org/BRCQuiz.aspx#/H3w0CSdF1x/PlnH05KLo1/SfsW80tFCk</a>.</td></tr>";
-                    body += "<tr><td>Learning to ride a 3 wheel motorcycle is challenging both physically and mentally, but certainly attainable. We ask that you not schedule any activities during the two days of class, including work, parties and late night outings. Get a good nights rest the night before the class and the night following the first day. Successful completion is up to you.</td><tr>";
+                    //body += "<tr><td>To help better prepare for class, we suggest reviewing the online study guide at <a href='http://www.msf-usa.org/downloads/3WBRC_Student_Handbook_2010.pdf' target='_blank'>www.msf-usa.org/downloads/3WBRC_Student_Handbook_2010.pdf</a> with study questions beginning on page 51.</td></tr>";
+                    //body += "<tr><td>Another good source is the MSF 48 question review at <a href='http://www.msf-usa.org/BRCQuiz.aspx#/H3w0CSdF1x/PlnH05KLo1/SfsW80tFCk' target='_blank'>www.msf-usa.org/BRCQuiz.aspx#/H3w0CSdF1x/PlnH05KLo1/SfsW80tFCk</a>.</td></tr>";
+                    //body += "<tr><td>Learning to ride a 3 wheel motorcycle is challenging both physically and mentally, but certainly attainable. We ask that you not schedule any activities during the two days of class, including work, parties and late night outings. Get a good nights rest the night before the class and the night following the first day. Successful completion is up to you.</td><tr>";
                 }
 
                 if (regList.FirstOrDefault().CLASS_TYPE == "Skills Practice and Improvement")

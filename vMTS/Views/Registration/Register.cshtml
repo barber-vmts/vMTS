@@ -2,13 +2,13 @@
 
 <!-- Google Code for Google ad Registrations Conversion Page -->
 <script type="text/javascript">
-/* <![CDATA[ */
-var google_conversion_id = 876299888;
-var google_conversion_language = "en";
-var google_conversion_format = "3";
-var google_conversion_color = "ffffff";
-var google_conversion_label = "Zcd2CPiX1G4Q8IztoQM";
-var google_remarketing_only = false;
+    /* <![CDATA[ */
+    var google_conversion_id = 876299888;
+    var google_conversion_language = "en";
+    var google_conversion_format = "3";
+    var google_conversion_color = "ffffff";
+    var google_conversion_label = "Zcd2CPiX1G4Q8IztoQM";
+    var google_remarketing_only = false;
 /* ]]> */
 </script>
 <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
@@ -84,11 +84,11 @@ var google_remarketing_only = false;
         </div>
 
         @*<div class="form-group">
-            <label for="inputRace" class="sr-only">
-                Race
-            </label>
-            @Html.DropDownList("inputRace", Model.RaceCodes, "Race", new { @class = "form-control" })
-        </div>*@
+                <label for="inputRace" class="sr-only">
+                    Race
+                </label>
+                @Html.DropDownList("inputRace", Model.RaceCodes, "Race", new { @class = "form-control" })
+            </div>*@
 
         <div id="form_PN" class="form-group">
             <label for="inputPhone" class="sr-only">Phone Number</label>
@@ -153,41 +153,114 @@ var google_remarketing_only = false;
 
     <fieldset id="SurveyForm">
         <legend>Course Prerequisites Confirmation</legend>
-        <div class="card" style="font-weight:bold;">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <input type="checkbox" name="chkBicycle" value="true" required />   I can ride a bicycle.
-                </li>
-                <li class="list-group-item">
-                    <p><input type="checkbox" name="chkECourse" value="true" required />   I acknowledge there is an online eCourse that I must complete before a Tennessee certificate of completion for licensing can be issued. The online eCourse completion is not required prior to the riding portion, but completion of the eCourse is required before a license certificate is issued. It is suggested the eCourse be completed prior to coming to class. Approximate time to complete the course is 5 hours.</p>
-                </li>
-                <li class="list-group-item">
-                    <p><input type="checkbox" name="chkKnowledgeTest" value="true" required />   I acknowledge there is a Tennessee knowledge test that will be administered by VMTS. A score of 80% or higher on the Tennessee knowledge test is successful completion. A practice crossword puzzle will be provided in the registration confirmation to aid in successful completion.</p>
-                </li>
-                <li class="list-group-item">
-                    <p>
-                        In-person on-cycle riding exercises including group activities, followed by an on-cycle skills evaluation is required to receive a Tennessee certificate of completion for licensing. VMTS will provide the use of a training motorcycle.
-                    </p>
-                    <p>
-                        <input type="checkbox" name="chkGear" value="true" required />   I, the student, must provide the proper riding gear to include:
-                        <ul>
-                            <li>DOT helmet.</li>
-                            <li>Eye protection if using an open-face helmet.</li>
-                            <li>Long sleeves while seated and riding the motorcycle.</li>
-                            <li>Full finger gloves of any kind.</li>
-                            <li>Long pants with no holes.</li>
-                            <li>Over the ankle footwear, such as comfortable boots.</li>
-                        </ul>
-                    </p>
-                </li>
-                <li class="list-group-item">
-                    <p><input type="checkbox" name="chkPaymentAgreement" value="true" required />   Debit/credit card payment is required and will be charged to your card soon after registration is complete. Refunds will not be given if cancelled within 7 business days of the class date. However, if cancellation prior to 7 days of scheduled class date, refunds will be made minus the fee for the online eCourse and fees associated with card processing. If VMTS cancels a class, a full refund will be provided with no deduction of fees, or you may select a future date.</p>
-                </li>
-                <li class="list-group-item">
-                    <p><input type="checkbox" name="chkCommunication" value="true" required />   The primary means of communication is via email. You MUST monitor the email address you are providing in the registration process regularly. Monitor your Spam or Trash folders to ensure important messages aren’t missed; sometimes internet service providers will deliver emails to Spam or Trash. It is your responsibility to make sure you receive the emails. You may receive follow-up emails with important information prior to your class date. If you do not receive the confirmation email following registration, contact us immediately by phone or text to 615.414.9042 or email at <a href="mailto:steve.barber@comcast.net">steve.barber@comcast.net</a></p>
-                </li>
-            </ul>
-        </div>
+        @if (ViewBag.ClassRegistration == "Basic RiderCourse II")
+        {
+            <div class="card" style="font-weight:bold;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <p><input type="checkbox" name="chkBicycle" value="true" required />   I acknowledge that I am an experienced motorcyclist and I am required to provide my own motorcycle for use in the class. The motorcycle must meet DOT standards for street use, i.e. adequate tire tread, no frame damage, no wheel damage, operating turn signals, mirrors, etc.</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p><input type="checkbox" name="chkECourse" value="true" required />   I acknowledge that if I am taking the class to obtain a motorcycle license, I am required to complete an online Street Strategies eCourse before a Tennessee certificate of completion for licensing can be issued. The online eCourse completion is not required prior to the riding portion, but completion of the eCourse is required before a license certificate is issued. It is suggested the eCourse be completed prior to coming to class. Approximate time to complete the course is 3 hours. Details of the eCourse will be communicated in the registration confirmation email. The Street Strategies eCourse is not required for licensed riders.</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p><input type="checkbox" name="chkKnowledgeTest" value="true" required />   I acknowledge there is a Tennessee written test required for riders taking the class to obtain a motorcycle license to be administered by VMTS. A score of 80% or higher on the written test is successful completion. A practice crossword puzzle will be provided in the registration confirmation to aid in successful completion. Licensed riders are not required to test.</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p>
+                            <input type="checkbox" name="chkGear" value="true" required />   I, the student, must provide the proper riding gear to include:
+                            <ul>
+                                <li>DOT helmet.</li>
+                                <li>Eye protection if using an open-face helmet.</li>
+                                <li>Long sleeves while seated and riding the motorcycle.</li>
+                                <li>Full finger gloves of any kind.</li>
+                                <li>Long pants with no holes.</li>
+                                <li>Over the ankle footwear, such as comfortable boots.</li>
+                            </ul>
+                        </p>
+                    </li>
+                    <li class="list-group-item">
+                        <p><input type="checkbox" name="chkPaymentAgreement" value="true" required />   Debit/credit card payment is required and will be charged to your card soon after registration is complete. Refunds will not be given if canceled within 7 business days of the class date. However, if cancellation prior to 7 days of scheduled class date, refunds will be made minus the fee for the online eCourse and fees associated with card processing. If VMTS cancels a class, a full refund will be provided with no deduction of fees, or you may select a future date.</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p><input type="checkbox" name="chkCommunication" value="true" required />   The primary means of communication is via email. You MUST monitor the email address you are providing in the registration process regularly. Monitor your Spam or Trash folders to ensure important messages aren’t missed; sometimes internet service providers will deliver emails to Spam or Trash. It is your responsibility to make sure you receive the emails. You may receive follow-up emails with important information prior to your class date. If you do not receive the confirmation email following registration, contact us immediately by phone or text to 615.414.9042 or email at <a href="mailto:steve.barber@comcast.net">steve.barber@comcast.net</a></p>
+                    </li>
+                </ul>
+            </div>
+        }
+        else if (ViewBag.ClassRegistration == "3 Wheel (Trike) Course")
+        {
+            <div class="card" style="font-weight:bold;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <p><input type="checkbox" name="chkBicycle" value="true" required />   I acknowledge that I am required to provide my own 3-wheel motorcycle (trike) for use in the class. The trike must meet DOT standards for street use, i.e. adequate tire tread, no frame damage, no wheel damage, operating turn signals, mirrors, etc. Autocycles are not categorized as a 3-wheel motorcycle; if in doubt, please call Steve at 615-414-9042.</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p><input type="checkbox" name="chkECourse" value="true" required />    I acknowledge there is an online eCourse that I must complete before a Tennessee certificate of completion for licensing can be issued. The online eCourse completion is not required prior to the riding portion, but completion of the eCourse is required before a license certificate is issued. It is suggested the eCourse be completed prior to coming to class. Approximate time to complete the course is 5</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p><input type="checkbox" name="chkKnowledgeTest" value="true" required />   I acknowledge there is a Tennessee knowledge test that will be administered by VMTS. A score of 80% or higher on the Tennessee knowledge test is successful completion. A practice crossword puzzle will be provided in the registration confirmation to aid in successful completion. In-person on-cycle riding exercises including group activities, followed by an on-cycle skills evaluation is required to receive a Tennessee certificate of completion for licensing. VMTS will provide the use of a training motorcycle.</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p>
+                            <input type="checkbox" name="chkGear" value="true" required />   I, the student, must provide the proper riding gear to include:
+                            <ul>
+                                <li>DOT helmet.</li>
+                                <li>Eye protection if using an open-face helmet.</li>
+                                <li>Long sleeves while seated and riding the motorcycle.</li>
+                                <li>Full finger gloves of any kind.</li>
+                                <li>Long pants with no holes.</li>
+                                <li>Over the ankle footwear, such as comfortable boots.</li>
+                            </ul>
+                        </p>
+                    </li>
+                    <li class="list-group-item">
+                        <p><input type="checkbox" name="chkPaymentAgreement" value="true" required />   Debit/credit card payment is required and will be charged to your card soon after registration is complete. Refunds will not be given if canceled within 7 business days of the class date. However, if cancellation prior to 7 days of scheduled class date, refunds will be made minus the fee for the online eCourse and fees associated with card processing. If VMTS cancels a class, a full refund will be provided with no deduction of fees, or you may select a future date.</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p><input type="checkbox" name="chkCommunication" value="true" required />   The primary means of communication is via email. You MUST monitor the email address you are providing in the registration process regularly. Monitor your Spam or Trash folders to ensure important messages aren’t missed; sometimes internet service providers will deliver emails to Spam or Trash. It is your responsibility to make sure you receive the emails. You may receive follow-up emails with important information prior to your class date. If you do not receive the confirmation email following registration, contact us immediately by phone or text to 615.414.9042 or email at <a href="mailto:steve.barber@comcast.net">steve.barber@comcast.net</a></p>
+                    </li>
+                </ul>
+            </div>
+        }
+        else
+        {
+            <div class="card" style="font-weight:bold;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <input type="checkbox" name="chkBicycle" value="true" required />   I can ride a bicycle.
+                    </li>
+                    <li class="list-group-item">
+                        <p><input type="checkbox" name="chkECourse" value="true" required />   I acknowledge there is an online eCourse that I must complete before a Tennessee certificate of completion for licensing can be issued. The online eCourse completion is not required prior to the riding portion, but completion of the eCourse is required before a license certificate is issued. It is suggested the eCourse be completed prior to coming to class. Approximate time to complete the course is 5 hours.</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p><input type="checkbox" name="chkKnowledgeTest" value="true" required />   I acknowledge there is a Tennessee knowledge test that will be administered by VMTS. A score of 80% or higher on the Tennessee knowledge test is successful completion. A practice crossword puzzle will be provided in the registration confirmation to aid in successful completion.</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p>
+                            In-person on-cycle riding exercises including group activities, followed by an on-cycle skills evaluation is required to receive a Tennessee certificate of completion for licensing. VMTS will provide the use of a training motorcycle.
+                        </p>
+                        <p>
+                            <input type="checkbox" name="chkGear" value="true" required />   I, the student, must provide the proper riding gear to include:
+                            <ul>
+                                <li>DOT helmet.</li>
+                                <li>Eye protection if using an open-face helmet.</li>
+                                <li>Long sleeves while seated and riding the motorcycle.</li>
+                                <li>Full finger gloves of any kind.</li>
+                                <li>Long pants with no holes.</li>
+                                <li>Over the ankle footwear, such as comfortable boots.</li>
+                            </ul>
+                        </p>
+                    </li>
+                    <li class="list-group-item">
+                        <p><input type="checkbox" name="chkPaymentAgreement" value="true" required />   Debit/credit card payment is required and will be charged to your card soon after registration is complete. Refunds will not be given if canceled within 7 business days of the class date. However, if cancellation prior to 7 days of scheduled class date, refunds will be made minus the fee for the online eCourse and fees associated with card processing. If VMTS cancels a class, a full refund will be provided with no deduction of fees, or you may select a future date.</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p><input type="checkbox" name="chkCommunication" value="true" required />   The primary means of communication is via email. You MUST monitor the email address you are providing in the registration process regularly. Monitor your Spam or Trash folders to ensure important messages aren’t missed; sometimes internet service providers will deliver emails to Spam or Trash. It is your responsibility to make sure you receive the emails. You may receive follow-up emails with important information prior to your class date. If you do not receive the confirmation email following registration, contact us immediately by phone or text to 615.414.9042 or email at <a href="mailto:steve.barber@comcast.net">steve.barber@comcast.net</a></p>
+                    </li>
+                </ul>
+            </div>
+        }
 
         <div id="SurveyErrors" class="alert alert-danger">
             All survey items must be selected.
@@ -228,7 +301,7 @@ var google_remarketing_only = false;
                     <label for="inputCardExp" class="sr-only">Expiration Date</label>
                     <input type="number" name="CardMonth" class="form-control" min="01" max="12" id="inputCardMonth" placeholder="Exp MM" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="The month number of the expiration date. (January = 01, February = 02, etc...)" data-original-title="" title="Card Expiration Month">
                     &nbsp;/&nbsp;
-                    <input type="number" name="CardYear" class="form-control" min="2015" max="2025"  id="inputCardYear" placeholder="Exp YYYY" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="The year of the expiration date. The format should be the 4 digit year of expiration." data-original-title="" title="Card Expiration Year">
+                    <input type="number" name="CardYear" class="form-control" min="2015" max="2025" id="inputCardYear" placeholder="Exp YYYY" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" data-content="The year of the expiration date. The format should be the 4 digit year of expiration." data-original-title="" title="Card Expiration Year">
                 </div>
                 <div id="form_CD_CVV" class="form-group">
                     <label for="inputCardExp" class="sr-only">CVV</label>
