@@ -43,7 +43,7 @@ namespace vMTS.Models
                     if (regList.FirstOrDefault().AGE == 14)
                     {
                         body += "<h3>The participant is " + regList.FirstOrDefault().AGE + " years old, therefore he/she will not be able to use the certificate until turning 15 years of age.</h3>";
-                    }                    
+                    }
                     else if (regList.FirstOrDefault().AGE <= 13)
                     {
                         body += "<h3>The participant will not be issued a certificate because he/she is only " + regList.FirstOrDefault().AGE + " years of age.</h3>";
@@ -51,12 +51,35 @@ namespace vMTS.Models
                 }
 
                 body += "<table><th>Class Details</th>";
-                body += "<tr><td>Class will begin at " + string.Format("{0:t}",regList.FirstOrDefault().CLASS_START_TIME) + " on " + string.Format("{0:D}",regList.FirstOrDefault().CLASS_START_DATE) + ".  Plan to arrive a little early to complete some paper work before class begins.</td></tr>";
+                body += "<tr><td>Class will begin at " + string.Format("{0:t}", regList.FirstOrDefault().CLASS_START_TIME) + " on " + string.Format("{0:D}", regList.FirstOrDefault().CLASS_START_DATE) + ".  Plan to arrive a little early to complete some paper work before class begins.</td></tr>";
                 body += "<tr><td>The address of the training site is 270 E. Main Street, Hendersonville, TN 37075.  Note that GPS will take you to the main entrance, west parking lot; we are located on the other side of the plant in the east parking lot.  Come to the Shipping/Receiving entrance next to Pinnacle Bank, across from Simmons Bank.</td></tr>";
 
-                body += "<tr><td>Riding gear includes:<ul><li>DOT helmet - you must provide your own helmet<br><b>Note:</b> If you do not have a helmet, show this confirmation to the staff at Cycle Gear to receive a 10% discount toward a new helmet.  Cycle Gear is located at Rivergate Station, 1677 Gallatin Pike N. Madison, TN 37115</li>";
-                body +="<li>Shatter proof eye wear if using open face helmet</li><li>Long sleeve shirt or jacket must be worn while sitting on the motorcycle and riding.</li><li>Full fingered gloves; cut off gloves not allowed</li><li>Long pants- no holes or exposed skin</li><li>Over the ankle boots with good grip soles</li></ul></td></tr>";
-                body += "<tr><td><b>You Will not be allowed to participate in the riding exercises and will forfeit your fee without all the gear.</b></td></tr>";
+                if (regList.FirstOrDefault().CLASS_TYPE == "Basic RiderCourse II")
+                {
+                    body += "<tr><td>How to come prepared:<ul><li>DOT street legal motorcycle.</li><li>DOT helmet - you must provide your own helmet<br>";
+                }
+                else if (regList.FirstOrDefault().CLASS_TYPE == "3 Wheel (Trike) Course")
+                {
+                    body += "<tr><td>Riding gear includes:<ul><li>DOT street legal 3-wheel motorcycle.</li><li>DOT helmet - you must provide your own helmet<br>";
+                }
+                else
+                {
+                    body += "<tr><td>Riding gear includes:<ul><li>DOT helmet - you must provide your own helmet<br>";
+                }
+
+                body += "<b>Note:</b> If you do not have a helmet, show this confirmation to the staff at Cycle Gear to receive a 10% discount toward a new helmet.  Cycle Gear is located at Rivergate Station, 1677 Gallatin Pike N. Madison, TN 37115</li>";
+                body += "<li>Shatter proof eyewear if using open face helmet</li><li>Long sleeve shirt or jacket must be worn while sitting on the motorcycle and riding.</li><li>Full fingered gloves; cut off gloves not allowed</li><li>Long pants- no holes or exposed skin</li><li>Over the ankle boots with good grip soles</li></ul></td></tr>";
+
+                if (regList.FirstOrDefault().CLASS_TYPE == "3 Wheel (Trike) Course")
+                {
+                    body += "<tr><td><b>You Will not be allowed to participate in the riding exercises and will forfeit your fee without a street legal 3-wheel motorcycle and all the gear.</b></td></tr>";
+                }
+                else
+                {
+                    body += "<tr><td><b>You Will not be allowed to participate in the riding exercises and will forfeit your fee without all the gear.</b></td></tr>";
+                }
+
+
 
                 body += "<tr><td>Please review the Motorcycle Safety Foundation Liability Waiver and Indemnification form by clicking on the link <a href='https://www.learntoridetn.com/images/Liability%20Waiver/MSF-RiderCourseWaiver.pdf' target='_blank'>Liability Waiver</a>. You will sign the form upon your arrival to class.</td></tr>";
 
@@ -75,23 +98,39 @@ namespace vMTS.Models
 
                 if (regList.FirstOrDefault().CLASS_TYPE == "Basic RiderCourse II" || regList.FirstOrDefault().CLASS_TYPE == "Advanced RiderCourse")
                 {
-                    body += "<tr><td>You must come with a DOT street legal motorcycle with all components in good working order, i.e. tires with good tread, both brakes working, all lights working, and plenty of gas in the tank, no physical damage, etc.</td></tr>";
-                    body += "<tr><td>You must provide registration and proof of insurance. If you have a borrowed or rented bike, you must bring consent from the owner or a copy of the rental agreement.</td></tr>";
+                    if (regList.FirstOrDefault().EVAL == "N")
+                    {
+                        body += "<tr><td>A requirement to successfully complete the Basic RiderCourse II and receive a Motorcycle Safety Foundation (MSF) completion card good toward an insurance discount and/or employment requirement is on-time attendance and participation in all riding exercises and discussions.</td></tr>";
+                    }
+                    //body += "<tr><td>You must come with a DOT street legal motorcycle with all components in good working order, i.e. tires with good tread, both brakes working, all lights working, and plenty of gas in the tank, no physical damage, etc.</td></tr>";
+                    //body += "<tr><td>You must provide registration and proof of insurance. If you have a borrowed or rented bike, you must bring consent from the owner or a copy of the rental agreement.</td></tr>";
                     body += "<tr><td>Requires a minimum of 4 riders for class to be held.</td></tr>";
+
+                    if (regList.FirstOrDefault().EVAL == "Y")
+                    {
+                        body += "<tr><td>To successfully complete the Basic RiderCourse, you must complete the MSF eCourse (online) and complete the Tennessee Department of Safety and Homeland Security motorcycle knowledge test.</td></tr>";
+                        body += "<tr><td><ul><li>Click on <a href='https://www.learntoridetn.com/images/MSF%20Street%20Strategies%20eCourse/Enroll_Access_Street_Strategies_eCourse_02.pdf' target='_blank'>Street Strategies eCourse</a> for instructions for completing the online class.</li>";
+                        body += "<li>Click <a href='https://www.learntoridetn.com/images/TN%20Knowledge%20Test%20Prep/TN%20Knowledge%20Test%20Prep.pdf' target='_blank'>Knowledge Test</a> as preparation for the Tennessee knowledge test.</li></ul></td></tr>";
+                        //body += "<tr><td>Learning to ride a motorcycle is challenging both physically and mentally, but certainly attainable. We ask that you not schedule any activities during the two days of class, including work, parties and late night outings. Get a good nights rest the night before the class and the night following the first day. Successful completion is up to you.</td><tr>";
+                    }
+                }
+                if (regList.FirstOrDefault().CLASS_TYPE == "3 Wheel (Trike) Course")
+                {
+                    body += "<tr><td>A requirement to successfully complete the Basic Rider Course and receive a Tennessee Department of Safety completion certificate good toward licensing is to complete the online eCourse located in an accompanying email. We will also include a crossword puzzle in this email to help you prepare for the test.</td></tr>";
+                    body += "<tr><td>Requires a minimum of 4 riders for class to be held.</td></tr>";
+
+
                     body += "<tr><td>To successfully complete the Basic RiderCourse, you must complete the MSF eCourse (online) and complete the Tennessee Department of Safety and Homeland Security motorcycle knowledge test.</td></tr>";
-                    body += "<tr><td><ul><li>Click on <a href='https://www.learntoridetn.com/images/MSF%20eCourse%20Instructions/MSF%20eCourse%20Instructions.pdf' target='_blank'>MSF eCourse</a> for instructions for completing the online class.</li>";
+                    body += "<tr><td><ul><li>Click on <a href='https://www.learntoridetn.com/images/MSF%203Wheel%20eCourse/MSF%203Wheel%20Instructions.pdf' target='_blank'>3-Wheel eCourse</a> for instructions for completing the online class.</li>";
                     body += "<li>Click <a href='https://www.learntoridetn.com/images/TN%20Knowledge%20Test%20Prep/TN%20Knowledge%20Test%20Prep.pdf' target='_blank'>Knowledge Test</a> as preparation for the Tennessee knowledge test.</li></ul></td></tr>";
                     body += "<tr><td>Learning to ride a motorcycle is challenging both physically and mentally, but certainly attainable. We ask that you not schedule any activities during the two days of class, including work, parties and late night outings. Get a good nights rest the night before the class and the night following the first day. Successful completion is up to you.</td><tr>";
-                }
 
-                if (regList.FirstOrDefault().CLASS_TYPE == "3 Wheel Course")
-                {
-                    body += "<tr><td>You must come with a DOT street legal trike with all components in good working order, i.e. tires with good tread, both brakes working, clutch properly working, and plenty of gas in the tank, no physical damage, etc.</td></tr>";
-                    body += "<tr><td>You must provide registration and proof of insurance. If you have a borrowed or rented trike, you must bring consent from the owner or a copy of the rental agreement.</td></tr>";
+                    //body += "<tr><td>You must come with a DOT street legal trike with all components in good working order, i.e. tires with good tread, both brakes working, clutch properly working, and plenty of gas in the tank, no physical damage, etc.</td></tr>";
+                    //body += "<tr><td>You must provide registration and proof of insurance. If you have a borrowed or rented trike, you must bring consent from the owner or a copy of the rental agreement.</td></tr>";
 
-                    body += "<tr><td>To help better prepare for class, we suggest reviewing the online study guide at <a href='http://www.msf-usa.org/downloads/3WBRC_Student_Handbook_2010.pdf' target='_blank'>www.msf-usa.org/downloads/3WBRC_Student_Handbook_2010.pdf</a> with study questions beginning on page 51.</td></tr>";
-                    body += "<tr><td>Another good source is the MSF 48 question review at <a href='http://www.msf-usa.org/BRCQuiz.aspx#/H3w0CSdF1x/PlnH05KLo1/SfsW80tFCk' target='_blank'>www.msf-usa.org/BRCQuiz.aspx#/H3w0CSdF1x/PlnH05KLo1/SfsW80tFCk</a>.</td></tr>";
-                    body += "<tr><td>Learning to ride a 3 wheel motorcycle is challenging both physically and mentally, but certainly attainable. We ask that you not schedule any activities during the two days of class, including work, parties and late night outings. Get a good nights rest the night before the class and the night following the first day. Successful completion is up to you.</td><tr>";
+                    //body += "<tr><td>To help better prepare for class, we suggest reviewing the online study guide at <a href='http://www.msf-usa.org/downloads/3WBRC_Student_Handbook_2010.pdf' target='_blank'>www.msf-usa.org/downloads/3WBRC_Student_Handbook_2010.pdf</a> with study questions beginning on page 51.</td></tr>";
+                    //body += "<tr><td>Another good source is the MSF 48 question review at <a href='http://www.msf-usa.org/BRCQuiz.aspx#/H3w0CSdF1x/PlnH05KLo1/SfsW80tFCk' target='_blank'>www.msf-usa.org/BRCQuiz.aspx#/H3w0CSdF1x/PlnH05KLo1/SfsW80tFCk</a>.</td></tr>";
+                    //body += "<tr><td>Learning to ride a 3 wheel motorcycle is challenging both physically and mentally, but certainly attainable. We ask that you not schedule any activities during the two days of class, including work, parties and late night outings. Get a good nights rest the night before the class and the night following the first day. Successful completion is up to you.</td><tr>";
                 }
 
                 if (regList.FirstOrDefault().CLASS_TYPE == "Skills Practice and Improvement")
@@ -99,7 +138,7 @@ namespace vMTS.Models
                     body += "<tr><td>Requires a minimum of 10 riders for class to be held.</td></tr>";
                 }
                 body += "<tr><td>We will take lots of breaks. Feel free to bring snacks. We will provide water.</td></tr>";
-              
+
                 body += "</table>";
 
                 body += "<table><tr><td><h3>Important Refund/Cancellation Policy</h3></td></tr>";
@@ -107,9 +146,8 @@ namespace vMTS.Models
                 body += "<tr><td>Students who are unable to meet the minimum physical requirements in the opinion of the RiderCoach, or students whose behavior pose a hazard to themselves and/or other students will be asked to discontinue the riding portion of the class with NO REFUND GIVEN. They may stay to observe the remainder of the class but will not be certified for completion. Students must successfully complete the entire class (including the MSF eCourse, written and riding skills evaluation) to receive a completion certificate and MSF completion card.</tr></td></table>";
 
                 body += "<table>";
-                body += "<tr><td>If links in the email do not work, copy and paste them into your browser</td></tr>";
-                body += "<tr><td>Do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to 615.414.9042 or email at <a href='mailto:steve.barber@comcast.net'>steve.barber@comcast.net</a>. ";
-
+                body += "<tr><td>If links in the email do not work, copy and paste them into your browser do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to 615.414.9042 or email at <a href='mailto:steve.barber@comcast.net'>steve.barber@comcast.net</a>.</tr></td>";
+                body += "</table>";
                 MailMessage m = new MailMessage();
                 m.From = new MailAddress("registration@learntoridetn.com");
                 m.To.Add(new MailAddress(regList.FirstOrDefault().EMAIL));
@@ -171,7 +209,7 @@ namespace vMTS.Models
                     send = true;
 
                 }
-                else if(payList.FirstOrDefault().PMT_TYPE == "Visa" || payList.FirstOrDefault().PMT_TYPE == "MasterCard" || payList.FirstOrDefault().PMT_TYPE == "Discover") // CREDIT CARD PAYMENT 
+                else if (payList.FirstOrDefault().PMT_TYPE == "Visa" || payList.FirstOrDefault().PMT_TYPE == "MasterCard" || payList.FirstOrDefault().PMT_TYPE == "Discover") // CREDIT CARD PAYMENT 
                 {
                     body += "<table><tr><td>" + string.Format("{0:C}", payList.FirstOrDefault().TOTAL) + " has been charged to the following credit/debit card.</td></tr>";
                     body += "<tr><td>Processed Date: " + string.Format("{0:D}", DateTime.Now + "</td></tr>");
@@ -195,12 +233,40 @@ namespace vMTS.Models
 
                 }
 
-                body += "<table><th>Important Refund/Cancellation Policy</th>";
-                body += "<tr><td>NO REFUNDS will be made, except for course cancellations, at least 14 days in advance of the scheduled class date. One reschedule will be permitted if notified at least 24 hours in advance of the class start time. The cost of the reschedule is $100. If a request is not made within the specified time period, the class fee will be forfeited and a new fee will be charged for a later class.</td></tr>";
-                body += "<tr><td>Students who are unable to meet the minimum physical requirements in the opinion of the RiderCoach, or students whose behavior pose a hazard to themselves and/or other students will be asked to discontinue the riding portion of the class with NO REFUND GIVEN. They may stay to observe the remainder of the class but will not be certified for completion. Students must successfully complete the entire class (including the written and riding skills evaluation) to receive a completion certificate and MSF card completion card.</tr></td></table>";
+                if ((regList.FirstOrDefault().EVAL == "Y" && regList.FirstOrDefault().CLASS_TYPE == "Basic RiderCourse II") ||
+                    (regList.FirstOrDefault().EVAL == "Y" && regList.FirstOrDefault().CLASS_TYPE == "Basic RiderCourse I") ||
+                    (regList.FirstOrDefault().EVAL == "Y" && regList.FirstOrDefault().CLASS_TYPE == "3 Wheel (Trike) Course"))
+                {
+                    body += "<table><tr><td>Students must successfully complete the entire class (including the MSF eCourse, written and riding skills evaluation) to receive a completion certificate and MSF completion card.</td></tr>";
+                    body += "<br />";
+                    body += "<tr><td>If links in the email do not work, copy and paste them into your browser do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to 615.414.9042 or email at <a href='mailto:steve.barber@comcast.net'>steve.barber@comcast.net</a>.</tr></td>";
+                    body += "</table>";
 
-                body += "<table><tr><td>Do not reply to this email.  If you need assistance, please contact us here: <a href='www.learntoridetn.com/home/contact' target='_blank'>learntoridetn.com/home/contact</a></td></tr></table>";
-                
+                    body += "<table><th>Important Refund/Cancellation Policy</th>";
+                    body += "<tr><td>NO REFUNDS will be made, except for course cancellations, at least 7 days in advance of the scheduled class date. One re-schedule will be permitted if notified at least 24 hours in advance of the class start time. The cost of the reschedule is $100. If a request is not made within the specified time period, the class fee will be forfeited and a new fee will be charged for a later class.</td></tr>";
+                    body += "<br />";
+                    body += "<tr><td>Students who are unable to meet the minimum physical requirements in the opinion of the RiderCoach, or students whose behavior pose a hazard to themselves and/or other students will be asked to discontinue the riding portion of the class with NO REFUND GIVEN. They may stay to observe the remainder of the class but will not be certified for completion.</tr></td></table>";
+
+                    send = true;
+                }
+                else if (regList.FirstOrDefault().EVAL == "N" && regList.FirstOrDefault().CLASS_TYPE == "Basic RiderCourse II")
+                {
+                    body += "<table><th>Important Refund/Cancellation Policy</th>";
+                    body += "<tr><td>NO REFUNDS will be made, except for course cancellations, at least 7 days in advance of the scheduled class date. One re-schedule will be permitted if notified at least 24 hours in advance of the class start time. The cost of the reschedule is $100. If a request is not made within the specified time period, the class fee will be forfeited and a new fee will be charged for a later class.</td></tr>";
+                    body += "<br />";
+                    body += "<tr><td>Students who are unable to meet the minimum physical requirements in the opinion of the RiderCoach, or students whose behavior pose a hazard to themselves and/or other students will be asked to discontinue the riding portion of the class with NO REFUND GIVEN. They may stay to observe the remainder of the class but will not be certified for completion. Students must successfully complete the entire class to receive a MSF completion card.</tr></td></table>";
+                    body += "<table><tr><td>If links in the email do not work, copy and paste them into your browser do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to 615.414.9042 or email at <a href='mailto:steve.barber@comcast.net'>steve.barber@comcast.net</td></tr></table>";
+                }
+                else
+                {
+                    body += "<table><th>Important Refund/Cancellation Policy</th>";
+                    body += "<tr><td>NO REFUNDS will be made, except for course cancellations, at least 14 days in advance of the scheduled class date. One reschedule will be permitted if notified at least 24 hours in advance of the class start time. The cost of the reschedule is $100. If a request is not made within the specified time period, the class fee will be forfeited and a new fee will be charged for a later class.</td></tr>";
+                    body += "<br />";
+                    body += "<tr><td>Students who are unable to meet the minimum physical requirements in the opinion of the RiderCoach, or students whose behavior pose a hazard to themselves and/or other students will be asked to discontinue the riding portion of the class with NO REFUND GIVEN. They may stay to observe the remainder of the class but will not be certified for completion. Students must successfully complete the entire class (including the written and riding skills evaluation) to receive a completion certificate and MSF card completion card.</tr></td></table>";
+                    
+                    body += "<table><tr><td>If links in the email do not work, copy and paste them into your browser do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to 615.414.9042 or email at <a href='mailto:steve.barber@comcast.net'>steve.barber@comcast.net</td></tr></table>";
+                }
+
                 MailMessage m = new MailMessage();
                 m.From = new MailAddress("registration@learntoridetn.com");
                 m.To.Add(new MailAddress(regList.FirstOrDefault().EMAIL));
@@ -217,7 +283,7 @@ namespace vMTS.Models
                 {
                     sc.Send(m);
                 }
-                
+
                 msg = "Sent";
 
             }
@@ -276,20 +342,21 @@ namespace vMTS.Models
         public string SendConfirmationCode(string email, string code)
         {
             var msg = "";
-            try { 
-            
-            MailMessage m = new MailMessage();
-            m.From = new MailAddress("support@learntoridetn.com");
-            m.To.Add(new MailAddress(email));
-            m.Subject = "vMTS Support";
-            m.IsBodyHtml = true;
-            m.Body = code;
+            try
+            {
 
-            SmtpClient sc = new SmtpClient(smtp);
-            sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
-            sc.Send(m);
+                MailMessage m = new MailMessage();
+                m.From = new MailAddress("support@learntoridetn.com");
+                m.To.Add(new MailAddress(email));
+                m.Subject = "vMTS Support";
+                m.IsBodyHtml = true;
+                m.Body = code;
 
-            msg = "Code Sent";
+                SmtpClient sc = new SmtpClient(smtp);
+                sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
+                sc.Send(m);
+
+                msg = "Code Sent";
 
             }
             catch (Exception e)
@@ -300,7 +367,7 @@ namespace vMTS.Models
             return msg;
         }
 
-        public void SendErrorEmail(string errorMsg,string method)
+        public void SendErrorEmail(string errorMsg, string method)
         {
             try
             {
@@ -324,7 +391,7 @@ namespace vMTS.Models
                 SmtpClient sc = new SmtpClient(smtp);
                 sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
 
-                    sc.Send(m);
+                sc.Send(m);
 
             }
             catch (Exception e)

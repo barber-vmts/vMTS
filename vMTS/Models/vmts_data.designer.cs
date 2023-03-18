@@ -417,8 +417,10 @@ namespace vMTS.Models
 		private System.Nullable<System.DateTime> _CONFIRMED_DATE;
 		
 		private System.Nullable<bool> _PROCESSED;
-		
-		public Registration()
+
+        private string _EVAL;
+
+        public Registration()
 		{
 		}
 		
@@ -933,7 +935,23 @@ namespace vMTS.Models
 				}
 			}
 		}
-	}
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EVAL", DbType = "NVarChar(1)")]
+        public string EVAL
+        {
+            get
+            {
+                return this._EVAL;
+            }
+            set
+            {
+                if ((this._EVAL != value))
+                {
+                    this._EVAL = value;
+                }
+            }
+        }
+    }
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RACE_LKP")]
 	public partial class RACE_LKP : INotifyPropertyChanging, INotifyPropertyChanged
