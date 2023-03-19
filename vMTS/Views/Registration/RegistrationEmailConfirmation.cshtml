@@ -1,0 +1,16 @@
+﻿
+<div class="panel panel-success">
+    <div class="panel-heading"><h3 class="panel-title">Registration Email Confirmation</h3></div>
+    <div class="panel-body">
+        @if (string.IsNullOrEmpty(ViewBag.HtmlStr))
+        {
+            <h2 class="text-danger">An error occurred while processing your request. Please try it again or Contact Us</h2>
+        }
+        else
+        {
+            @Html.Raw(ViewBag.HtmlStr)
+        }
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/registration")

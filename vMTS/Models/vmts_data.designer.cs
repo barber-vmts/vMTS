@@ -79,14 +79,6 @@ namespace vMTS.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Registration> Registrations
-		{
-			get
-			{
-				return this.GetTable<Registration>();
-			}
-		}
-		
 		public System.Data.Linq.Table<RACE_LKP> RACE_LKPs
 		{
 			get
@@ -116,6 +108,14 @@ namespace vMTS.Models
 			get
 			{
 				return this.GetTable<RegistrationCount>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Registration> Registrations
+		{
+			get
+			{
+				return this.GetTable<Registration>();
 			}
 		}
 		
@@ -175,51 +175,6 @@ namespace vMTS.Models
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.NewRegistration")]
-		public int NewRegistration(
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="COURSE_ID", DbType="Int")] System.Nullable<int> cOURSE_ID, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FIRSTNAME", DbType="VarChar(50)")] string fIRSTNAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MIDDLENAME", DbType="NVarChar(50)")] string mIDDLENAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LASTNAME", DbType="VarChar(75)")] string lASTNAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUFFIX", DbType="NVarChar(10)")] string sUFFIX, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ADDRESS1", DbType="VarChar(150)")] string aDDRESS1, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ADDRESS2", DbType="VarChar(150)")] string aDDRESS2, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CITY", DbType="VarChar(100)")] string cITY, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="STATE", DbType="VarChar(2)")] string sTATE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ZIP", DbType="VarChar(5)")] string zIP, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="GDR", DbType="VarChar(1)")] string gDR, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="RACE", DbType="Int")] System.Nullable<int> rACE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PHONE", DbType="VarChar(11)")] string pHONE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EMAIL", DbType="VarChar(75)")] string eMAIL, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DOB", DbType="Date")] System.Nullable<System.DateTime> dOB, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="AGE", DbType="Int")] System.Nullable<int> aGE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EVAL", DbType="VarChar(1)")] string eVAL, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MOTOR_YR", DbType="VarChar(4)")] string mOTOR_YR, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MOTOR_MK", DbType="VarChar(20)")] string mOTOR_MK, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MOTOR_MD", DbType="VarChar(20)")] string mOTOR_MD, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DL_NUM", DbType="VarChar(50)")] string dL_NUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DL_STATE", DbType="VarChar(2)")] string dL_STATE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PMT_TYPE", DbType="VarChar(50)")] string pMT_TYPE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CARD_NAME", DbType="VarChar(150)")] string cARD_NAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CARD_NUM", DbType="VarChar(22)")] string cARD_NUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EXP_MN", DbType="VarChar(2)")] string eXP_MN, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EXP_YR", DbType="VarChar(4)")] string eXP_YR, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CVV", DbType="VarChar(3)")] string cVV, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROMO", DbType="VarChar(10)")] string pROMO, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROMO_VALUE", DbType="Money")] System.Nullable<decimal> pROMO_VALUE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPT", DbType="BigInt")] ref System.Nullable<long> rECEIPT)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cOURSE_ID, fIRSTNAME, mIDDLENAME, lASTNAME, sUFFIX, aDDRESS1, aDDRESS2, cITY, sTATE, zIP, gDR, rACE, pHONE, eMAIL, dOB, aGE, eVAL, mOTOR_YR, mOTOR_MK, mOTOR_MD, dL_NUM, dL_STATE, pMT_TYPE, cARD_NAME, cARD_NUM, eXP_MN, eXP_YR, cVV, pROMO, pROMO_VALUE, rECEIPT);
-			rECEIPT = ((System.Nullable<long>)(result.GetParameterValue(30)));
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetRegistration", IsComposable=true)]
-		public IQueryable<GetRegistrationResult> GetRegistration([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPT", DbType="BigInt")] System.Nullable<long> rECEIPT)
-		{
-			return this.CreateMethodCallQuery<GetRegistrationResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rECEIPT);
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetPayment", IsComposable=true)]
 		public IQueryable<GetPaymentResult> GetPayment([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPT_ID", DbType="BigInt")] System.Nullable<long> rECEIPT_ID)
 		{
@@ -260,6 +215,58 @@ namespace vMTS.Models
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CVV", DbType="VarChar(3)")] string cVV)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), sTD_NUMBER, aDDRESS_ID, pMT_ID, fIRSTNAME, mIDDLE_NAME, lASTNAME, sUFFIX, aDDRESS1, aDDRESS2, cITY, sTATE, zIP, gENDER, rACE, pHONE, eMAIL, dOB, aGE, eVAL, mOTOR_YR, mOTOR_MK, mOTOR_MD, dL_NUM, dL_ST, pMT_TYPE, cARD_NAME, cARD_NUM, eXP_MN, eXP_YR, cVV);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UpdateRegistrationEmailConfirm")]
+		public int UpdateRegistrationEmailConfirm([global::System.Data.Linq.Mapping.ParameterAttribute(Name="EMAIL_ID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> eMAIL_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="EMAIL_CONFIRMED", DbType="Bit")] System.Nullable<bool> eMAIL_CONFIRMED)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), eMAIL_ID, eMAIL_CONFIRMED);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetRegistration", IsComposable=true)]
+		public IQueryable<GetRegistrationResult> GetRegistration([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPT", DbType="BigInt")] System.Nullable<long> rECEIPT)
+		{
+			return this.CreateMethodCallQuery<GetRegistrationResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), rECEIPT);
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.NewRegistration")]
+		public int NewRegistration(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="COURSE_ID", DbType="Int")] System.Nullable<int> cOURSE_ID, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FIRSTNAME", DbType="VarChar(50)")] string fIRSTNAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MIDDLENAME", DbType="NVarChar(50)")] string mIDDLENAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LASTNAME", DbType="VarChar(75)")] string lASTNAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUFFIX", DbType="NVarChar(10)")] string sUFFIX, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ADDRESS1", DbType="VarChar(150)")] string aDDRESS1, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ADDRESS2", DbType="VarChar(150)")] string aDDRESS2, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CITY", DbType="VarChar(100)")] string cITY, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="STATE", DbType="VarChar(2)")] string sTATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ZIP", DbType="VarChar(5)")] string zIP, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="GDR", DbType="VarChar(1)")] string gDR, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="RACE", DbType="Int")] System.Nullable<int> rACE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PHONE", DbType="VarChar(11)")] string pHONE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EMAIL", DbType="VarChar(75)")] string eMAIL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DOB", DbType="Date")] System.Nullable<System.DateTime> dOB, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="AGE", DbType="Int")] System.Nullable<int> aGE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EVAL", DbType="VarChar(1)")] string eVAL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MOTOR_YR", DbType="VarChar(4)")] string mOTOR_YR, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MOTOR_MK", DbType="VarChar(20)")] string mOTOR_MK, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MOTOR_MD", DbType="VarChar(20)")] string mOTOR_MD, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DL_NUM", DbType="VarChar(50)")] string dL_NUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DL_STATE", DbType="VarChar(2)")] string dL_STATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PMT_TYPE", DbType="VarChar(50)")] string pMT_TYPE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CARD_NAME", DbType="VarChar(150)")] string cARD_NAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CARD_NUM", DbType="VarChar(22)")] string cARD_NUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EXP_MN", DbType="VarChar(2)")] string eXP_MN, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EXP_YR", DbType="VarChar(4)")] string eXP_YR, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CVV", DbType="VarChar(3)")] string cVV, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROMO", DbType="VarChar(10)")] string pROMO, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROMO_VALUE", DbType="Money")] System.Nullable<decimal> pROMO_VALUE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPT", DbType="BigInt")] ref System.Nullable<long> rECEIPT)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cOURSE_ID, fIRSTNAME, mIDDLENAME, lASTNAME, sUFFIX, aDDRESS1, aDDRESS2, cITY, sTATE, zIP, gDR, rACE, pHONE, eMAIL, dOB, aGE, eVAL, mOTOR_YR, mOTOR_MK, mOTOR_MD, dL_NUM, dL_STATE, pMT_TYPE, cARD_NAME, cARD_NUM, eXP_MN, eXP_YR, cVV, pROMO, pROMO_VALUE, rECEIPT);
+			rECEIPT = ((System.Nullable<long>)(result.GetParameterValue(30)));
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -349,609 +356,6 @@ namespace vMTS.Models
 			}
 		}
 	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Registrations")]
-	public partial class Registration
-	{
-		
-		private long _RECEIPT;
-		
-		private string _REG_DATE;
-		
-		private int _CLASS_ID;
-		
-		private string _CLASS_TYPE;
-		
-		private string _CLASS_DAY;
-		
-		private System.Nullable<System.DateTime> _CLASS_START_DATE;
-		
-		private System.Nullable<System.DateTime> _CLASS_END_DATE;
-		
-		private string _NAME;
-		
-		private string _SUFFIX;
-		
-		private string _ADDRESS;
-		
-		private string _CITY;
-		
-		private string _STATE;
-		
-		private string _ZIP;
-		
-		private string _GENDER;
-		
-		private string _RACE;
-		
-		private System.Nullable<System.DateTime> _DOB;
-		
-		private System.Nullable<int> _AGE;
-		
-		private System.Data.Linq.Binary _DL_NUM;
-		
-		private System.Data.Linq.Binary _DL_ST;
-		
-		private int _PMT_ID;
-		
-		private System.Nullable<bool> _WAIVER;
-		
-		private string _EMAIL;
-		
-		private string _PHONE;
-		
-		private System.Nullable<System.TimeSpan> _CLASS_START_TIME;
-		
-		private System.Nullable<System.TimeSpan> _CLASS_END_TIME;
-		
-		private string _CLASS_LOCATION;
-		
-		private System.Nullable<int> _COURSE_NUMBER;
-		
-		private System.Nullable<bool> _VERBAL_FLAG;
-		
-		private int _STUDENT;
-		
-		private System.Nullable<bool> _CONFIRMED;
-		
-		private System.Nullable<System.DateTime> _CONFIRMED_DATE;
-		
-		private System.Nullable<bool> _PROCESSED;
-
-        private string _EVAL;
-
-        public Registration()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RECEIPT", DbType="BigInt NOT NULL")]
-		public long RECEIPT
-		{
-			get
-			{
-				return this._RECEIPT;
-			}
-			set
-			{
-				if ((this._RECEIPT != value))
-				{
-					this._RECEIPT = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REG_DATE", DbType="VarChar(25)")]
-		public string REG_DATE
-		{
-			get
-			{
-				return this._REG_DATE;
-			}
-			set
-			{
-				if ((this._REG_DATE != value))
-				{
-					this._REG_DATE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_ID", DbType="Int NOT NULL")]
-		public int CLASS_ID
-		{
-			get
-			{
-				return this._CLASS_ID;
-			}
-			set
-			{
-				if ((this._CLASS_ID != value))
-				{
-					this._CLASS_ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_TYPE", DbType="NVarChar(50)")]
-		public string CLASS_TYPE
-		{
-			get
-			{
-				return this._CLASS_TYPE;
-			}
-			set
-			{
-				if ((this._CLASS_TYPE != value))
-				{
-					this._CLASS_TYPE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_DAY", DbType="NVarChar(30)")]
-		public string CLASS_DAY
-		{
-			get
-			{
-				return this._CLASS_DAY;
-			}
-			set
-			{
-				if ((this._CLASS_DAY != value))
-				{
-					this._CLASS_DAY = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_START_DATE", DbType="Date")]
-		public System.Nullable<System.DateTime> CLASS_START_DATE
-		{
-			get
-			{
-				return this._CLASS_START_DATE;
-			}
-			set
-			{
-				if ((this._CLASS_START_DATE != value))
-				{
-					this._CLASS_START_DATE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_END_DATE", DbType="Date")]
-		public System.Nullable<System.DateTime> CLASS_END_DATE
-		{
-			get
-			{
-				return this._CLASS_END_DATE;
-			}
-			set
-			{
-				if ((this._CLASS_END_DATE != value))
-				{
-					this._CLASS_END_DATE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NAME", DbType="NVarChar(177)")]
-		public string NAME
-		{
-			get
-			{
-				return this._NAME;
-			}
-			set
-			{
-				if ((this._NAME != value))
-				{
-					this._NAME = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUFFIX", DbType="NVarChar(50)")]
-		public string SUFFIX
-		{
-			get
-			{
-				return this._SUFFIX;
-			}
-			set
-			{
-				if ((this._SUFFIX != value))
-				{
-					this._SUFFIX = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ADDRESS", DbType="VarChar(301)")]
-		public string ADDRESS
-		{
-			get
-			{
-				return this._ADDRESS;
-			}
-			set
-			{
-				if ((this._ADDRESS != value))
-				{
-					this._ADDRESS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CITY", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string CITY
-		{
-			get
-			{
-				return this._CITY;
-			}
-			set
-			{
-				if ((this._CITY != value))
-				{
-					this._CITY = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STATE", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
-		public string STATE
-		{
-			get
-			{
-				return this._STATE;
-			}
-			set
-			{
-				if ((this._STATE != value))
-				{
-					this._STATE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZIP", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
-		public string ZIP
-		{
-			get
-			{
-				return this._ZIP;
-			}
-			set
-			{
-				if ((this._ZIP != value))
-				{
-					this._ZIP = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GENDER", DbType="NVarChar(1)")]
-		public string GENDER
-		{
-			get
-			{
-				return this._GENDER;
-			}
-			set
-			{
-				if ((this._GENDER != value))
-				{
-					this._GENDER = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RACE", DbType="VarChar(75)")]
-		public string RACE
-		{
-			get
-			{
-				return this._RACE;
-			}
-			set
-			{
-				if ((this._RACE != value))
-				{
-					this._RACE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DOB", DbType="Date")]
-		public System.Nullable<System.DateTime> DOB
-		{
-			get
-			{
-				return this._DOB;
-			}
-			set
-			{
-				if ((this._DOB != value))
-				{
-					this._DOB = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AGE", DbType="Int")]
-		public System.Nullable<int> AGE
-		{
-			get
-			{
-				return this._AGE;
-			}
-			set
-			{
-				if ((this._AGE != value))
-				{
-					this._AGE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DL_NUM", DbType="VarBinary(8000)", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary DL_NUM
-		{
-			get
-			{
-				return this._DL_NUM;
-			}
-			set
-			{
-				if ((this._DL_NUM != value))
-				{
-					this._DL_NUM = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DL_ST", DbType="VarBinary(8000)", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary DL_ST
-		{
-			get
-			{
-				return this._DL_ST;
-			}
-			set
-			{
-				if ((this._DL_ST != value))
-				{
-					this._DL_ST = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PMT_ID", DbType="Int NOT NULL")]
-		public int PMT_ID
-		{
-			get
-			{
-				return this._PMT_ID;
-			}
-			set
-			{
-				if ((this._PMT_ID != value))
-				{
-					this._PMT_ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WAIVER", DbType="Bit")]
-		public System.Nullable<bool> WAIVER
-		{
-			get
-			{
-				return this._WAIVER;
-			}
-			set
-			{
-				if ((this._WAIVER != value))
-				{
-					this._WAIVER = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMAIL", DbType="NVarChar(75)")]
-		public string EMAIL
-		{
-			get
-			{
-				return this._EMAIL;
-			}
-			set
-			{
-				if ((this._EMAIL != value))
-				{
-					this._EMAIL = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PHONE", DbType="NVarChar(14)")]
-		public string PHONE
-		{
-			get
-			{
-				return this._PHONE;
-			}
-			set
-			{
-				if ((this._PHONE != value))
-				{
-					this._PHONE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_START_TIME", DbType="Time")]
-		public System.Nullable<System.TimeSpan> CLASS_START_TIME
-		{
-			get
-			{
-				return this._CLASS_START_TIME;
-			}
-			set
-			{
-				if ((this._CLASS_START_TIME != value))
-				{
-					this._CLASS_START_TIME = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_END_TIME", DbType="Time")]
-		public System.Nullable<System.TimeSpan> CLASS_END_TIME
-		{
-			get
-			{
-				return this._CLASS_END_TIME;
-			}
-			set
-			{
-				if ((this._CLASS_END_TIME != value))
-				{
-					this._CLASS_END_TIME = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_LOCATION", DbType="VarChar(150)")]
-		public string CLASS_LOCATION
-		{
-			get
-			{
-				return this._CLASS_LOCATION;
-			}
-			set
-			{
-				if ((this._CLASS_LOCATION != value))
-				{
-					this._CLASS_LOCATION = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COURSE_NUMBER", DbType="Int")]
-		public System.Nullable<int> COURSE_NUMBER
-		{
-			get
-			{
-				return this._COURSE_NUMBER;
-			}
-			set
-			{
-				if ((this._COURSE_NUMBER != value))
-				{
-					this._COURSE_NUMBER = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VERBAL_FLAG", DbType="Bit")]
-		public System.Nullable<bool> VERBAL_FLAG
-		{
-			get
-			{
-				return this._VERBAL_FLAG;
-			}
-			set
-			{
-				if ((this._VERBAL_FLAG != value))
-				{
-					this._VERBAL_FLAG = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUDENT", DbType="Int NOT NULL")]
-		public int STUDENT
-		{
-			get
-			{
-				return this._STUDENT;
-			}
-			set
-			{
-				if ((this._STUDENT != value))
-				{
-					this._STUDENT = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONFIRMED", DbType="Bit")]
-		public System.Nullable<bool> CONFIRMED
-		{
-			get
-			{
-				return this._CONFIRMED;
-			}
-			set
-			{
-				if ((this._CONFIRMED != value))
-				{
-					this._CONFIRMED = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONFIRMED_DATE", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CONFIRMED_DATE
-		{
-			get
-			{
-				return this._CONFIRMED_DATE;
-			}
-			set
-			{
-				if ((this._CONFIRMED_DATE != value))
-				{
-					this._CONFIRMED_DATE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROCESSED", DbType="Bit")]
-		public System.Nullable<bool> PROCESSED
-		{
-			get
-			{
-				return this._PROCESSED;
-			}
-			set
-			{
-				if ((this._PROCESSED != value))
-				{
-					this._PROCESSED = value;
-				}
-			}
-		}
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_EVAL", DbType = "NVarChar(1)")]
-        public string EVAL
-        {
-            get
-            {
-                return this._EVAL;
-            }
-            set
-            {
-                if ((this._EVAL != value))
-                {
-                    this._EVAL = value;
-                }
-            }
-        }
-    }
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RACE_LKP")]
 	public partial class RACE_LKP : INotifyPropertyChanging, INotifyPropertyChanged
@@ -1641,6 +1045,663 @@ namespace vMTS.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Registrations")]
+	public partial class Registration
+	{
+		
+		private long _RECEIPT;
+		
+		private string _REG_DATE;
+		
+		private int _CLASS_ID;
+		
+		private string _CLASS_TYPE;
+		
+		private string _CLASS_DAY;
+		
+		private System.Nullable<System.DateTime> _CLASS_START_DATE;
+		
+		private System.Nullable<System.DateTime> _CLASS_END_DATE;
+		
+		private string _NAME;
+		
+		private string _SUFFIX;
+		
+		private string _ADDRESS;
+		
+		private string _CITY;
+		
+		private string _STATE;
+		
+		private string _ZIP;
+		
+		private string _GENDER;
+		
+		private string _RACE;
+		
+		private System.Nullable<System.DateTime> _DOB;
+		
+		private System.Nullable<int> _AGE;
+		
+		private System.Data.Linq.Binary _DL_NUM;
+		
+		private System.Data.Linq.Binary _DL_ST;
+		
+		private int _PMT_ID;
+		
+		private System.Nullable<bool> _WAIVER;
+		
+		private string _EMAIL;
+		
+		private string _PHONE;
+		
+		private System.Nullable<System.TimeSpan> _CLASS_START_TIME;
+		
+		private System.Nullable<System.TimeSpan> _CLASS_END_TIME;
+		
+		private string _CLASS_LOCATION;
+		
+		private System.Nullable<int> _COURSE_NUMBER;
+		
+		private System.Nullable<bool> _VERBAL_FLAG;
+		
+		private int _STUDENT;
+		
+		private System.Nullable<bool> _CONFIRMED;
+		
+		private System.Nullable<System.DateTime> _CONFIRMED_DATE;
+		
+		private System.Nullable<bool> _PROCESSED;
+		
+		private string _EVAL;
+		
+		private System.Nullable<System.Guid> _REGISTRATION_EMAIL_ID;
+		
+		private System.Nullable<bool> _REGISTRATION_EMAIL_CONFIRMED;
+		
+		private System.Nullable<System.DateTime> _REGISTRATION_EMAIL_CONFIRM_DATE;
+		
+		public Registration()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RECEIPT", DbType="BigInt NOT NULL")]
+		public long RECEIPT
+		{
+			get
+			{
+				return this._RECEIPT;
+			}
+			set
+			{
+				if ((this._RECEIPT != value))
+				{
+					this._RECEIPT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REG_DATE", DbType="VarChar(25)")]
+		public string REG_DATE
+		{
+			get
+			{
+				return this._REG_DATE;
+			}
+			set
+			{
+				if ((this._REG_DATE != value))
+				{
+					this._REG_DATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_ID", DbType="Int NOT NULL")]
+		public int CLASS_ID
+		{
+			get
+			{
+				return this._CLASS_ID;
+			}
+			set
+			{
+				if ((this._CLASS_ID != value))
+				{
+					this._CLASS_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_TYPE", DbType="NVarChar(50)")]
+		public string CLASS_TYPE
+		{
+			get
+			{
+				return this._CLASS_TYPE;
+			}
+			set
+			{
+				if ((this._CLASS_TYPE != value))
+				{
+					this._CLASS_TYPE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_DAY", DbType="NVarChar(30)")]
+		public string CLASS_DAY
+		{
+			get
+			{
+				return this._CLASS_DAY;
+			}
+			set
+			{
+				if ((this._CLASS_DAY != value))
+				{
+					this._CLASS_DAY = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_START_DATE", DbType="Date")]
+		public System.Nullable<System.DateTime> CLASS_START_DATE
+		{
+			get
+			{
+				return this._CLASS_START_DATE;
+			}
+			set
+			{
+				if ((this._CLASS_START_DATE != value))
+				{
+					this._CLASS_START_DATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_END_DATE", DbType="Date")]
+		public System.Nullable<System.DateTime> CLASS_END_DATE
+		{
+			get
+			{
+				return this._CLASS_END_DATE;
+			}
+			set
+			{
+				if ((this._CLASS_END_DATE != value))
+				{
+					this._CLASS_END_DATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NAME", DbType="NVarChar(177)")]
+		public string NAME
+		{
+			get
+			{
+				return this._NAME;
+			}
+			set
+			{
+				if ((this._NAME != value))
+				{
+					this._NAME = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUFFIX", DbType="NVarChar(50)")]
+		public string SUFFIX
+		{
+			get
+			{
+				return this._SUFFIX;
+			}
+			set
+			{
+				if ((this._SUFFIX != value))
+				{
+					this._SUFFIX = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ADDRESS", DbType="VarChar(301)")]
+		public string ADDRESS
+		{
+			get
+			{
+				return this._ADDRESS;
+			}
+			set
+			{
+				if ((this._ADDRESS != value))
+				{
+					this._ADDRESS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CITY", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string CITY
+		{
+			get
+			{
+				return this._CITY;
+			}
+			set
+			{
+				if ((this._CITY != value))
+				{
+					this._CITY = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STATE", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string STATE
+		{
+			get
+			{
+				return this._STATE;
+			}
+			set
+			{
+				if ((this._STATE != value))
+				{
+					this._STATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZIP", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
+		public string ZIP
+		{
+			get
+			{
+				return this._ZIP;
+			}
+			set
+			{
+				if ((this._ZIP != value))
+				{
+					this._ZIP = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GENDER", DbType="NVarChar(1)")]
+		public string GENDER
+		{
+			get
+			{
+				return this._GENDER;
+			}
+			set
+			{
+				if ((this._GENDER != value))
+				{
+					this._GENDER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RACE", DbType="VarChar(75)")]
+		public string RACE
+		{
+			get
+			{
+				return this._RACE;
+			}
+			set
+			{
+				if ((this._RACE != value))
+				{
+					this._RACE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DOB", DbType="Date")]
+		public System.Nullable<System.DateTime> DOB
+		{
+			get
+			{
+				return this._DOB;
+			}
+			set
+			{
+				if ((this._DOB != value))
+				{
+					this._DOB = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AGE", DbType="Int")]
+		public System.Nullable<int> AGE
+		{
+			get
+			{
+				return this._AGE;
+			}
+			set
+			{
+				if ((this._AGE != value))
+				{
+					this._AGE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DL_NUM", DbType="VarBinary(8000)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary DL_NUM
+		{
+			get
+			{
+				return this._DL_NUM;
+			}
+			set
+			{
+				if ((this._DL_NUM != value))
+				{
+					this._DL_NUM = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DL_ST", DbType="VarBinary(8000)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary DL_ST
+		{
+			get
+			{
+				return this._DL_ST;
+			}
+			set
+			{
+				if ((this._DL_ST != value))
+				{
+					this._DL_ST = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PMT_ID", DbType="Int NOT NULL")]
+		public int PMT_ID
+		{
+			get
+			{
+				return this._PMT_ID;
+			}
+			set
+			{
+				if ((this._PMT_ID != value))
+				{
+					this._PMT_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WAIVER", DbType="Bit")]
+		public System.Nullable<bool> WAIVER
+		{
+			get
+			{
+				return this._WAIVER;
+			}
+			set
+			{
+				if ((this._WAIVER != value))
+				{
+					this._WAIVER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMAIL", DbType="NVarChar(75)")]
+		public string EMAIL
+		{
+			get
+			{
+				return this._EMAIL;
+			}
+			set
+			{
+				if ((this._EMAIL != value))
+				{
+					this._EMAIL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PHONE", DbType="NVarChar(14)")]
+		public string PHONE
+		{
+			get
+			{
+				return this._PHONE;
+			}
+			set
+			{
+				if ((this._PHONE != value))
+				{
+					this._PHONE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_START_TIME", DbType="Time")]
+		public System.Nullable<System.TimeSpan> CLASS_START_TIME
+		{
+			get
+			{
+				return this._CLASS_START_TIME;
+			}
+			set
+			{
+				if ((this._CLASS_START_TIME != value))
+				{
+					this._CLASS_START_TIME = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_END_TIME", DbType="Time")]
+		public System.Nullable<System.TimeSpan> CLASS_END_TIME
+		{
+			get
+			{
+				return this._CLASS_END_TIME;
+			}
+			set
+			{
+				if ((this._CLASS_END_TIME != value))
+				{
+					this._CLASS_END_TIME = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_LOCATION", DbType="VarChar(150)")]
+		public string CLASS_LOCATION
+		{
+			get
+			{
+				return this._CLASS_LOCATION;
+			}
+			set
+			{
+				if ((this._CLASS_LOCATION != value))
+				{
+					this._CLASS_LOCATION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COURSE_NUMBER", DbType="Int")]
+		public System.Nullable<int> COURSE_NUMBER
+		{
+			get
+			{
+				return this._COURSE_NUMBER;
+			}
+			set
+			{
+				if ((this._COURSE_NUMBER != value))
+				{
+					this._COURSE_NUMBER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VERBAL_FLAG", DbType="Bit")]
+		public System.Nullable<bool> VERBAL_FLAG
+		{
+			get
+			{
+				return this._VERBAL_FLAG;
+			}
+			set
+			{
+				if ((this._VERBAL_FLAG != value))
+				{
+					this._VERBAL_FLAG = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUDENT", DbType="Int NOT NULL")]
+		public int STUDENT
+		{
+			get
+			{
+				return this._STUDENT;
+			}
+			set
+			{
+				if ((this._STUDENT != value))
+				{
+					this._STUDENT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONFIRMED", DbType="Bit")]
+		public System.Nullable<bool> CONFIRMED
+		{
+			get
+			{
+				return this._CONFIRMED;
+			}
+			set
+			{
+				if ((this._CONFIRMED != value))
+				{
+					this._CONFIRMED = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONFIRMED_DATE", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CONFIRMED_DATE
+		{
+			get
+			{
+				return this._CONFIRMED_DATE;
+			}
+			set
+			{
+				if ((this._CONFIRMED_DATE != value))
+				{
+					this._CONFIRMED_DATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROCESSED", DbType="Bit")]
+		public System.Nullable<bool> PROCESSED
+		{
+			get
+			{
+				return this._PROCESSED;
+			}
+			set
+			{
+				if ((this._PROCESSED != value))
+				{
+					this._PROCESSED = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EVAL", DbType="NVarChar(1)")]
+		public string EVAL
+		{
+			get
+			{
+				return this._EVAL;
+			}
+			set
+			{
+				if ((this._EVAL != value))
+				{
+					this._EVAL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REGISTRATION_EMAIL_ID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> REGISTRATION_EMAIL_ID
+		{
+			get
+			{
+				return this._REGISTRATION_EMAIL_ID;
+			}
+			set
+			{
+				if ((this._REGISTRATION_EMAIL_ID != value))
+				{
+					this._REGISTRATION_EMAIL_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REGISTRATION_EMAIL_CONFIRMED", DbType="Bit")]
+		public System.Nullable<bool> REGISTRATION_EMAIL_CONFIRMED
+		{
+			get
+			{
+				return this._REGISTRATION_EMAIL_CONFIRMED;
+			}
+			set
+			{
+				if ((this._REGISTRATION_EMAIL_CONFIRMED != value))
+				{
+					this._REGISTRATION_EMAIL_CONFIRMED = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REGISTRATION_EMAIL_CONFIRM_DATE", DbType="DateTime")]
+		public System.Nullable<System.DateTime> REGISTRATION_EMAIL_CONFIRM_DATE
+		{
+			get
+			{
+				return this._REGISTRATION_EMAIL_CONFIRM_DATE;
+			}
+			set
+			{
+				if ((this._REGISTRATION_EMAIL_CONFIRM_DATE != value))
+				{
+					this._REGISTRATION_EMAIL_CONFIRM_DATE = value;
+				}
+			}
+		}
+	}
+	
 	public partial class CancelRegistrationResult
 	{
 		
@@ -1873,6 +1934,338 @@ namespace vMTS.Models
 		}
 	}
 	
+	public partial class GetPaymentResult
+	{
+		
+		private System.Nullable<long> _RECEIPT;
+		
+		private string _PMT_TYPE;
+		
+		private string _CARDNAME;
+		
+		private string _CARDNUMBER;
+		
+		private string _CARD_EXP;
+		
+		private string _CARD_EXP_YR;
+		
+		private string _CVV;
+		
+		private System.Nullable<bool> _PROCESSED;
+		
+		private string _STUFF_CARDNUMBER;
+		
+		private string _STUFF_CARD_EXP;
+		
+		private string _STUFF_CARD_EXP_YR;
+		
+		private string _STUFF_CVV;
+		
+		private string _PROMOCODE;
+		
+		private System.Nullable<decimal> _CLASS_FEE;
+		
+		private System.Nullable<decimal> _PROMO_VALUE;
+		
+		private System.Nullable<decimal> _TOTAL;
+		
+		private System.Nullable<System.DateTime> _PROCESSED_DATE;
+		
+		private System.Nullable<int> _PMT_ID;
+		
+		public GetPaymentResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RECEIPT", DbType="BigInt")]
+		public System.Nullable<long> RECEIPT
+		{
+			get
+			{
+				return this._RECEIPT;
+			}
+			set
+			{
+				if ((this._RECEIPT != value))
+				{
+					this._RECEIPT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PMT_TYPE", DbType="VarChar(100)")]
+		public string PMT_TYPE
+		{
+			get
+			{
+				return this._PMT_TYPE;
+			}
+			set
+			{
+				if ((this._PMT_TYPE != value))
+				{
+					this._PMT_TYPE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARDNAME", DbType="VarChar(150)")]
+		public string CARDNAME
+		{
+			get
+			{
+				return this._CARDNAME;
+			}
+			set
+			{
+				if ((this._CARDNAME != value))
+				{
+					this._CARDNAME = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARDNUMBER", DbType="VarChar(100)")]
+		public string CARDNUMBER
+		{
+			get
+			{
+				return this._CARDNUMBER;
+			}
+			set
+			{
+				if ((this._CARDNUMBER != value))
+				{
+					this._CARDNUMBER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARD_EXP", DbType="VarChar(100)")]
+		public string CARD_EXP
+		{
+			get
+			{
+				return this._CARD_EXP;
+			}
+			set
+			{
+				if ((this._CARD_EXP != value))
+				{
+					this._CARD_EXP = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARD_EXP_YR", DbType="VarChar(100)")]
+		public string CARD_EXP_YR
+		{
+			get
+			{
+				return this._CARD_EXP_YR;
+			}
+			set
+			{
+				if ((this._CARD_EXP_YR != value))
+				{
+					this._CARD_EXP_YR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CVV", DbType="VarChar(100)")]
+		public string CVV
+		{
+			get
+			{
+				return this._CVV;
+			}
+			set
+			{
+				if ((this._CVV != value))
+				{
+					this._CVV = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROCESSED", DbType="Bit")]
+		public System.Nullable<bool> PROCESSED
+		{
+			get
+			{
+				return this._PROCESSED;
+			}
+			set
+			{
+				if ((this._PROCESSED != value))
+				{
+					this._PROCESSED = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CARDNUMBER", DbType="VarChar(100)")]
+		public string STUFF_CARDNUMBER
+		{
+			get
+			{
+				return this._STUFF_CARDNUMBER;
+			}
+			set
+			{
+				if ((this._STUFF_CARDNUMBER != value))
+				{
+					this._STUFF_CARDNUMBER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CARD_EXP", DbType="VarChar(100)")]
+		public string STUFF_CARD_EXP
+		{
+			get
+			{
+				return this._STUFF_CARD_EXP;
+			}
+			set
+			{
+				if ((this._STUFF_CARD_EXP != value))
+				{
+					this._STUFF_CARD_EXP = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CARD_EXP_YR", DbType="VarChar(100)")]
+		public string STUFF_CARD_EXP_YR
+		{
+			get
+			{
+				return this._STUFF_CARD_EXP_YR;
+			}
+			set
+			{
+				if ((this._STUFF_CARD_EXP_YR != value))
+				{
+					this._STUFF_CARD_EXP_YR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CVV", DbType="VarChar(100)")]
+		public string STUFF_CVV
+		{
+			get
+			{
+				return this._STUFF_CVV;
+			}
+			set
+			{
+				if ((this._STUFF_CVV != value))
+				{
+					this._STUFF_CVV = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROMOCODE", DbType="VarChar(100)")]
+		public string PROMOCODE
+		{
+			get
+			{
+				return this._PROMOCODE;
+			}
+			set
+			{
+				if ((this._PROMOCODE != value))
+				{
+					this._PROMOCODE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_FEE", DbType="Money")]
+		public System.Nullable<decimal> CLASS_FEE
+		{
+			get
+			{
+				return this._CLASS_FEE;
+			}
+			set
+			{
+				if ((this._CLASS_FEE != value))
+				{
+					this._CLASS_FEE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROMO_VALUE", DbType="Money")]
+		public System.Nullable<decimal> PROMO_VALUE
+		{
+			get
+			{
+				return this._PROMO_VALUE;
+			}
+			set
+			{
+				if ((this._PROMO_VALUE != value))
+				{
+					this._PROMO_VALUE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOTAL", DbType="Money")]
+		public System.Nullable<decimal> TOTAL
+		{
+			get
+			{
+				return this._TOTAL;
+			}
+			set
+			{
+				if ((this._TOTAL != value))
+				{
+					this._TOTAL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROCESSED_DATE", DbType="Date")]
+		public System.Nullable<System.DateTime> PROCESSED_DATE
+		{
+			get
+			{
+				return this._PROCESSED_DATE;
+			}
+			set
+			{
+				if ((this._PROCESSED_DATE != value))
+				{
+					this._PROCESSED_DATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PMT_ID", DbType="Int")]
+		public System.Nullable<int> PMT_ID
+		{
+			get
+			{
+				return this._PMT_ID;
+			}
+			set
+			{
+				if ((this._PMT_ID != value))
+				{
+					this._PMT_ID = value;
+				}
+			}
+		}
+	}
+	
 	public partial class GetRegistrationResult
 	{
 		
@@ -1937,6 +2330,12 @@ namespace vMTS.Models
 		private System.Nullable<int> _AGE;
 		
 		private System.Nullable<int> _ADDRESS_ID;
+		
+		private System.Nullable<System.Guid> _REGISTRATION_EMAIL_ID;
+		
+		private System.Nullable<bool> _REGISTRATION_EMAIL_CONFIRMED;
+		
+		private System.Nullable<System.DateTime> _REGISTRATION_EMAIL_CONFIRM_DATE;
 		
 		public GetRegistrationResult()
 		{
@@ -2437,335 +2836,51 @@ namespace vMTS.Models
 				}
 			}
 		}
-	}
-	
-	public partial class GetPaymentResult
-	{
 		
-		private System.Nullable<long> _RECEIPT;
-		
-		private string _PMT_TYPE;
-		
-		private string _CARDNAME;
-		
-		private string _CARDNUMBER;
-		
-		private string _CARD_EXP;
-		
-		private string _CARD_EXP_YR;
-		
-		private string _CVV;
-		
-		private System.Nullable<bool> _PROCESSED;
-		
-		private string _STUFF_CARDNUMBER;
-		
-		private string _STUFF_CARD_EXP;
-		
-		private string _STUFF_CARD_EXP_YR;
-		
-		private string _STUFF_CVV;
-		
-		private string _PROMOCODE;
-		
-		private System.Nullable<decimal> _CLASS_FEE;
-		
-		private System.Nullable<decimal> _PROMO_VALUE;
-		
-		private System.Nullable<decimal> _TOTAL;
-		
-		private System.Nullable<System.DateTime> _PROCESSED_DATE;
-		
-		private System.Nullable<int> _PMT_ID;
-		
-		public GetPaymentResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RECEIPT", DbType="BigInt")]
-		public System.Nullable<long> RECEIPT
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REGISTRATION_EMAIL_ID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> REGISTRATION_EMAIL_ID
 		{
 			get
 			{
-				return this._RECEIPT;
+				return this._REGISTRATION_EMAIL_ID;
 			}
 			set
 			{
-				if ((this._RECEIPT != value))
+				if ((this._REGISTRATION_EMAIL_ID != value))
 				{
-					this._RECEIPT = value;
+					this._REGISTRATION_EMAIL_ID = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PMT_TYPE", DbType="VarChar(100)")]
-		public string PMT_TYPE
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REGISTRATION_EMAIL_CONFIRMED", DbType="Bit")]
+		public System.Nullable<bool> REGISTRATION_EMAIL_CONFIRMED
 		{
 			get
 			{
-				return this._PMT_TYPE;
+				return this._REGISTRATION_EMAIL_CONFIRMED;
 			}
 			set
 			{
-				if ((this._PMT_TYPE != value))
+				if ((this._REGISTRATION_EMAIL_CONFIRMED != value))
 				{
-					this._PMT_TYPE = value;
+					this._REGISTRATION_EMAIL_CONFIRMED = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARDNAME", DbType="VarChar(150)")]
-		public string CARDNAME
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REGISTRATION_EMAIL_CONFIRM_DATE", DbType="DateTime")]
+		public System.Nullable<System.DateTime> REGISTRATION_EMAIL_CONFIRM_DATE
 		{
 			get
 			{
-				return this._CARDNAME;
+				return this._REGISTRATION_EMAIL_CONFIRM_DATE;
 			}
 			set
 			{
-				if ((this._CARDNAME != value))
+				if ((this._REGISTRATION_EMAIL_CONFIRM_DATE != value))
 				{
-					this._CARDNAME = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARDNUMBER", DbType="VarChar(100)")]
-		public string CARDNUMBER
-		{
-			get
-			{
-				return this._CARDNUMBER;
-			}
-			set
-			{
-				if ((this._CARDNUMBER != value))
-				{
-					this._CARDNUMBER = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARD_EXP", DbType="VarChar(100)")]
-		public string CARD_EXP
-		{
-			get
-			{
-				return this._CARD_EXP;
-			}
-			set
-			{
-				if ((this._CARD_EXP != value))
-				{
-					this._CARD_EXP = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CARD_EXP_YR", DbType="VarChar(100)")]
-		public string CARD_EXP_YR
-		{
-			get
-			{
-				return this._CARD_EXP_YR;
-			}
-			set
-			{
-				if ((this._CARD_EXP_YR != value))
-				{
-					this._CARD_EXP_YR = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CVV", DbType="VarChar(100)")]
-		public string CVV
-		{
-			get
-			{
-				return this._CVV;
-			}
-			set
-			{
-				if ((this._CVV != value))
-				{
-					this._CVV = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROCESSED", DbType="Bit")]
-		public System.Nullable<bool> PROCESSED
-		{
-			get
-			{
-				return this._PROCESSED;
-			}
-			set
-			{
-				if ((this._PROCESSED != value))
-				{
-					this._PROCESSED = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CARDNUMBER", DbType="VarChar(100)")]
-		public string STUFF_CARDNUMBER
-		{
-			get
-			{
-				return this._STUFF_CARDNUMBER;
-			}
-			set
-			{
-				if ((this._STUFF_CARDNUMBER != value))
-				{
-					this._STUFF_CARDNUMBER = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CARD_EXP", DbType="VarChar(100)")]
-		public string STUFF_CARD_EXP
-		{
-			get
-			{
-				return this._STUFF_CARD_EXP;
-			}
-			set
-			{
-				if ((this._STUFF_CARD_EXP != value))
-				{
-					this._STUFF_CARD_EXP = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CARD_EXP_YR", DbType="VarChar(100)")]
-		public string STUFF_CARD_EXP_YR
-		{
-			get
-			{
-				return this._STUFF_CARD_EXP_YR;
-			}
-			set
-			{
-				if ((this._STUFF_CARD_EXP_YR != value))
-				{
-					this._STUFF_CARD_EXP_YR = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUFF_CVV", DbType="VarChar(100)")]
-		public string STUFF_CVV
-		{
-			get
-			{
-				return this._STUFF_CVV;
-			}
-			set
-			{
-				if ((this._STUFF_CVV != value))
-				{
-					this._STUFF_CVV = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROMOCODE", DbType="VarChar(100)")]
-		public string PROMOCODE
-		{
-			get
-			{
-				return this._PROMOCODE;
-			}
-			set
-			{
-				if ((this._PROMOCODE != value))
-				{
-					this._PROMOCODE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CLASS_FEE", DbType="Money")]
-		public System.Nullable<decimal> CLASS_FEE
-		{
-			get
-			{
-				return this._CLASS_FEE;
-			}
-			set
-			{
-				if ((this._CLASS_FEE != value))
-				{
-					this._CLASS_FEE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROMO_VALUE", DbType="Money")]
-		public System.Nullable<decimal> PROMO_VALUE
-		{
-			get
-			{
-				return this._PROMO_VALUE;
-			}
-			set
-			{
-				if ((this._PROMO_VALUE != value))
-				{
-					this._PROMO_VALUE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOTAL", DbType="Money")]
-		public System.Nullable<decimal> TOTAL
-		{
-			get
-			{
-				return this._TOTAL;
-			}
-			set
-			{
-				if ((this._TOTAL != value))
-				{
-					this._TOTAL = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROCESSED_DATE", DbType="Date")]
-		public System.Nullable<System.DateTime> PROCESSED_DATE
-		{
-			get
-			{
-				return this._PROCESSED_DATE;
-			}
-			set
-			{
-				if ((this._PROCESSED_DATE != value))
-				{
-					this._PROCESSED_DATE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PMT_ID", DbType="Int")]
-		public System.Nullable<int> PMT_ID
-		{
-			get
-			{
-				return this._PMT_ID;
-			}
-			set
-			{
-				if ((this._PMT_ID != value))
-				{
-					this._PMT_ID = value;
+					this._REGISTRATION_EMAIL_CONFIRM_DATE = value;
 				}
 			}
 		}

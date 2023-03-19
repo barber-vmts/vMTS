@@ -169,6 +169,57 @@ namespace vMTS.Models
         public List<Registration> Confirmation { get; set; }
         public List<PaymentConfirm> RegistrationPayment { get; set; }
 
+        public List<Registration> GetConfirmation(Guid id) /* the id is the receipt id for the registration*/
+        {
+            var l = new List<Registration>();
+            try
+            {
+                using (vmts_dataDataContext db = new vmts_dataDataContext())
+                {
+                    var sql = (from c in db.Registrations
+                               where c.REGISTRATION_EMAIL_ID == id
+                               select (c)).ToList();
+                    foreach (var r in sql)
+                    {
+                        l.Add(new Registration
+                        {
+                            RECEIPT = r.RECEIPT,
+                            CLASS_ID = r.CLASS_ID,
+                            CLASS_TYPE = r.CLASS_TYPE,
+                            CLASS_DAY = r.CLASS_DAY,
+                            CLASS_START_DATE = r.CLASS_START_DATE,
+                            CLASS_START_TIME = r.CLASS_START_TIME,
+                            CLASS_END_DATE = r.CLASS_END_DATE,
+                            CLASS_END_TIME = r.CLASS_END_TIME,
+                            CLASS_LOCATION = r.CLASS_LOCATION,
+                            COURSE_NUMBER = r.COURSE_NUMBER,
+                            NAME = r.NAME,
+                            SUFFIX = r.SUFFIX,
+                            ADDRESS = r.ADDRESS,
+                            CITY = r.CITY,
+                            STATE = r.STATE,
+                            ZIP = r.ZIP,
+                            REG_DATE = r.REG_DATE,
+                            DOB = r.DOB,
+                            AGE = r.AGE,
+                            WAIVER = r.WAIVER,
+                            EMAIL = r.EMAIL,
+                            PHONE = r.PHONE,
+                            VERBAL_FLAG = r.VERBAL_FLAG,
+                            CONFIRMED = r.CONFIRMED,
+                            CONFIRMED_DATE = r.CONFIRMED_DATE,
+                            EVAL = r.EVAL
+                        });
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                l.Add(new Registration { REGISTRATION_EMAIL_ID = id, NAME = e.Message });
+            }
+            return l;
+        }
+
         public List<Registration> GetConfirmation(Int64 id) /* the id is the receipt id for the registration*/
         {
             var l = new List<Registration>();
@@ -208,7 +259,8 @@ namespace vMTS.Models
                             VERBAL_FLAG = r.VERBAL_FLAG,
                             CONFIRMED = r.CONFIRMED,
                             CONFIRMED_DATE = r.CONFIRMED_DATE,
-                            EVAL = r.EVAL
+                            EVAL = r.EVAL,
+                            REGISTRATION_EMAIL_ID = r.REGISTRATION_EMAIL_ID
                         });
                     }
                 }

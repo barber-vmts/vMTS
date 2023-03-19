@@ -23,7 +23,7 @@ namespace vMTS.Controllers
 
         // GET: Registration
         public ActionResult Index()
-        {
+        {             
             string error ="";
             List <Class_Schedule_view> list = new List<Class_Schedule_view>();
             try
@@ -145,6 +145,27 @@ namespace vMTS.Controllers
             c.RegistrationPayment = c.GetRegistrationPayment(p);
             
             return View(c);
+        }
+
+        public ActionResult RegistrationEmailConfirmation(string id) 
+        {
+            if(string.IsNullOrEmpty(id))
+            {
+                ViewBag.HtmlStr = "";
+                return View();
+            }
+            else
+            {
+                var confirmId = Guid.Parse(id);
+                using (vmts_dataDataContext db = new vmts_dataDataContext())
+                {
+                    db.UpdateRegistrationEmailConfirm(confirmId, true);
+                    var data = CM.SendClassDetials(confirmId);
+                    ViewBag.HtmlStr = data;
+                    return View();
+                }
+            }
+            
         }
 
         public string NewClassRegistration(Int32 COURSE_ID, string FirstName, string MiddleName, string LastName, string Suffix, string Address1, string Address2, string City, string inputState, string Zip, string Gender, Int32? inputRace, string Phone, string Email, DateTime DOB, Int32 AGE, string Eval, string MOTOR_YR, string MOTOR_MK, string MOTOR_MD, string DL_NUM, string inputDLState, string PaymentType, string CardName, string CardNum, string CardMonth, string CardYear, string CardCVV, string PromoCode)

@@ -11,58 +11,72 @@
 @if (itemList.Count() >= 1)
 {
     <h3>Registrations for @itemList[0].CLASS_DAY</h3>
-    <input type="hidden" id="class_id" value="@itemList[0].CLASS_ID"/>
-    
+    <input type="hidden" id="class_id" value="@itemList[0].CLASS_ID" />
+
     <table class="table">
         <thead>
-            <tr><th>Name</th><th>Age</th><th>Email</th><th>Phone</th><th>Status</th><th>Payment</th><th>Registration Actions</th></tr>
+            <tr><th>Name</th><th>Age</th><th>Email</th><th>Phone</th><th>Status</th><th>Payment</th><th>Email Confirm</th><th>Registration Actions</th></tr>
         </thead>
         @foreach (var i in itemList)
         {
-            <tr>
-                <td>@i.NAME</td>
-                <td>@i.AGE</td>
-                <td>@i.EMAIL</td>
-                <td>@i.PHONE</td>
-                <!-- CONFIRM REGISTRATION -->
-                @if ((bool?)i.CONFIRMED == true)
-                {
-                    <td><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Registration Date: @i.REG_DATE. Confirmed on @i.CONFIRMED_DATE" data-original-title="" title="Status: Confirmed"></span></td>
-                }
-                else
-                {
-                    <td>
-                        <span id="CL_@i.RECEIPT" class="hidden"><img src="~/images/ajax-loader.gif" alt="Loading" /></span>
-                        <span id="@i.RECEIPT" class="glyphicon glyphicon-thumbs-down" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Registration Date: @i.REG_DATE. Registration has NOT been confirmed." data-original-title="" title="Status: NOT Confirmed"></span>
-                    </td>
-                }
-                <!-- PROCESS PAYMENT -->
-                @if ((bool?)i.PROCESSED == true)
-                {
-                    <td><span class="glyphicon glyphicon-usd" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Registration Date: @i.REG_DATE. Payment has been processed." data-original-title="" title="Payment: Processed"></span></td>
-                }
-                else
-                {
-                    <td>
-                        <span id="PL_@i.RECEIPT" class="hidden"><img src="~/images/ajax-loader.gif" alt="Loading" /></span>
-                        <span id="@i.RECEIPT" class="glyphicon glyphicon-alert" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Registration Date: @i.REG_DATE. Registration has NOT been processed." data-original-title="" title="Payment: NOT Processed"></span>
-                    </td>
-                }
-                <!-- EXPORT TO CSV -->
+    <tr>
+        <td>@i.NAME</td>
+        <td>@i.AGE</td>
+        <td>@i.EMAIL</td>
+        <td>@i.PHONE</td>
+        <!-- CONFIRM REGISTRATION -->
+        @if ((bool?)i.CONFIRMED == true)
+        {
+            <td><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Registration Date: @i.REG_DATE. Confirmed on @i.CONFIRMED_DATE" data-original-title="" title="Status: Confirmed"></span></td>
+        }
+        else
+        {
             <td>
-                <a href="studentedit/@i.RECEIPT" class="btn-xs btn-primary" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Edit # - @i.RECEIPT.  ** Will open in a new window **" data-original-title="" title="View Registration">Edit</a>&nbsp;<a href="studentreg/@i.RECEIPT" class="btn-xs btn-info" target="_blank" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="View # - @i.RECEIPT.  ** Will open in a new window **" data-original-title="" title="View Registration">View</a>&nbsp;<a href="_print_studentreg/@i.RECEIPT" class="btn-xs btn-warning" target="_blank" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="Print Reg # - @i.RECEIPT.  ** Will open in a new window **" data-original-title="" title="Print Registration">Print</a>
-                <input type="button" id="Exp_@i.RECEIPT" name="@i.RECEIPT" class="btn-xs btn-success" value="Export" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Export registration to upload to the state database. Reg # - @i.RECEIPT." data-original-title="" title="Export Registration" />
+                <span id="CL_@i.RECEIPT" class="hidden"><img src="~/images/ajax-loader.gif" alt="Loading" /></span>
+                <span id="@i.RECEIPT" class="glyphicon glyphicon-thumbs-down" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Registration Date: @i.REG_DATE. Registration has NOT been confirmed." data-original-title="" title="Status: NOT Confirmed"></span>
             </td>
-                <!-- CANCEL REGISTRATION -->
-                <td>
-                    <span id="CR_@i.RECEIPT" class="hidden"><img src="~/images/ajax-loader.gif" alt="Loading" /></span>
-                    <span id="@i.RECEIPT" class="glyphicon glyphicon-remove-circle" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Cancel registration for: @i.NAME." data-original-title="" title="Cancel Registration"></span>
-                </td>
-                <!-- SWITCH REGISTRATION -->
-                <td>
-                    <span id="SW_@i.RECEIPT" class="glyphicon glyphicon-random" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Change registration for: @i.NAME to a different class." data-original-title="" title="Change Registration"></span>
-                </td>
-           </tr>
+        }
+        <!-- PROCESS PAYMENT -->
+        @if ((bool?)i.PROCESSED == true)
+        {
+            <td><span class="glyphicon glyphicon-usd" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Registration Date: @i.REG_DATE. Payment has been processed." data-original-title="" title="Payment: Processed"></span></td>
+        }
+        else
+        {
+            <td>
+                <span id="PL_@i.RECEIPT" class="hidden"><img src="~/images/ajax-loader.gif" alt="Loading" /></span>
+                <span id="@i.RECEIPT" class="glyphicon glyphicon-alert" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Registration Date: @i.REG_DATE. Registration has NOT been processed." data-original-title="" title="Payment: NOT Processed"></span>
+            </td>
+        }
+
+        @if ((bool?)i.REGISTRATION_EMAIL_CONFIRMED == true)
+        {
+            <td><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Registration email Date: @i.REG_DATE. Confirmed on @i.REGISTRATION_EMAIL_CONFIRM_DATE" data-original-title="" title="Status: Confirmed"></span></td>
+        }
+        else
+        {
+            <td>
+                <span id="CL_@i.RECEIPT" class="hidden"><img src="~/images/ajax-loader.gif" alt="Loading" /></span>
+                <span id="@i.RECEIPT" class="glyphicon glyphicon-thumbs-down" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Registration Date: @i.REG_DATE. Registration email has NOT been confirmed." data-original-title="" title="Status: NOT Confirmed"></span>
+            </td>
+        }
+
+
+        <!-- EXPORT TO CSV -->
+        <td>
+            <a href="studentedit/@i.RECEIPT" class="btn-xs btn-primary" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Edit # - @i.RECEIPT.  ** Will open in a new window **" data-original-title="" title="View Registration">Edit</a>&nbsp;<a href="studentreg/@i.RECEIPT" class="btn-xs btn-info" target="_blank" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="View # - @i.RECEIPT.  ** Will open in a new window **" data-original-title="" title="View Registration">View</a>&nbsp;<a href="_print_studentreg/@i.RECEIPT" class="btn-xs btn-warning" target="_blank" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="Print Reg # - @i.RECEIPT.  ** Will open in a new window **" data-original-title="" title="Print Registration">Print</a>
+            <input type="button" id="Exp_@i.RECEIPT" name="@i.RECEIPT" class="btn-xs btn-success" value="Export" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Export registration to upload to the state database. Reg # - @i.RECEIPT." data-original-title="" title="Export Registration" />
+        </td>
+        <!-- CANCEL REGISTRATION -->
+        <td>
+            <span id="CR_@i.RECEIPT" class="hidden"><img src="~/images/ajax-loader.gif" alt="Loading" /></span>
+            <span id="@i.RECEIPT" class="glyphicon glyphicon-remove-circle" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Cancel registration for: @i.NAME." data-original-title="" title="Cancel Registration"></span>
+        </td>
+        <!-- SWITCH REGISTRATION -->
+        <td>
+            <span id="SW_@i.RECEIPT" class="glyphicon glyphicon-random" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Change registration for: @i.NAME to a different class." data-original-title="" title="Change Registration"></span>
+        </td>
+    </tr>
         }
     </table>
 }
