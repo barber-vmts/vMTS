@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Web.Configuration;
 
@@ -23,32 +24,54 @@ namespace vMTS.Models
             {
                 var body = "";//<h1>THIS IS ONLY A TEST</h1>
                 var websiteURL = WebConfigurationManager.AppSettings["WebsiteURL"];
-                var regList = new List<Registration>();
-                regList = r.GetConfirmation(id);
+                var regList = r.GetConfirmation(id);
+                Registration registration = regList.FirstOrDefault();
+                
+                string confirmUrl = websiteURL + "Registration/RegistrationEmailConfirmation/" + registration.REGISTRATION_EMAIL_ID;
 
-                string confirmUrl = websiteURL + "Registration/RegistrationEmailConfirmation/" + regList.FirstOrDefault().REGISTRATION_EMAIL_ID;
-
-                body += "<h1>Thank You for Your Registration</h1>";
-                body += "<table cellpadding='10'><tr><td>Registration #:</td><td>" + id + "</td></tr>";
-                body += "<tr><td>Registration Date:</td><td>" + regList.FirstOrDefault().REG_DATE + "</td></tr></table>";
-                body += "<table><tr><td>Course Type:</td><td>" + regList.FirstOrDefault().CLASS_TYPE + "</td></tr>";
-                body += "<tr><td>Class Date:</td><td>" + regList.FirstOrDefault().CLASS_DAY + "</td></tr>";
-                body += "<tr><td>Participant Name:</td><td>" + regList.FirstOrDefault().NAME + "</td></tr>";
-                body += "<tr><td>Participant Phone:</td><td>" + regList.FirstOrDefault().PHONE + "</td></tr></table>";
-
-                body += "<b><span style=\"color:red;margin-top:10px;margin-bottom:10px;\">Notice: This is a confirmation of your registration.Please <a href=" + confirmUrl + "> click here </a> to confirm receipt and to open further instructions. Read all the text as it contains important instructions.";
-                body += "<br >";
-                body += "Payment has not been processed. You will receive a separate email message when payment has been processed.<span></b>";
+                body = "<table cellspacing='0' cellpadding='0' width='100%'><tr><td style='text-align:center;'><center><a href='https://www.learntoridetn.com'><img height='60' src='https://www.learntoridetn.com/images/logo.jpg' alt='Volunteer Motorcycle Training Services'></a></center></td></tr></table>";
+                
+                body += "<table cellspacing='0' cellpadding='0' width='100%' style='background-color: #f7f7f7;padding: 20px 30px 30px;font-size:14px;'>";
+                body += "<tr><td>";
+                    body += "Dear " + registration.NAME + ",";
+                    body += "<p>Thank you for regisitering for the <b>" + registration.CLASS_TYPE + "</b> class. We are looking forward to seeing you in your class. Below is the information for your class registration.</p>";
+                body += "</td></tr>";
+                
+                body += "<tr><td>";
+                    body += "<table cellpadding='10'><tr><td><b>Registration Number:</b></td><td>" + id + "</td></tr>";
+                    body += "<tr><td><b>Registration Date:</b></td><td>" + registration.REG_DATE + "</td></tr>";
+                    body += "<tr><td><b>Course Type:</b></td><td>" + registration.CLASS_TYPE + "</td></tr>";
+                    body += "<tr><td><b>Class Date:</b></td><td>" + registration.CLASS_DAY + "</td></tr>";
+                    body += "<tr><td><b>Participant Name:</b></td><td>" + registration.NAME + "</td></tr>";
+                    body += "<tr><td><b>Participant Phone:</b></td><td>" + registration.PHONE + "</td></tr></table>";
+                body += "</td></tr>";
+                
+                body += "<tr><td>";
+                    body += "<p>The next step to make this official is for you to confirm your registration. In the confirmation please read all the text as it contains important instructions.</p>";
+                    body += "<p><a href=" + confirmUrl + ">CONFIRM HERE</a><p>";
+                    body += "<p>Or</p>";
+                    body += "<span> you can copy paste below URL to your browser. Please do not share this link to anyone. It is unique to you. </span> <br />";
+                    body += "<a href=' + confirmUrl + '>"+ confirmUrl +"</a>";
+                    //body += "<b><span style=\"margin-top:10px;margin-bottom:10px;\">Notice: This is a confirmation of your registration. Please <a href=" + confirmUrl + "> click here </a> or copy paste thid ("+confirmUrl+") URL to your browser to confirm receipt and to open further instructions. Read all the text as it contains important instructions.";
+                    body += "<p>Payment has not been processed. You will receive a separate email message when payment has been processed.</p>";
+                body += "</td></tr>";
+                body += "<tr style='line-height: 8px;'><td>";
+                    body += "<p>Regards,";
+                    body += "<p>Volunteer Motorcycle Training Services Team</p>";
+                    body += "<a href='tel:+16154149042'>615.414.9042</a> <br /> <br />";
+                    body += "<a href='https://www.facebook.com/Volunteer-Motorcycle-Training-Services-372371187072/timeline' target='_blank'><img src='https://www.learntoridetn.com/Content/images/Facebook-icon.png' alt='Facebook'></a><a href='https://twitter.com/barbervmts' target='_blank'><img src='https://www.learntoridetn.com/Content/images/Twitter-icon.png' alt='Twitter'></a></div>";
+                body += "</td></tr>";
+                body += "</table>";
 
                 MailMessage m = new MailMessage();
                 m.From = new MailAddress("registration@learntoridetn.com");
-                m.To.Add(new MailAddress(regList.FirstOrDefault().EMAIL));
+                m.To.Add(new MailAddress(registration.EMAIL));
                 m.Bcc.Add(new MailAddress(owneremail));
                 m.Bcc.Add(new MailAddress(adminmail));
-                m.Subject = "vMTS Registration: #" + id;
+                m.Subject = "Volunteer Motorcycle Training Services Registration";
                 m.IsBodyHtml = true;
                 m.Body = body;
-
+                
                 SmtpClient sc = new SmtpClient(smtp);
                 sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
                 sc.Send(m);
@@ -290,7 +313,7 @@ namespace vMTS.Models
                 m.To.Add(new MailAddress(regList.FirstOrDefault().EMAIL));
                 m.Bcc.Add(new MailAddress(adminmail));
                 m.Bcc.Add(new MailAddress(owneremail));
-                m.Subject = "Payment Confirmation for Registration: #" + id;
+                m.Subject = "Volunteer Motorcycle Training Services Payment Confirmation";
                 m.IsBodyHtml = true;
                 m.Body = body;
 
