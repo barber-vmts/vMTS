@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
-using System.Web;
-using System.Web.Mvc;
+using System.Web.Configuration;
 
 namespace vMTS.Models
 {
@@ -17,25 +17,81 @@ namespace vMTS.Models
         string smtp = "mail.learntoridetn.com";
         string postmaster = "postmaster@learntoridetn.com";
         string pass = "vmts2013!";
+
         public void SendRegistrationMessage(Int64 id)
         {
-            var regList = new List<Registration>();
-
-            regList = r.GetConfirmation(id);
-
-            var msg = "";
-            var body = "";//<h1>THIS IS ONLY A TEST</h1>
             try
             {
-                body += "<h1>Thank You for Your Registration</h1>";
-                body += "<table cellpadding='10'><tr><td>Registration #:</td><td>" + id + "</td></tr>";
-                body += "<tr><td>Registration Date:</td><td>" + regList.FirstOrDefault().REG_DATE + "</td></tr></table>";
-                body += "<table><tr><td>Course Type:</td><td>" + regList.FirstOrDefault().CLASS_TYPE + "</td></tr>";
-                body += "<tr><td>Class Date:</td><td>" + regList.FirstOrDefault().CLASS_DAY + "</td></tr>";
-                body += "<tr><td>Participant Name:</td><td>" + regList.FirstOrDefault().NAME + "</td></tr>";
-                body += "<tr><td>Participant Phone:</td><td>" + regList.FirstOrDefault().PHONE + "</td></tr></table>";
+                var body = "";//<h1>THIS IS ONLY A TEST</h1>
+                var websiteURL = WebConfigurationManager.AppSettings["WebsiteURL"];
+                var regList = r.GetConfirmation(id);
+                Registration registration = regList.FirstOrDefault();
+                
+                string confirmUrl = websiteURL + "Registration/RegistrationEmailConfirmation/" + registration.REGISTRATION_EMAIL_ID;
 
-                body += "<b><span style=\"color:red;margin-top:10px;margin-bottom:10px;\"> Notice: This is a confirmation of your registration. Payment has not been processed. You will receive a separate email message when payment has been processed.<span></b>";
+                body = "<table cellspacing='0' cellpadding='0' width='100%'><tr><td style='text-align:center;'><center><a href='https://www.learntoridetn.com'><img height='60' src='https://www.learntoridetn.com/images/logo.jpg' alt='Volunteer Motorcycle Training Services'></a></center></td></tr></table>";
+                
+                body += "<table cellspacing='0' cellpadding='0' width='100%' style='background-color: #f7f7f7;padding: 20px 30px 30px;font-size:14px;'>";
+                body += "<tr><td>";
+                    body += "Dear " + registration.NAME + ",";
+                    body += "<p>Thank you for regisitering for the <b>" + registration.CLASS_TYPE + "</b> class. We are looking forward to seeing you in your class. Below is the information for your class registration.</p>";
+                body += "</td></tr>";
+                
+                body += "<tr><td>";
+                    body += "<table cellpadding='10'><tr><td><b>Registration Number:</b></td><td>" + id + "</td></tr>";
+                    body += "<tr><td><b>Registration Date:</b></td><td>" + registration.REG_DATE + "</td></tr>";
+                    body += "<tr><td><b>Course Type:</b></td><td>" + registration.CLASS_TYPE + "</td></tr>";
+                    body += "<tr><td><b>Class Date:</b></td><td>" + registration.CLASS_DAY + "</td></tr>";
+                    body += "<tr><td><b>Participant Name:</b></td><td>" + registration.NAME + "</td></tr>";
+                    body += "<tr><td><b>Participant Phone:</b></td><td>" + registration.PHONE + "</td></tr></table>";
+                body += "</td></tr>";
+                
+                body += "<tr><td>";
+                    body += "<p>The next step to make this official is for you to confirm your registration. In the confirmation please read all the text as it contains important instructions.</p>";
+                    body += "<p><a href=" + confirmUrl + ">CONFIRM HERE</a><p>";
+                    body += "<p>Or</p>";
+                    body += "<span> you can copy paste below URL to your browser. Please do not share this link to anyone. It is unique to you. </span> <br />";
+                    body += "<a href=' + confirmUrl + '>"+ confirmUrl +"</a>";
+                    //body += "<b><span style=\"margin-top:10px;margin-bottom:10px;\">Notice: This is a confirmation of your registration. Please <a href=" + confirmUrl + "> click here </a> or copy paste thid ("+confirmUrl+") URL to your browser to confirm receipt and to open further instructions. Read all the text as it contains important instructions.";
+                    body += "<p>Payment has not been processed. You will receive a separate email message when payment has been processed.</p>";
+                body += "</td></tr>";
+                body += "<tr style='line-height: 8px;'><td>";
+                    body += "<p>Regards,";
+                    body += "<p>Volunteer Motorcycle Training Services Team</p>";
+                    body += "<a href='tel:+16154149042'>615.414.9042</a> <br /> <br />";
+                    body += "<a href='https://www.facebook.com/Volunteer-Motorcycle-Training-Services-372371187072/timeline' target='_blank'><img src='https://www.learntoridetn.com/Content/images/Facebook-icon.png' alt='Facebook'></a><a href='https://twitter.com/barbervmts' target='_blank'><img src='https://www.learntoridetn.com/Content/images/Twitter-icon.png' alt='Twitter'></a></div>";
+                body += "</td></tr>";
+                body += "</table>";
+
+                MailMessage m = new MailMessage();
+                m.From = new MailAddress("registration@learntoridetn.com");
+                m.To.Add(new MailAddress(registration.EMAIL));
+                m.Bcc.Add(new MailAddress(owneremail));
+                m.Bcc.Add(new MailAddress(adminmail));
+                m.Subject = "Volunteer Motorcycle Training Services Registration";
+                m.IsBodyHtml = true;
+                m.Body = body;
+                
+                SmtpClient sc = new SmtpClient(smtp);
+                sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
+                sc.Send(m);
+
+                // SEND MESSAGE TO vMTS ADMINISTRATORS
+                SendAdminMessage(id);
+            }
+            catch (Exception error)
+            {
+                LogErrorToDB("SendRegistrationMessage()", error.Message, error.StackTrace);
+            }
+        }
+
+        public string SendClassDetials(Guid id)
+        {
+            try
+            {
+                var body = "";//<h1>THIS IS ONLY A TEST</h1>
+                var regList = r.GetConfirmation(id);
+
                 if (regList.FirstOrDefault().AGE <= 17)
                 {
                     body += "<h1>Because the participant is under 18, a parent or legal guardian will need to be present to sign a waiver.</h1>";
@@ -50,7 +106,7 @@ namespace vMTS.Models
                     }
                 }
 
-                body += "<table><th>Class Details</th>";
+                body += "<table><th style='text-align: center;'>Class Details</th>";
                 body += "<tr><td>Class will begin at " + string.Format("{0:t}", regList.FirstOrDefault().CLASS_START_TIME) + " on " + string.Format("{0:D}", regList.FirstOrDefault().CLASS_START_DATE) + ".  Plan to arrive a little early to complete some paper work before class begins.</td></tr>";
                 body += "<tr><td>The address of the training site is 270 E. Main Street, Hendersonville, TN 37075.  Note that GPS will take you to the main entrance, west parking lot; we are located on the other side of the plant in the east parking lot.  Come to the Shipping/Receiving entrance next to Pinnacle Bank, across from Simmons Bank.</td></tr>";
 
@@ -148,28 +204,13 @@ namespace vMTS.Models
                 body += "<table>";
                 body += "<tr><td>If links in the email do not work, copy and paste them into your browser do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to 615.414.9042 or email at <a href='mailto:steve.barber@comcast.net'>steve.barber@comcast.net</a>.</tr></td>";
                 body += "</table>";
-                MailMessage m = new MailMessage();
-                m.From = new MailAddress("registration@learntoridetn.com");
-                m.To.Add(new MailAddress(regList.FirstOrDefault().EMAIL));
-                m.Bcc.Add(new MailAddress(owneremail));
-                m.Bcc.Add(new MailAddress(adminmail));
-                m.Subject = "vMTS Registration: #" + id;
-                m.IsBodyHtml = true;
-                m.Body = body;
 
-                SmtpClient sc = new SmtpClient(smtp);
-                sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
-                sc.Send(m);
-
-                msg = "Success";
-
-                // SEND MESSAGE TO vMTS ADMINISTRATORS
-                SendAdminMessage(id);
-
+                return body;
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                msg = e.Message;
+                LogErrorToDB("SendClassDetials()", error.Message, error.StackTrace);
+                return "";
             }
         }
 
@@ -263,7 +304,7 @@ namespace vMTS.Models
                     body += "<tr><td>NO REFUNDS will be made, except for course cancellations, at least 14 days in advance of the scheduled class date. One reschedule will be permitted if notified at least 24 hours in advance of the class start time. The cost of the reschedule is $100. If a request is not made within the specified time period, the class fee will be forfeited and a new fee will be charged for a later class.</td></tr>";
                     body += "<br />";
                     body += "<tr><td>Students who are unable to meet the minimum physical requirements in the opinion of the RiderCoach, or students whose behavior pose a hazard to themselves and/or other students will be asked to discontinue the riding portion of the class with NO REFUND GIVEN. They may stay to observe the remainder of the class but will not be certified for completion. Students must successfully complete the entire class (including the written and riding skills evaluation) to receive a completion certificate and MSF card completion card.</tr></td></table>";
-                    
+
                     body += "<table><tr><td>If links in the email do not work, copy and paste them into your browser do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to 615.414.9042 or email at <a href='mailto:steve.barber@comcast.net'>steve.barber@comcast.net</td></tr></table>";
                 }
 
@@ -272,7 +313,7 @@ namespace vMTS.Models
                 m.To.Add(new MailAddress(regList.FirstOrDefault().EMAIL));
                 m.Bcc.Add(new MailAddress(adminmail));
                 m.Bcc.Add(new MailAddress(owneremail));
-                m.Subject = "Payment Confirmation for Registration: #" + id;
+                m.Subject = "Volunteer Motorcycle Training Services Payment Confirmation";
                 m.IsBodyHtml = true;
                 m.Body = body;
 
@@ -287,9 +328,10 @@ namespace vMTS.Models
                 msg = "Sent";
 
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                msg = e.Message;
+                msg = error.Message;
+                LogErrorToDB("PaymentConfirmation()", error.Message, error.StackTrace);
             }
 
             return msg;
@@ -330,9 +372,9 @@ namespace vMTS.Models
                 msg = "Success";
 
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                msg = e.Message;
+                LogErrorToDB("SendAdminMessage()", error.Message, error.StackTrace);
             }
         }
 
@@ -359,9 +401,10 @@ namespace vMTS.Models
                 msg = "Code Sent";
 
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                msg = "Code Could Not Be Sent: " + e.Message;
+                LogErrorToDB("SendConfirmationCode()", error.Message, error.StackTrace);
+                msg = "Code Could Not Be Sent: " + error.Message;
             }
 
             return msg;

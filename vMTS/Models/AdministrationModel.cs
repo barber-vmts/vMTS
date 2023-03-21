@@ -423,8 +423,9 @@ namespace vMTS.Models
                             REG_DATE = r.REG_DATE,
                             CONFIRMED = r.CONFIRMED,
                             CONFIRMED_DATE = r.CONFIRMED_DATE,
-                            PROCESSED = r.PROCESSED
-                            
+                            PROCESSED = r.PROCESSED,
+                            REGISTRATION_EMAIL_CONFIRM_DATE = r.REGISTRATION_EMAIL_CONFIRM_DATE,
+                            REGISTRATION_EMAIL_CONFIRMED = r.REGISTRATION_EMAIL_CONFIRMED
                         });
                     }
                 }
