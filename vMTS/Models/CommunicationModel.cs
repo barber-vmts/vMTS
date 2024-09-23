@@ -16,7 +16,7 @@ namespace vMTS.Models
         string owneremail = "Steve.Barber@comcast.net";
         string smtp = "mail.learntoridetn.com";
         string postmaster = "postmaster@learntoridetn.com";
-        string pass = "vmts2013!";
+        string pass = System.Text.Encoding.ASCII.GetString(Convert.FromBase64String(WebConfigurationManager.AppSettings["SendEmailPass"]));
 
         public void SendRegistrationMessage(Int64 id)
         {
@@ -396,7 +396,7 @@ namespace vMTS.Models
 
                 SmtpClient sc = new SmtpClient(smtp);
                 sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
-                sc.Send(m);
+                //sc.Send(m);
 
                 msg = "Code Sent";
 
