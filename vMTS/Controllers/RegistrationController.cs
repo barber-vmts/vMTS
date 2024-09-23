@@ -210,6 +210,11 @@ namespace vMTS.Controllers
             return msg;
         }
 
+		public void SendRegistrationEmil(long id) {
+
+			CM.SendRegistrationMessage(id);
+		}
+
         public Int32 VerifyClassOpenings(int COURSE_ID)
         {
             Int32 msg;

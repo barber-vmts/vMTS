@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -16,9 +17,9 @@ namespace vMTS.Models
         string owneremail = "Steve.Barber@comcast.net";
         string smtp = "mail.learntoridetn.com";
         string postmaster = "postmaster@learntoridetn.com";
-        string pass = "vmts2013!";
+		string pass = System.Text.Encoding.ASCII.GetString(Convert.FromBase64String(WebConfigurationManager.AppSettings["SendEmailPass"]));
 
-        public void SendRegistrationMessage(Int64 id)
+		public void SendRegistrationMessage(Int64 id)
         {
             try
             {
