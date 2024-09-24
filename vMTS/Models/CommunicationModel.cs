@@ -15,7 +15,7 @@ namespace vMTS.Models
         string devmail = "lloydleebarber@gmail.com";
         string adminmail = "Melanie.Barber124@gmail.com";
         string owneremail = "Steve.Barber@comcast.net";
-        string smtp = "mail.learntoridetn.com";
+        string smtp = "m05.internetmailserver.net";
         string postmaster = "postmaster@learntoridetn.com";
 		string pass = System.Text.Encoding.ASCII.GetString(Convert.FromBase64String(WebConfigurationManager.AppSettings["SendEmailPass"]));
 
@@ -75,6 +75,7 @@ namespace vMTS.Models
                 
                 SmtpClient sc = new SmtpClient(smtp);
                 sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
+				sc.Port = 587;
                 sc.Send(m);
 
                 // SEND MESSAGE TO vMTS ADMINISTRATORS
@@ -320,8 +321,8 @@ namespace vMTS.Models
 
                 SmtpClient sc = new SmtpClient(smtp);
                 sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
-
-                if (send == true)
+				sc.Port = 587;
+				if (send == true)
                 {
                     sc.Send(m);
                 }
@@ -368,7 +369,8 @@ namespace vMTS.Models
 
                 SmtpClient sc = new SmtpClient(smtp);
                 sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
-                sc.Send(m);
+				sc.Port = 587;
+				sc.Send(m);
 
                 msg = "Success";
 
@@ -397,7 +399,8 @@ namespace vMTS.Models
 
                 SmtpClient sc = new SmtpClient(smtp);
                 sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
-                sc.Send(m);
+				sc.Port = 587;
+				sc.Send(m);
 
                 msg = "Code Sent";
 
@@ -434,8 +437,8 @@ namespace vMTS.Models
 
                 SmtpClient sc = new SmtpClient(smtp);
                 sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
-
-                sc.Send(m);
+				sc.Port = 587;
+				sc.Send(m);
 
             }
             catch (Exception e)
