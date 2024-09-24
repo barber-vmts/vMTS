@@ -60,7 +60,7 @@ namespace vMTS.Models
                     body += "<p>Regards,";
                     body += "<p>Volunteer Motorcycle Training Services Team</p>";
                     body += "<a href='tel:+16154149042'>615.414.9042</a> <br /> <br />";
-                    body += "<a href='https://www.facebook.com/Volunteer-Motorcycle-Training-Services-372371187072/timeline' target='_blank'><img src='https://www.learntoridetn.com/Content/images/Facebook-icon.png' alt='Facebook'></a><a href='https://twitter.com/barbervmts' target='_blank'><img src='https://www.learntoridetn.com/Content/images/Twitter-icon.png' alt='Twitter'></a></div>";
+                    body += "<a href='https://www.facebook.com/Volunteer-Motorcycle-Training-Services-372371187072/timeline' target='_blank'><img src='https://www.learntoridetn.com/Content/images/Facebook-icon.png' alt='Facebook'></a><a href='https://x.com/barbervmts' target='_blank'><img src='https://www.learntoridetn.com/Content/images/Twitter-icon.png' alt='x'></a></div>";
                 body += "</td></tr>";
                 body += "</table>";
 
