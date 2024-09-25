@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -14,11 +15,11 @@ namespace vMTS.Models
         string devmail = "lloydleebarber@gmail.com";
         string adminmail = "Melanie.Barber124@gmail.com";
         string owneremail = "Steve.Barber@comcast.net";
-        string smtp = "mail.learntoridetn.com";
+        string smtp = "m05.internetmailserver.net";
         string postmaster = "postmaster@learntoridetn.com";
-        string pass = "vmts2013!";
+		string pass = System.Text.Encoding.ASCII.GetString(Convert.FromBase64String(WebConfigurationManager.AppSettings["SendEmailPass"]));
 
-        public void SendRegistrationMessage(Int64 id)
+		public void SendRegistrationMessage(Int64 id)
         {
             try
             {
@@ -59,7 +60,7 @@ namespace vMTS.Models
                     body += "<p>Regards,";
                     body += "<p>Volunteer Motorcycle Training Services Team</p>";
                     body += "<a href='tel:+16154149042'>615.414.9042</a> <br /> <br />";
-                    body += "<a href='https://www.facebook.com/Volunteer-Motorcycle-Training-Services-372371187072/timeline' target='_blank'><img src='https://www.learntoridetn.com/Content/images/Facebook-icon.png' alt='Facebook'></a><a href='https://twitter.com/barbervmts' target='_blank'><img src='https://www.learntoridetn.com/Content/images/Twitter-icon.png' alt='Twitter'></a></div>";
+                    body += "<a href='https://www.facebook.com/Volunteer-Motorcycle-Training-Services-372371187072/timeline' target='_blank'><img src='https://www.learntoridetn.com/Content/images/Facebook-icon.png' alt='Facebook'></a><a href='https://x.com/barbervmts' target='_blank'><img src='https://www.learntoridetn.com/Content/images/Twitter-icon.png' alt='x'></a></div>";
                 body += "</td></tr>";
                 body += "</table>";
 
@@ -74,6 +75,7 @@ namespace vMTS.Models
                 
                 SmtpClient sc = new SmtpClient(smtp);
                 sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
+				sc.Port = 587;
                 sc.Send(m);
 
                 // SEND MESSAGE TO vMTS ADMINISTRATORS
@@ -319,8 +321,8 @@ namespace vMTS.Models
 
                 SmtpClient sc = new SmtpClient(smtp);
                 sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
-
-                if (send == true)
+				sc.Port = 587;
+				if (send == true)
                 {
                     sc.Send(m);
                 }
@@ -367,7 +369,8 @@ namespace vMTS.Models
 
                 SmtpClient sc = new SmtpClient(smtp);
                 sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
-                sc.Send(m);
+				sc.Port = 587;
+				sc.Send(m);
 
                 msg = "Success";
 
@@ -396,7 +399,8 @@ namespace vMTS.Models
 
                 SmtpClient sc = new SmtpClient(smtp);
                 sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
-                sc.Send(m);
+				sc.Port = 587;
+				sc.Send(m);
 
                 msg = "Code Sent";
 
@@ -433,8 +437,8 @@ namespace vMTS.Models
 
                 SmtpClient sc = new SmtpClient(smtp);
                 sc.Credentials = new System.Net.NetworkCredential(postmaster, pass);
-
-                sc.Send(m);
+				sc.Port = 587;
+				sc.Send(m);
 
             }
             catch (Exception e)
