@@ -1,5 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using Microsoft.Ajax.Utilities;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,10 +13,9 @@ namespace vMTS.Models
     public class CommunicationModel
     {
         RegistrationModel r = new RegistrationModel();
+		GeneralModel g = new GeneralModel();
 
         string devmail = "lloydleebarber@gmail.com";
-        string adminmail = "Melanie.Barber124@gmail.com";
-        string owneremail = "Steve.Barber@comcast.net";
         string smtp = "m05.internetmailserver.net";
         string postmaster = "postmaster@learntoridetn.com";
 		string pass = System.Text.Encoding.ASCII.GetString(Convert.FromBase64String(WebConfigurationManager.AppSettings["SendEmailPass"]));
@@ -23,10 +24,12 @@ namespace vMTS.Models
         {
             try
             {
+				
                 var body = "";//<h1>THIS IS ONLY A TEST</h1>
                 var websiteURL = WebConfigurationManager.AppSettings["WebsiteURL"];
                 var regList = r.GetConfirmation(id);
-                Registration registration = regList.FirstOrDefault();
+				var company = g.GetCompanyInfo();
+				Registration registration = regList.FirstOrDefault();
                 
                 string confirmUrl = websiteURL + "Registration/RegistrationEmailConfirmation/" + registration.REGISTRATION_EMAIL_ID;
 
@@ -59,7 +62,7 @@ namespace vMTS.Models
                 body += "<tr style='line-height: 8px;'><td>";
                     body += "<p>Regards,";
                     body += "<p>Volunteer Motorcycle Training Services Team</p>";
-                    body += "<a href='tel:+16154149042'>615.414.9042</a> <br /> <br />";
+                    body += "<a href='tel:+1" + company.Telephone + "'>" + company.Telephone +"</a> <br /> <br />";
                     body += "<a href='https://www.facebook.com/Volunteer-Motorcycle-Training-Services-372371187072/timeline' target='_blank'><img src='https://www.learntoridetn.com/Content/images/Facebook-icon.png' alt='Facebook'></a><a href='https://x.com/barbervmts' target='_blank'><img src='https://www.learntoridetn.com/Content/images/Twitter-icon.png' alt='x'></a></div>";
                 body += "</td></tr>";
                 body += "</table>";
@@ -67,8 +70,8 @@ namespace vMTS.Models
                 MailMessage m = new MailMessage();
                 m.From = new MailAddress("registration@learntoridetn.com");
                 m.To.Add(new MailAddress(registration.EMAIL));
-                m.Bcc.Add(new MailAddress(owneremail));
-                m.Bcc.Add(new MailAddress(adminmail));
+                m.Bcc.Add(new MailAddress(company.Email));
+                m.Bcc.Add(new MailAddress(company.RegistrationDirectorEmail));
                 m.Subject = "Volunteer Motorcycle Training Services Registration";
                 m.IsBodyHtml = true;
                 m.Body = body;
@@ -93,6 +96,7 @@ namespace vMTS.Models
             {
                 var body = "";//<h1>THIS IS ONLY A TEST</h1>
                 var regList = r.GetConfirmation(id);
+				var company = g.GetCompanyInfo();
 
                 if (regList.FirstOrDefault().AGE <= 17)
                 {
@@ -204,7 +208,8 @@ namespace vMTS.Models
                 body += "<tr><td>Students who are unable to meet the minimum physical requirements in the opinion of the RiderCoach, or students whose behavior pose a hazard to themselves and/or other students will be asked to discontinue the riding portion of the class with NO REFUND GIVEN. They may stay to observe the remainder of the class but will not be certified for completion. Students must successfully complete the entire class (including the MSF eCourse, written and riding skills evaluation) to receive a completion certificate and MSF completion card.</tr></td></table>";
 
                 body += "<table>";
-                body += "<tr><td>If links in the email do not work, copy and paste them into your browser do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to 615.414.9042 or email at <a href='mailto:steve.barber@comcast.net'>steve.barber@comcast.net</a>.</tr></td>";
+                body += "<tr><td>If links in the email do not work, copy and paste them into your browser do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to " +
+					company.Telephone + " or email at <a href='mailto:" + company.Email + "'>" + company.Email + "</a>.</tr></td>";
                 body += "</table>";
 
                 return body;
@@ -221,7 +226,9 @@ namespace vMTS.Models
             var regList = new List<Registration>();
             var payList = new List<vMTS.Models.RegistrationModel.PaymentConfirm>();
 
-            regList = r.GetConfirmation(id);
+			var company = g.GetCompanyInfo();
+
+			regList = r.GetConfirmation(id);
             payList = r.GetRegistrationPayment(id);
             bool send = true;
 
@@ -282,7 +289,13 @@ namespace vMTS.Models
                 {
                     body += "<table><tr><td>Students must successfully complete the entire class (including the MSF eCourse, written and riding skills evaluation) to receive a completion certificate and MSF completion card.</td></tr>";
                     body += "<br />";
-                    body += "<tr><td>If links in the email do not work, copy and paste them into your browser do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to 615.414.9042 or email at <a href='mailto:steve.barber@comcast.net'>steve.barber@comcast.net</a>.</tr></td>";
+                    body += "<tr><td>If links in the email do not work, copy and paste them into your browser do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to " +
+						company.Telephone +
+						" or email at <a href='mailto:" +
+						company.Email +
+						"'>" +
+						company.Email +
+						"</a>.</tr></td>";
                     body += "</table>";
 
                     body += "<table><th>Important Refund/Cancellation Policy</th>";
@@ -298,7 +311,13 @@ namespace vMTS.Models
                     body += "<tr><td>NO REFUNDS will be made, except for course cancellations, at least 7 days in advance of the scheduled class date. One re-schedule will be permitted if notified at least 24 hours in advance of the class start time. The cost of the reschedule is $100. If a request is not made within the specified time period, the class fee will be forfeited and a new fee will be charged for a later class.</td></tr>";
                     body += "<br />";
                     body += "<tr><td>Students who are unable to meet the minimum physical requirements in the opinion of the RiderCoach, or students whose behavior pose a hazard to themselves and/or other students will be asked to discontinue the riding portion of the class with NO REFUND GIVEN. They may stay to observe the remainder of the class but will not be certified for completion. Students must successfully complete the entire class to receive a MSF completion card.</tr></td></table>";
-                    body += "<table><tr><td>If links in the email do not work, copy and paste them into your browser do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to 615.414.9042 or email at <a href='mailto:steve.barber@comcast.net'>steve.barber@comcast.net</td></tr></table>";
+                    body += "<table><tr><td>If links in the email do not work, copy and paste them into your browser do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to " +
+						company.Telephone +
+						" or email at <a href='mailto:" +
+						company.Email +
+						"'>" +
+						company.Email +
+						"</td></tr></table>";
                 }
                 else
                 {
@@ -307,14 +326,20 @@ namespace vMTS.Models
                     body += "<br />";
                     body += "<tr><td>Students who are unable to meet the minimum physical requirements in the opinion of the RiderCoach, or students whose behavior pose a hazard to themselves and/or other students will be asked to discontinue the riding portion of the class with NO REFUND GIVEN. They may stay to observe the remainder of the class but will not be certified for completion. Students must successfully complete the entire class (including the written and riding skills evaluation) to receive a completion certificate and MSF card completion card.</tr></td></table>";
 
-                    body += "<table><tr><td>If links in the email do not work, copy and paste them into your browser do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to 615.414.9042 or email at <a href='mailto:steve.barber@comcast.net'>steve.barber@comcast.net</td></tr></table>";
+                    body += "<table><tr><td>If links in the email do not work, copy and paste them into your browser do not reply to this email.  If you need assistance, please notify Steve Barber, site administrator, by phone or text to " +
+						company.Telephone +
+						" or email at <a href='mailto:" +
+						company.Email +
+						"'>" +
+						company.Email +
+						"</td></tr></table>";
                 }
 
                 MailMessage m = new MailMessage();
                 m.From = new MailAddress("registration@learntoridetn.com");
                 m.To.Add(new MailAddress(regList.FirstOrDefault().EMAIL));
-                m.Bcc.Add(new MailAddress(adminmail));
-                m.Bcc.Add(new MailAddress(owneremail));
+                m.Bcc.Add(new MailAddress(company.Email));
+                m.Bcc.Add(new MailAddress(company.RegistrationDirectorEmail));
                 m.Subject = "Volunteer Motorcycle Training Services Payment Confirmation";
                 m.IsBodyHtml = true;
                 m.Body = body;
@@ -344,6 +369,7 @@ namespace vMTS.Models
             var regList = new List<Registration>();
 
             regList = r.GetConfirmation(id);
+			var company = g.GetCompanyInfo();
 
             var msg = "";
             var body = "";//<H1>THIS IS ONLY A TEST</H1>
@@ -361,8 +387,8 @@ namespace vMTS.Models
 
                 MailMessage m = new MailMessage();
                 m.From = new MailAddress("registration@learntoridetn.com");
-                m.To.Add(new MailAddress(adminmail));
-                m.Bcc.Add(new MailAddress(owneremail));
+                m.To.Add(new MailAddress(company.Email));
+                m.Bcc.Add(new MailAddress(company.RegistrationDirectorEmail));
                 m.Subject = "New Class Registration: #" + id;
                 m.IsBodyHtml = true;
                 m.Body = body;

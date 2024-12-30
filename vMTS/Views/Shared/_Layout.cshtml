@@ -1,58 +1,65 @@
-﻿<!DOCTYPE html>
+﻿@{
+	vMTS.Models.GeneralModel general = new vMTS.Models.GeneralModel();
+	var compnay = general.GetCompanyInfo();
+	ViewData["Telephone"] = compnay.Telephone;
+	ViewBag.tel = "tel:+1" + @ViewData["Telephone"];
+}
+
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="@ViewBag.Description"/>
-    <meta name="keywords" content="motorcycle,riding,courses,training,safety,nashville,hendersonville,middle tennessee,tennessee,classes" />
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/boot-min/css", "~/bundles/jasnyCSS")
-    @Styles.Render("~/date-min/css")
-    @Styles.Render("~/custom/css")
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="@ViewBag.Description" />
+	<meta name="keywords" content="motorcycle,riding,courses,training,safety,nashville,hendersonville,middle tennessee,tennessee,classes" />
+	<title>@ViewBag.Title</title>
+	@Styles.Render("~/boot-min/css", "~/bundles/jasnyCSS")
+	@Styles.Render("~/date-min/css")
+	@Styles.Render("~/custom/css")
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/jasnyJS")
-    @Scripts.Render("~/bundles/respond")
-    @Scripts.Render("~/bundles/datepicker")
-    @Scripts.Render("~/bundles/modernizr")
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@Scripts.Render("~/bundles/jasnyJS")
+	@Scripts.Render("~/bundles/respond")
+	@Scripts.Render("~/bundles/datepicker")
+	@Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="~/Home/Index">
-                    <img class="img-rounded img-responsive" id="logo" src="~/images/logo.jpg" alt="vMTS" title="volunteer motorcycle training services 2020" />
-                </a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Courses", "courses", "home")</li>
-                    <li>@Html.ActionLink("Fees", "fees", "home")</li>
-                    <li>@Html.ActionLink("Registration", "index", "registration")</li>
-                    <li>@Html.ActionLink("Rider Coaches", "instructors", "home")</li>
-                    <li>@Html.ActionLink("Sponsors", "sponsors", "home")</li>
-                    <li>@Html.ActionLink("Contact Us", "contact", "home")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <div class="navbar-left"><a href="https://www.facebook.com/Volunteer-Motorcycle-Training-Services-372371187072/timeline" target="_blank"><img src="~/Content/images/Facebook-icon.png" alt="Facebook" /></a><a href="https://twitter.com/barbervmts" target="_blank"><img src="~/Content/images/Twitter-icon.png" alt="Twitter" /></a>&nbsp;<abbr title="Contact Us via Phone">P:</abbr>&nbsp;<a href="tel:+16154149042">615.414.9042</a></div>
-            <div class="navbar-right">&copy; @DateTime.Now.Year - <abbr title="volunteer motorcycle training services" class="initialism">vMTS</abbr> @Html.Partial("_LoginPartial")</div>
-        </footer>
-    </div>
-    @Scripts.Render("~/bundles/custom")
+	<div class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="~/Home/Index">
+					<img class="img-rounded img-responsive" id="logo" src="~/images/logo.jpg" alt="vMTS" title="volunteer motorcycle training services 2020" />
+				</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li>@Html.ActionLink("Courses", "courses", "home")</li>
+					<li>@Html.ActionLink("Fees", "fees", "home")</li>
+					<li>@Html.ActionLink("Registration", "index", "registration")</li>
+					<li>@Html.ActionLink("Rider Coaches", "instructors", "home")</li>
+					<li>@Html.ActionLink("Sponsors", "sponsors", "home")</li>
+					<li>@Html.ActionLink("Contact Us", "contact", "home")</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container body-content">
+		@RenderBody()
+		<hr />
+		<footer>
+			<div class="navbar-left"><a href="https://www.facebook.com/Volunteer-Motorcycle-Training-Services-372371187072/timeline" target="_blank"><img src="~/Content/images/Facebook-icon.png" alt="Facebook" /></a><a href="https://twitter.com/barbervmts" target="_blank"><img src="~/Content/images/Twitter-icon.png" alt="Twitter" /></a>&nbsp;<abbr title="Contact Us via Phone">P:</abbr>&nbsp;<a href="@ViewBag.tel">@ViewData["Telephone"]</a></div>
+			<div class="navbar-right">&copy; @DateTime.Now.Year - <abbr title="volunteer motorcycle training services" class="initialism">vMTS</abbr> @Html.Partial("_LoginPartial")</div>
+		</footer>
+	</div>
+	@Scripts.Render("~/bundles/custom")
 
 
-    @RenderSection("scripts", required: false)
+	@RenderSection("scripts", required: false)
 </body>
 </html>

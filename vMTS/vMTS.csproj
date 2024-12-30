@@ -512,6 +512,9 @@
     </Content>
     <Content Include="Views\Admin\studentedit.cshtml" />
     <Content Include="Views\Registration\RegistrationEmailConfirmation.cshtml" />
+    <Content Include="Views\Admin\Settings\Company.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Web.Testing.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

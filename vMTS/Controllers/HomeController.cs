@@ -19,6 +19,8 @@ namespace vMTS.Controllers
             ViewBag.description = "Volunteer Motorcycle Training Services is a Hendersonville, TN based organization that offers courses in motorcycle riding for people in Middle Tennessee.";
 
             g.GetCarouselImages = g.GetAllImages();
+			var compnay = g.GetCompanyInfo();
+			ViewBag.Telephone = compnay.Telephone;
 
             return View(g);
         }
@@ -51,11 +53,12 @@ namespace vMTS.Controllers
 
         public ActionResult contact()
         {
+			GeneralModel general = new GeneralModel();
+			var compnay = general.GetCompanyInfo();
             ViewBag.title = "Contact Us for More Information";
-
             ViewBag.description = "Contact Volunteer Motorcycle Training Services in Hendersonville, TN for More Information about motorcycle training courses";
 
-            return View();
+            return View(compnay);
         }
 
         public ActionResult instructors()
