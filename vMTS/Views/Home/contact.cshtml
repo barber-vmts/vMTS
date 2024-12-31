@@ -1,13 +1,15 @@
-﻿<h1>@ViewBag.title</h1>
+﻿@model vMTS.Models.Company
+
+<h1>@ViewBag.title</h1>
 <div class="panel panel-primary">
     <div class="panel-heading"><h3 class="panel-title">Support</h3></div>
     <div class="panel-body">
         <address class="lead">
-            <strong>Program Director:</strong><br /><a href="mailto:steve.barber@comcast.net">Steve Barber</a><br />
-            <strong>Registration Director:</strong><br /><a href="mailto:melanie.barber124@gmail.com">Melanie Barber</a><br />
+            <strong>Program Director:</strong><br /><a href="mailto:{@Model.ProgramDirectorEmail}">@Model.ProgramDirector</a><br />
+            <strong>Registration Director:</strong><br /><a href="mailto:{@Model.RegistrationDirectorEmail}">@Model.RegistrationDirector</a><br />
             
             <strong>Phone:</strong><br />
-            <a href="tel:+16154149042">615.414.9042</a>
+            <a href="tel:+1{@Model.Telephone}">@Model.Telephone</a>
         </address>
     </div>
 </div>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.ExtendedProperties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -26,9 +27,11 @@ namespace vMTS.Controllers
         {             
             string error ="";
             List <Class_Schedule_view> list = new List<Class_Schedule_view>();
-            try
+			var company = GM.GetCompanyInfo();
+
+			try
             {
-                using (vmts_dataDataContext db = new vmts_dataDataContext())
+				using (vmts_dataDataContext db = new vmts_dataDataContext())
                 {
                     var sql = from c in db.Class_Schedule_views
                               where c.CLASS_START_DATE >= DateTime.Now// && c.OPEN_SEATS >= 1
@@ -57,15 +60,16 @@ namespace vMTS.Controllers
                     }
                 }
 
-                //List<InstructorClasses> ic = new List<InstructorClasses>();
-                //ic = GM.GetInstructorClass();
+				//List<InstructorClasses> ic = new List<InstructorClasses>();
+				//ic = GM.GetInstructorClass();
 
-                //foreach(var i in ic)-
-                //{
-                //    string clDay = list.IndexOf(i.ClassDates.ToString());
-                //}
+				//foreach(var i in ic)-
+				//{
+				//    string clDay = list.IndexOf(i.ClassDates.ToString());
+				//}
+				
 
-            }
+			}
             catch (Exception e)
             {
                 error = e.Message;
@@ -77,7 +81,10 @@ namespace vMTS.Controllers
 
             var tuple = new Tuple<List<Group<string,Class_Schedule_view>>, List<CourseDescriptions>, List<InstructorClasses>>(classesGrouped.ToList(), GM.GetCourseDescriptions(),GM.GetInstructorClass());
 
-            return View(tuple);
+			ViewBag.Email = company.Email;
+			ViewBag.Telephone = company.Telephone;
+			ViewBag.Owner = company.OwnerName;
+			return View(tuple);
         }
 
         public ActionResult Register(Int32 id)
@@ -85,6 +92,7 @@ namespace vMTS.Controllers
             c.NameSuffix = Suffix.SuffixSelectList(); 
             c.RaceCodes = Race.RaceSelectList();
             c.States = States.StateSelectList();
+			var company = GM.GetCompanyInfo();
 
            string Class = "";
             string ClassType = "";
@@ -104,6 +112,10 @@ namespace vMTS.Controllers
             ViewBag.ClassId = id;
             ViewBag.StartDate = String.Format("{0:d}",Start);
             ViewBag.Title = ClassType + Class;
+			ViewBag.Email = company.Email;
+			ViewBag.Telephone = company.Telephone;
+			ViewBag.Owner = company.OwnerName;
+
             return View(c);
         }
         

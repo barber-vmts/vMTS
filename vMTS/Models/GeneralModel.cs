@@ -56,17 +56,30 @@ namespace vMTS.Models
 
     }
 
+	public class Company
+	{
+		public string OwnerName { get; set; }
+		public string Title { get; set; }
+		public string Email { get; set; }
+		public string Telephone { get; set; }
+		public string ProgramDirector { get; set; }
+		public string ProgramDirectorEmail { get; set; }
+		public string RegistrationDirector { get; set; }
+		public string RegistrationDirectorEmail { get; set; }
+	}
+
 
     public class GeneralModel
     {
         string jsonFileCourses = ConfigurationManager.AppSettings["CourseJSONFile"].ToString();
         string jsonFileInstructors = ConfigurationManager.AppSettings["InstructorsJSONFile"].ToString();
         string jsonFileSponsors = ConfigurationManager.AppSettings["SponsorsJSONFile"].ToString();
-        string jsonFileCarousel = ConfigurationManager.AppSettings["CarouselJSONFile"].ToString();
+		string jsonFileCarousel = ConfigurationManager.AppSettings["CarouselJSONFile"].ToString();
         string jsonFileInstructorClasses = ConfigurationManager.AppSettings["InstructorClassesJSONFile"].ToString();
         string jsonFilePromoCodes = ConfigurationManager.AppSettings["PromoCodeJSONFile"].ToString();
+		string jsonFileCompany = ConfigurationManager.AppSettings["CompanyJSONFile"].ToString();
 
-        public List<CarouselImgs> GetCarouselImages { get; set; }
+		public List<CarouselImgs> GetCarouselImages { get; set; }
 
         public List<CourseDescriptions> GetCourseDescriptions()
         {
@@ -230,8 +243,36 @@ namespace vMTS.Models
             return l.OrderBy(x => x.Sequence).ToList();
         }
 
+		public Company GetCompanyInfo()
+		{
+			var compnay = new Company();
+			try
+			{
+				JObject companyJson = JObject.Parse(File.ReadAllText(HostingEnvironment.MapPath(jsonFileCompany)));
 
-       public string VerifyPromoCode(string code)
+				compnay.OwnerName = (string)companyJson["OwnerName"];
+				compnay.Title = (string)companyJson["Title"];
+				compnay.Email = (string)companyJson["Email"];
+				compnay.Telephone = (string)companyJson["Telephone"];
+				compnay.ProgramDirector = (string)companyJson["ProgramDirector"];
+				compnay.ProgramDirectorEmail = (string)companyJson["ProgramDirectorEmail"];
+				compnay.RegistrationDirector = (string)companyJson["RegistrationDirector"];
+				compnay.RegistrationDirectorEmail = (string)companyJson["RegistrationDirectorEmail"];
+			}
+			catch (Exception e)
+			{
+				//Console.WriteLine(e.Message);
+				CommunicationModel C = new CommunicationModel();
+				C.SendErrorEmail(e.Message + Environment.NewLine + "Company Class JSON file:", "GetCompanyClass");
+				C.LogErrorToDB("GetCompanyClass", e.Message, e.StackTrace);
+			}
+
+			//return l.OrderBy(x => x.Name).ToList();
+			return compnay;
+		}
+
+
+		public string VerifyPromoCode(string code)
         {
             string msg;
             try
